@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core"
 import { initializeApp } from "firebase/app"
-import { AuthModule } from "src/app/modules/auth/auth.module"
 @Injectable({providedIn:'any'})
 export class Firebase{
   firebase= {

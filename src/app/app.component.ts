@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import 'firebase/database'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'spotifyClone';
+  constructor(){}
 }

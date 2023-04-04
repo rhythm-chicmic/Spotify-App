@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "spotify-clone-c20c4": {
+      "hosting": {
+        "spotifyClone": [
+          "spotify-clone-c20c4"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "spotify-clone-c20c4"
+  }
+}

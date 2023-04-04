@@ -55,9 +55,9 @@ export class LoginComponent implements OnInit{
           if(this.flag!==true){
             this.alert=true
           }
-
+          this.LoginForm.value.phoneNo='+91'+this.LoginForm?.value?.phoneNo
       console.log(this.LoginForm.value);
-      signInWithPhoneNumber(this.auth, '91'+this.LoginForm?.value?.phoneNo, this.recaptchaVerifier).then((result:any)=>{
+      signInWithPhoneNumber(this.auth, this.LoginForm?.value?.phoneNo, this.recaptchaVerifier).then((result:any)=>{
         console.log(result)
           
         
