@@ -8,6 +8,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { IonicModule } from '@ionic/angular';
 import { OtpComponent } from './otp/otp.component';
 import { NgOtpInputModule } from  'ng-otp-input';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -19,6 +20,7 @@ import { NgOtpInputModule } from  'ng-otp-input';
     ReactiveFormsModule,
     FormsModule,
     MatFormFieldModule,
+    SweetAlert2Module,
     AuthRoutingModule,
     NgOtpInputModule,
     IonicModule

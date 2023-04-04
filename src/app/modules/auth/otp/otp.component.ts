@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { PhoneAuthProvider, getAuth, signInWithCredential } from 'firebase/auth';
 import { Firebase } from 'src/app/core/services/firebase.service';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
@@ -13,6 +13,17 @@ import { Firebase } from 'src/app/core/services/firebase.service';
 export class OtpComponent implements OnInit{
   otp!:string;
   auth :any
+  Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
   config = {
     allowNumbersOnly: true,
     length: 6,
@@ -48,12 +59,19 @@ export class OtpComponent implements OnInit{
         console.log(response);
         localStorage.setItem('user_data', JSON.stringify(response));
         this.ngZone.run(() => {
+          this.Toast.fire({
+            icon: 'success',
+            title: 'Login Successful'
+          })
           this.router.navigate([PATHS.MAIN.DASHBOARD]);
         });
       })
       .catch((error) => {
         console.log(error);
-        alert(error.message);
+        this.Toast.fire({
+          icon: 'error',
+          title: 'Wrong OTP/OTP Expired'
+        })
       });
   }
 
