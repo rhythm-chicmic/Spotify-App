@@ -37,7 +37,7 @@ export class OtpComponent implements OnInit{
   }
   verify!:any;
   constructor(private router:Router,private ngZone:NgZone,private firebase:Firebase){
-     this.auth = getAuth(firebase.app);
+     this.auth = getAuth(firebase.firebaseApp);
   }
   ngOnInit(): void {
       this.verify = JSON.parse(localStorage.getItem(STORAGE_KEYS.VERIFICATION_ID) || '{}');

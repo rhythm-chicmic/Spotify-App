@@ -11,7 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './modules/auth/auth.module';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore/'; 
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
+
+const firebaseApp = AngularFireModule.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
     AppComponent
@@ -19,7 +21,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    
+
     AngularFireModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
@@ -27,6 +29,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
     AngularFirestoreModule.enablePersistence(),
     DashboardModule,
     AuthModule,
+    firebaseApp,
     BrowserAnimationsModule,
   ],
   providers: [ {
@@ -35,6 +38,6 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
   },],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
 
 }

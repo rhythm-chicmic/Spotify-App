@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit{
   LoginForm!: FormGroup
   constructor(private fb:FormBuilder,private router :Router,private firebase:Firebase){
     this.initLoginForm();
-      this.auth = getAuth(firebase.app);
+      this.auth = getAuth(firebase.firebaseApp);
   }
   ngOnInit(){
   this.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
@@ -59,8 +59,8 @@ export class LoginComponent implements OnInit{
       console.log(this.LoginForm.value);
       signInWithPhoneNumber(this.auth, this.LoginForm?.value?.phoneNo, this.recaptchaVerifier).then((result:any)=>{
         console.log(result)
-          
-        
+
+
         localStorage.setItem(STORAGE_KEYS.VERIFICATION_ID,JSON.stringify(result.verificationId))
         this.router.navigate([PATHS.AUTH.GET_OTP])
       }).catch((err)=>{
@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit{
         },5000)
       }
       )
-      
+
     }
     else {
       this.Toast.fire({
