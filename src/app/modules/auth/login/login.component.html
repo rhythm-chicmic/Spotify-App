@@ -1,4 +1,40 @@
-<div class="form-outline">
-    <input type="tel" id="typePhone" class="form-control" />
-    <label class="form-label" for="typePhone">Phone number input</label>
-</div>
+<div id="container">
+    <div id="left">
+      <h1 id="welcome">Welcome</h1>
+      <p id="lorem">
+        With Spotify, it’s easy to find the right music or podcast for every moment<br>
+         – on your phone, your computer, your tablet and more.<br>
+         There are millions of tracks and episodes 
+         on Spotify.<br>
+         So whether you’re behind the wheel,<br>
+          working out, partying or relaxing<br>
+         the right music or podcast is<br> 
+         always at your fingertips.<br>
+         Choose what you want to listen to, or<br>
+          let Spotify surprise you.
+      </p>
+    </div>
+   
+        <div id="right">
+    <form  [formGroup]="LoginForm" (ngSubmit)="login()"> 
+      <h1 id="login">LogIn</h1><br>
+      
+      <input type="text" id="email" class="client-info" formControlName="phoneNo">
+      <label for="email">Phone No.</label>
+      <mat-error id="error" *ngIf="controls['phoneNo']?.errors?.['pattern'] && controls['phoneNo'].touched">* Enter Valid Phone Number</mat-error>
+    
+      <button type="submit" id="submit"  [disabled]="LoginForm.invalid" class="client-info" >Submit</button>
+    </form>
+      <button class="social" id="facebook">connect with facebook</button>
+      <button class="social" id="google">connect with google</button>
+    </div>
+    
+
+  </div>
+  <script>
+       /* Work in proggress */
+document.getElementById('see-button').addEventListener('click', evt => {
+	document.getElementById('blur-work').style.display = 'none';
+})
+   /* Work in proggress */
+  </script>
