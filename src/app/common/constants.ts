@@ -25,7 +25,8 @@ export const PARENT_PATHS = {
         LOGIN: 'login',
         REGISTER: 'register',
         FORGOT_PASSWORD: 'forgot-password',
-        RESET_PASSWORD: 'reset-password'
+        RESET_PASSWORD: 'reset-password',
+        GET_OTP: 'otp'
     },
     MAIN: {
       DASHBOARD: 'home',
@@ -34,3 +35,7 @@ export const PARENT_PATHS = {
       BLOG_DISPLAY:'blog'
   },
   } 
+  export const STORAGE_KEYS={
+    TOKEN:'token',
+    VERIFICATION_ID:'VerificationCode'
+  }

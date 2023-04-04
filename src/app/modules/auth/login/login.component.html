@@ -22,15 +22,20 @@
       <input type="text" id="email" class="client-info" formControlName="phoneNo">
       <label for="email">Phone No.</label>
       <mat-error id="error" *ngIf="controls['phoneNo']?.errors?.['pattern'] && controls['phoneNo'].touched">* Enter Valid Phone Number</mat-error>
-    
-      <button type="submit" id="submit"  [disabled]="LoginForm.invalid" class="client-info" >Submit</button>
-    </form>
+    <div id="sign-in-button"></div>
+     <br>
+      <button type="submit" id="submit" [disabled]="LoginForm.invalid"  class="client-info" >Get OTP</button>
+    </form> 
       <button class="social" id="facebook">connect with facebook</button>
       <button class="social" id="google">connect with google</button>
+      
     </div>
     
-
+    
   </div>
+
+
+
   <script>
        /* Work in proggress */
 document.getElementById('see-button').addEventListener('click', evt => {

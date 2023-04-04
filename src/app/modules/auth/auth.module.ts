@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
@@ -7,6 +7,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { IonicModule } from '@ionic/angular';
 import { OtpComponent } from './otp/otp.component';
+import { NgOtpInputModule } from  'ng-otp-input';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -19,8 +20,10 @@ import { OtpComponent } from './otp/otp.component';
     FormsModule,
     MatFormFieldModule,
     AuthRoutingModule,
+    NgOtpInputModule,
     IonicModule
   ],
-  exports:[LoginComponent,SignUpComponent]
+  exports:[LoginComponent,SignUpComponent,OtpComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AuthModule { }

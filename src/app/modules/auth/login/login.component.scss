@@ -104,7 +104,18 @@
     width: 60%;
     cursor: pointer;
   }
-
+#sign-in-button{
+    display: block;
+    margin: 11px auto;
+    width: 70%;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition-duration: 200ms;
+    box-shadow: var(--box-shadow);
+    text-shadow: var(--box-shadow);
+}
 
   
   .social {
