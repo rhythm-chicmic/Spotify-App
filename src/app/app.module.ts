@@ -12,7 +12,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
-
+import { AdminModule } from './modules/admin/admin.module';
 const firebaseApp = AngularFireModule.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
@@ -28,6 +28,7 @@ const firebaseApp = AngularFireModule.initializeApp(environment.firebase);
     AngularFireDatabaseModule,
     AngularFirestoreModule.enablePersistence(),
     DashboardModule,
+    AdminModule,
     AuthModule,
     firebaseApp,
     BrowserAnimationsModule,

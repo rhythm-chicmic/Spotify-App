@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PATHS, REGEX, STORAGE_KEYS } from 'src/app/common/constants';
 import { getAuth,RecaptchaVerifier,signInWithPhoneNumber } from "firebase/auth";
 import "firebase/firestore"
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Firebase } from 'src/app/core/services/firebase.service';
 import Swal from "sweetalert2"

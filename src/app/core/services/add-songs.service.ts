@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { signUpModel } from 'src/app/common/interfaces';
 import { APIS, STORAGE_KEYS, userData } from 'src/app/common/constants';
+import { songInfoModel } from 'src/app/common/interfaces';
 @Injectable({providedIn:'root'})
 export class AddSongsService {
  private path= environment.url
@@ -10,13 +10,11 @@ export class AddSongsService {
   constructor(private httpService:HttpClient) {
     console.log(userData)
   }
+ getAllSongs(){
+    return this.httpService.get(this.path+APIS.ALL_SONGS.SONGS+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
+ }
+ postAllSongs(data:any){
+  return this.httpService.post(this.path+APIS.ALL_SONGS.SONGS+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),data)
+ }
  
-  postUserDetails(data:signUpModel){
-    return this.httpService.post(this.path+APIS.AUTH.SIGNUP+localStorage.getItem(STORAGE_KEYS.TOKEN),data)
-  }
-  getUserDetails(){
-   
-    return this.httpService.get(this.path+APIS.AUTH.SIGNUP+localStorage.getItem(STORAGE_KEYS.TOKEN))
-  
-  }
 }

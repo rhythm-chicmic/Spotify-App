@@ -58,6 +58,8 @@ export class OtpComponent implements OnInit{
       .then((response:any) => {
         console.log(response);
         localStorage.setItem('user_data', JSON.stringify(response));
+        localStorage.setItem(STORAGE_KEYS.FIREBASE_ID, response.user.uid);
+
         localStorage.setItem(STORAGE_KEYS.TOKEN,response._tokenResponse?.idToken)
         this.ngZone.run(() => {
           this.Toast.fire({

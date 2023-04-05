@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable, map } from 'rxjs';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
+import { UserDetailsService } from 'src/app/core/services/user-details.service';
 
 interface Note{
   content:string,
@@ -19,8 +20,8 @@ interface Note{
 export class HomeComponent implements OnInit{
   notesCollection!:AngularFirestoreCollection<Note>;
   notes!:Observable<Note[]>
-  constructor(private service:AngularFirestore,private userService:AddSongsService){
-    this.userService.getUserDetails().subscribe(res=>console.log(res))
+  constructor(private service:AngularFirestore,private userService:UserDetailsService){
+    this.userService.getUserDetails().subscribe((res:any)=>console.log(Object.values(res)))
   }
   ngOnInit(): void {
     

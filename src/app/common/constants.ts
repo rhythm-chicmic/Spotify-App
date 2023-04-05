@@ -15,6 +15,7 @@ export const PARENT_PATHS = {
     DEFAULT: '',
     AUTH: 'auth',
     MAIN: 'main',
+    ADMIN:'admin',
     SHARED:'shared',
     WILDCARD: '**',
     USER_PROFILE:'user-profile'
@@ -34,18 +35,25 @@ export const PARENT_PATHS = {
       BLOG_WRITE:'write-blog',
       BLOG_DISPLAY:'blog'
   },
+  ADMIN:{
+    ADD_SONGS:'add-songs'
+  }
   } 
 
 export const APIS ={
   AUTH:{
-    SIGNUP: 'users.json?auth='
+    SIGNUP: 'users/'
+  },
+  ALL_SONGS:{
+    SONGS:'allSongs'
   }
 }
 
   export const STORAGE_KEYS={
     TOKEN:'token',
     VERIFICATION_ID:'VerificationCode',
-    UNIQUE_ID:'user_data'
+    UNIQUE_ID:'user_data',
+    FIREBASE_ID:'id'
   }
 
   let userData:any=localStorage.getItem(STORAGE_KEYS.UNIQUE_ID)

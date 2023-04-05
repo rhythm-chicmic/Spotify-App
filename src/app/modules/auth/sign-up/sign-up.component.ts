@@ -6,6 +6,7 @@ import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { userData } from 'src/app/common/constants';
 import swal from 'sweetalert2'
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { UserDetailsService } from 'src/app/core/services/user-details.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -31,7 +32,7 @@ export class SignUpComponent {
       toast.addEventListener('mouseleave', swal.resumeTimer)
     }
   })
-  constructor(private fb:FormBuilder,private router:Router,private service:AddSongsService,private fireService:AngularFirestore){
+  constructor(private fb:FormBuilder,private router:Router,private service:UserDetailsService,private fireService:AngularFirestore){
     this.initRegisterForm();
    
   }
