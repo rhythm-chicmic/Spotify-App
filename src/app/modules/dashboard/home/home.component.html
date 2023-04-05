@@ -2,3 +2,25 @@
 <div *ngFor="let notes of notes |async">
     {{notes|json}}
 </div>
+
+
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Artist Name</th>
+        <th scope="col">Song Name</th>
+        <th scope="col">Genre</th>
+        <th scope="col">Song Type</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr  *ngFor="let playsong of playSongs">
+        <th scope="row">{{playsong.artistName}}</th>
+        <td>{{playsong.songName}}</td>
+        <td>{{playsong.genre}}</td>
+        <td>{{playsong.songType}}</td>
+      </tr>
+    </tbody>
+  </table> 

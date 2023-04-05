@@ -20,8 +20,15 @@ interface Note{
 export class HomeComponent implements OnInit{
   notesCollection!:AngularFirestoreCollection<Note>;
   notes!:Observable<Note[]>
-  constructor(private service:AngularFirestore,private userService:UserDetailsService){
-    this.userService.getUserDetails().subscribe((res:any)=>console.log(Object.values(res)))
+  playSongs:any
+  constructor(private service:AngularFirestore,private userService:UserDetailsService,private allSongService:AddSongsService){
+    this.userService.getUserDetails().subscribe((res:any)=>{
+      console.log(Object.values(res))
+  })
+    this.allSongService.getAllSongs().subscribe((res:any)=>{
+      this.playSongs=Object.values(res)
+    })
+  
   }
   ngOnInit(): void {
     
