@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody >
-      <tr  *ngFor="let playsong of playSongs">
+      <tr  *ngFor="let playsong of playSongs" (click)="onClick(playsong)">
         <th scope="row">{{playsong.artistName}}</th>
         <td>{{playsong.songName}}</td>
         <td>{{playsong.genre}}</td>

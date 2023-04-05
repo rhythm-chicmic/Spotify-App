@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core"
 import { initializeApp,  getApps, getApp} from "firebase/app"
 import { environment } from "src/environments/environment";
+
 @Injectable({providedIn:'any'})
 export class Firebase{
   private firebaseConfig= {

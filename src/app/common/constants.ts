@@ -45,7 +45,8 @@ export const APIS ={
     SIGNUP: 'users/'
   },
   ALL_SONGS:{
-    SONGS:'allSongs'
+    SONGS:'allSongs',
+    MY_SONGS:'mySongs/'
   }
 }
 

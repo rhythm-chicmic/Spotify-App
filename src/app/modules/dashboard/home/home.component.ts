@@ -34,8 +34,6 @@ export class HomeComponent implements OnInit{
     
     this.notesCollection=this.service.collection('notes');
     this.notes=this.notesCollection.valueChanges({idField:'id'})
-   this.notesCollection.snapshotChanges().subscribe((res)=>console.log(res))
-   
     this.notesCollection.valueChanges().subscribe((res)=>{
       console.log(res)
     
@@ -43,7 +41,10 @@ export class HomeComponent implements OnInit{
 
 
   }
-   
+  onClick(song:any){
+    console.log(song)
+    this.allSongService.postMySongsList(song).subscribe((res)=>console.log(res));
+  }
 
 
 }
