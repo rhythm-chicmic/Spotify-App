@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import 'firebase/firestore';
 import { Router } from '@angular/router';
-import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
+import { PATHS, STORAGE_KEYS, userData } from 'src/app/common/constants';
 import { PhoneAuthProvider, getAuth, signInWithCredential } from 'firebase/auth';
 import { Firebase } from 'src/app/core/services/firebase.service';
 import Swal from 'sweetalert2'
@@ -55,15 +55,18 @@ export class OtpComponent implements OnInit{
 
     console.log(credential);
     signInWithCredential(this.auth,credential)
-      .then((response) => {
+      .then((response:any) => {
         console.log(response);
         localStorage.setItem('user_data', JSON.stringify(response));
+        localStorage.setItem(STORAGE_KEYS.TOKEN,response._tokenResponse?.idToken)
         this.ngZone.run(() => {
           this.Toast.fire({
             icon: 'success',
             title: 'Login Successful'
           })
           this.router.navigate([PATHS.MAIN.DASHBOARD]);
+          
+         
         });
       })
       .catch((error) => {

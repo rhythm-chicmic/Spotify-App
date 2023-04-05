@@ -35,7 +35,22 @@ export const PARENT_PATHS = {
       BLOG_DISPLAY:'blog'
   },
   } 
+
+export const APIS ={
+  AUTH:{
+    SIGNUP: 'users.json?auth='
+  }
+}
+
   export const STORAGE_KEYS={
     TOKEN:'token',
-    VERIFICATION_ID:'VerificationCode'
+    VERIFICATION_ID:'VerificationCode',
+    UNIQUE_ID:'user_data'
   }
+
+  let userData:any=localStorage.getItem(STORAGE_KEYS.UNIQUE_ID)
+  userData=JSON.parse(userData) 
+  export {userData}
+
+
+  

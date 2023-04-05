@@ -10,7 +10,8 @@ const routes: Routes = [
     {path:'',redirectTo:PATHS.AUTH.LOGIN,pathMatch:'full'},
   {path:PATHS.AUTH.LOGIN,component:LoginComponent},
   {path:PATHS.AUTH.REGISTER,component:SignUpComponent},
-  {path:PATHS.AUTH.GET_OTP,component:OtpComponent}
+  {path:PATHS.AUTH.GET_OTP,component:OtpComponent},
+  {path:PATHS.AUTH.REGISTER,component:SignUpComponent}
 ];
 
 @NgModule({

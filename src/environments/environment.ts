@@ -10,6 +10,7 @@ export const environment = {
     messagingSenderId: '801151119175',
     measurementId: 'G-TQFHNWD74H',
   },
+  url: 'https://spotify-clone-c20c4-default-rtdb.firebaseio.com/',
     production: true,
     firebaseConfig :{
       databaseURL:  "https://spotify-clone-c20c4-default-rtdb.firebaseio.com/"

@@ -1,4 +1,3 @@
-import {getDatabase} from "firebase/database"
 export const environment = {
   firebase: {
     projectId: 'spotify-clone-c20c4',
@@ -11,6 +10,7 @@ export const environment = {
     measurementId: 'G-TQFHNWD74H',
   },
     production: true,
+    url: 'https://spotify-clone-c20c4-default-rtdb.firebaseio.com/',
    firebaseConfig :{
       databaseURL:  "https://spotify-clone-c20c4-default-rtdb.firebaseio.com/"
     }
