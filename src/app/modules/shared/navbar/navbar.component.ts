@@ -16,4 +16,7 @@ constructor(private router :Router){}
   OnMyLibraryClick(){
     this.router.navigate([PATHS.MAIN.YOUR_LIBRARY])
   }
+  OnLikedSongsClick(){
+    this.router.navigate([PATHS.MAIN.YOUR_LIBRARY,PATHS.MAIN.LIKED_SONGS])
+  }
 }

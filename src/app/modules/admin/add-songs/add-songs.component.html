@@ -24,7 +24,19 @@
       <input type="text" id="form6Example6" class="form-control" formControlName="artistName"/>
       <label class="form-label" for="form6Example6">Artist Name</label>
     </div>
+
+      <!-- Mp3 File -->
+    <div class="form-outline mb-4">
+      <input type="file" id="form6Example6" class="form-control" formControlName="mp3File"/>
+      <label class="form-label" for="form6Example6">Mp3 File</label>
+    </div>
+
+      <!-- Image File -->
+    <div class="form-outline mb-4">
+      <input type="file" id="form6Example6" class="form-control" formControlName="imageUrl"/>
+      <label class="form-label" for="form6Example6">Cover Image</label>
+    </div>
   
     <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Add Song</button>
+    <button type="submit" [disabled]="addSongForm.invalid" class="btn btn-primary btn-block mb-4">Add Song</button>
   </form>   
