@@ -13,10 +13,10 @@ import Swal from "sweetalert2"
   styleUrls: ['./home.component.scss']
 })
 
-  
+
 
 export class HomeComponent implements OnInit{
- 
+
   playSongs:any
   mySongList:any
   token:boolean=true;
@@ -42,10 +42,10 @@ export class HomeComponent implements OnInit{
     if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
       this.token=false;
     }
-  
+
   }
   ngOnInit(): void {
-    
+
     this.allSongService.getMySongsList().subscribe((res:any)=>{
       this.mySongList = Object.values(res)
     })
@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit{
   }
   onClick(song:any){
    console.log(1);
-   
+
     this.mySongList.find((val:any)=>{
       if(val.id===song.id){
         this.Toast.fire({
@@ -69,9 +69,13 @@ export class HomeComponent implements OnInit{
           mergeMap(res=>this.allSongService.getMySongsList()))
           .subscribe((res)=>{
             this.mySongList = Object.values(res)
+            this.Toast.fire({
+              icon: 'success',
+              title: 'Song Added to Liked Songs'
+            })
             console.log(this.mySongList)
           })
-      
+
       }
       this.flag=false;
   }
