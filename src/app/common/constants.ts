@@ -32,7 +32,14 @@ export const PARENT_PATHS = {
     MAIN: {
       DASHBOARD: 'home',
       PROFILE: 'profile',
-      YOUR_LIBRARY:'my-library'
+      YOUR_LIBRARY:'my-library',
+      LIKED_SONGS:'my-libaray/liked-songs',
+      PLAYLISTS:'my-libaray/playlist/:id',
+      PLAYLIST:'my-libaray/playlist'
+
+
+
+
   },
   SHARED:{
     NAVBAR:'navbar'

@@ -10,13 +10,13 @@
   <div  >
     <div >
       <div class="card m-2" style="width: 100%">
-          <div class="row g-0">
+          <div class="row g-0" (click)="OnLikedSongsClick()">
               <div class="col-md-4" >
                   <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp"   class="img-fluid rounded-start" />
               </div>
               <div class="col-md-8">
                   <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
+                      <h5 class="card-title">Liked Songs</h5>
                       <p class="card-text">
                           This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                       </p>
@@ -28,7 +28,7 @@
           </div>
       </div>
       <div class="card m-2" style="width:100%;">
-          <div class="row g-0">
+          <div class="row g-0" (click)="OnMyPlaylistClick()">
               <div class="col-md-4">
                   <img src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"   width="200px" class="img-fluid rounded-start" />
               </div>

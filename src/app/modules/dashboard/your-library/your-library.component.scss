@@ -1,5 +1,5 @@
 .list-group-item:hover{
-    background-color:rgb(233, 217, 248);
+    background-color:#ebf6f5;
     transform:scale(1.01);
 }
 .list-group-item{
@@ -13,4 +13,12 @@
     object-fit: cover;
     height: 200px;
     width: 300px;
+}
+.card{
+    cursor: pointer;
+    transition:transform 0.25s ease;
+}
+.card:hover {
+    background-color:#ebf6f5;
+    transform:scale(1.01);
 }

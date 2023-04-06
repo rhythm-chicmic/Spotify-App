@@ -14,14 +14,17 @@ import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 import { AdminModule } from './modules/admin/admin.module';
 import { SharedModule } from './modules/shared/shared.module';
+import { SongListModule } from './modules/song-list/song-list.module';
 const firebaseApp = AngularFireModule.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SongListModule,
     SharedModule,
     AngularFireModule,
     AngularFireAuthModule,
