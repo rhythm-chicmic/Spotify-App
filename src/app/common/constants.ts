@@ -35,6 +35,9 @@ export const PARENT_PATHS = {
       BLOG_WRITE:'write-blog',
       BLOG_DISPLAY:'blog'
   },
+  SHARED:{
+    NAVBAR:'navbar'
+  },
   ADMIN:{
     ADD_SONGS:'add-songs'
   }

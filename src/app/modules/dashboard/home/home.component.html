@@ -1,11 +1,3 @@
-<p>home works!</p>
-<div *ngFor="let notes of notes |async">
-    {{notes|json}}
-</div>
-
-
-
-
 <table class="table">
     <thead>
       <tr>
@@ -18,11 +10,11 @@
     </thead>
     <tbody >
       <tr  *ngFor="let playsong of playSongs" (click)="onClick(playsong)">
-        <th scope="row">{{playsong.id}}</th>
-        <th scope="row">{{playsong.artistName}}</th>
-        <td>{{playsong.songName}}</td>
-        <td>{{playsong.genre}}</td>
-        <td>{{playsong.songType}}</td>
+        <th scope="row">{{playsong?.id}}</th>
+        <th scope="row">{{playsong?.artistName}}</th>
+        <td>{{playsong?.songName}}</td>
+        <td>{{playsong?.genre}}</td>
+        <td>{{playsong?.songType}}</td>
       </tr>
     </tbody>
   </table> 

@@ -13,6 +13,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 import { AdminModule } from './modules/admin/admin.module';
+import { SharedModule } from './modules/shared/shared.module';
 const firebaseApp = AngularFireModule.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ const firebaseApp = AngularFireModule.initializeApp(environment.firebase);
   imports: [
     BrowserModule,
     AppRoutingModule,
-
+    SharedModule,
     AngularFireModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
