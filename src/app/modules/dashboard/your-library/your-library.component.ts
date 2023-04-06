@@ -12,9 +12,9 @@ export class YourLibraryComponent {
   constructor(private router:Router){}
 
   OnLikedSongsClick(){
-    this.router.navigate([PATHS.MAIN.LIKED_SONGS])
+    this.router.navigate([PATHS.MAIN.YOUR_LIBRARY,PATHS.MAIN.LIKED_SONGS])
   }
   OnMyPlaylistClick(){
-    this.router.navigate([PATHS.MAIN.PLAYLIST,'1'])
+    this.router.navigate([PATHS.MAIN.YOUR_LIBRARY,PATHS.MAIN.PLAYLIST,'1'])
   }
 }

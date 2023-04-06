@@ -33,13 +33,9 @@ export const PARENT_PATHS = {
       DASHBOARD: 'home',
       PROFILE: 'profile',
       YOUR_LIBRARY:'my-library',
-      LIKED_SONGS:'my-libaray/liked-songs',
-      PLAYLISTS:'my-libaray/playlist/:id',
-      PLAYLIST:'my-libaray/playlist'
-
-
-
-
+      LIKED_SONGS:'liked-songs',
+      PLAYLISTS:'playlist/:id',
+      PLAYLIST:'playlist'
   },
   SHARED:{
     NAVBAR:'navbar'
