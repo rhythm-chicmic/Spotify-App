@@ -13,4 +13,7 @@ constructor(private router :Router){}
   OnLogoClick(){
     this.router.navigate([PATHS.MAIN.DASHBOARD])
   }
+  OnMyLibraryClick(){
+    this.router.navigate([PATHS.MAIN.YOUR_LIBRARY])
+  }
 }

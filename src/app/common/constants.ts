@@ -32,8 +32,7 @@ export const PARENT_PATHS = {
     MAIN: {
       DASHBOARD: 'home',
       PROFILE: 'profile',
-      BLOG_WRITE:'write-blog',
-      BLOG_DISPLAY:'blog'
+      YOUR_LIBRARY:'my-library'
   },
   SHARED:{
     NAVBAR:'navbar'

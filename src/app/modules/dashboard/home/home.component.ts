@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
 import { Observable, map, mergeMap } from 'rxjs';
-import { STORAGE_KEYS } from 'src/app/common/constants';
+import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { UserDetailsService } from 'src/app/core/services/user-details.service';
 import Swal from "sweetalert2"
@@ -31,7 +32,7 @@ export class HomeComponent implements OnInit{
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
-  constructor(private service:AngularFirestore,private userService:UserDetailsService,private allSongService:AddSongsService){
+  constructor(private router:Router,private service:AngularFirestore,private userService:UserDetailsService,private allSongService:AddSongsService){
     this.userService.getUserDetails().subscribe((res:any)=>{
       // console.log(Object.values(res))
   })
@@ -73,6 +74,9 @@ export class HomeComponent implements OnInit{
       
       }
       this.flag=false;
+  }
+  OnSignUp(){
+    this.router.navigate([PATHS.AUTH.LOGIN])
   }
 
 
