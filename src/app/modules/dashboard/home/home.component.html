@@ -9,6 +9,7 @@
 <table class="table">
     <thead>
       <tr>
+        <th scope="col">Id</th>
         <th scope="col">Artist Name</th>
         <th scope="col">Song Name</th>
         <th scope="col">Genre</th>
@@ -17,6 +18,7 @@
     </thead>
     <tbody >
       <tr  *ngFor="let playsong of playSongs" (click)="onClick(playsong)">
+        <th scope="row">{{playsong.id}}</th>
         <th scope="row">{{playsong.artistName}}</th>
         <td>{{playsong.songName}}</td>
         <td>{{playsong.genre}}</td>

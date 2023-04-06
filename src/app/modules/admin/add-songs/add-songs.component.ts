@@ -18,7 +18,8 @@ export class AddSongsComponent {
       songName:['',Validators.required],
       songType:['',Validators.required],
       genre:['',Validators.required],
-      artistName:['',Validators.required]
+      artistName:['',Validators.required],
+      id:['']
 
     })
   }
@@ -26,6 +27,8 @@ export class AddSongsComponent {
   addSong(){
       if(this.addSongForm.valid){
         console.log(this.addSongForm.value);
+        this.addSongForm.value.id = this.addSongForm.value.songName.slice(0,2)+this.addSongForm.value.songType.slice(0,2)+this.addSongForm.value.genre.slice(0,2)+this.addSongForm.value.artistName.slice(0,2)
+        console.log(this.addSongForm.value)
         this.addSongService.postAllSongs(this.addSongForm.value).subscribe((res:any)=>{
           console.log(res);
         })
