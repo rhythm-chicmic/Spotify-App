@@ -11,3 +11,5 @@ export interface songInfoModel {
     genre:string,
     artistName:string
 }
+
+
