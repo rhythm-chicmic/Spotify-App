@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable, map, mergeMap } from 'rxjs';
+import { STORAGE_KEYS } from 'src/app/common/constants';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { UserDetailsService } from 'src/app/core/services/user-details.service';
 import Swal from "sweetalert2"
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit{
  
   playSongs:any
   mySongList:any
+  token:boolean=true;
   flag:boolean=false;
   Toast = Swal.mixin({
     toast: true,
@@ -36,6 +38,9 @@ export class HomeComponent implements OnInit{
     this.allSongService.getAllSongs().subscribe((res:any)=>{
       this.playSongs=Object.values(res)
     })
+    if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
+      this.token=false;
+    }
   
   }
   ngOnInit(): void {
