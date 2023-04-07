@@ -18,8 +18,8 @@
               </div>
           </div>
       </div>
-      <div class="card m-2" style="width:100%;" *ngFor="let playlist of myPlaylists">
-          <div class="row g-0" (click)="OnMyPlaylistClick()">
+      <div class="card m-2" style="width:100%;" *ngFor="let playlist of myPlaylists; let index =index">
+          <div class="row g-0" (click)="OnMyPlaylistClick(index)">
               <div class="col-md-4">
                   <img [src]="playlist.imageUrl"   width="200px" class="img-fluid rounded-start" />
               </div>

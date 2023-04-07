@@ -21,8 +21,11 @@ export class HomeComponent implements OnInit{
   playSongs:any
   mySongList:any
   myPlaylistArray:any;
+  myPlaylistIdArray:any
+  songIdPresentInPlaylist:any
   token:boolean=true;
   flag:boolean=false;
+  playlistFlag:boolean=false;
   Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -35,9 +38,7 @@ export class HomeComponent implements OnInit{
     }
   })
   constructor(private router:Router,private service:AngularFirestore,private userService:UserDetailsService,private allSongService:AddSongsService,private songLibService:SongsLibraryService){
-    this.userService.getUserDetails().subscribe((res:any)=>{
-      // console.log(Object.values(res))
-  })
+   
     this.allSongService.getAllSongs().subscribe((res:any)=>{
       this.playSongs=Object.values(res)
     })
@@ -50,16 +51,58 @@ export class HomeComponent implements OnInit{
 
     this.songLibService.getMySongsList().subscribe((res:any)=>{
       res = Object.values(res)
-      console.log(res)
       this.mySongList = Object.values(res)
     })
-    this.songLibService.getPlaylists().subscribe((res)=>{
+    this.songLibService.getAllPlaylists().subscribe((res)=>{
       this.myPlaylistArray=Object.values(res);
+      this.myPlaylistIdArray=Object.keys(res);
+      console.log(this.myPlaylistIdArray)
     })
 
+    
+
   }
+
+  SelectedSongToSend(index:number,songId:any){
+    this.songLibService.getSongToPlaylist(this.myPlaylistIdArray[index]).subscribe((res)=>{
+      this.songIdPresentInPlaylist=Object.values(res)
+      console.log(this.songIdPresentInPlaylist)
+      this.songIdPresentInPlaylist.find((res:any)=>{
+        if(res.id===songId){
+          this.Toast.fire({
+            icon: 'info',
+            title: 'Song Already Added'
+          })
+          this.playlistFlag=true;
+          console.log(this.playlistFlag);
+        }
+      })
+
+        if(this.playlistFlag!==true){
+          console.log("Hello1")
+    
+            this.songLibService.postSongToPlaylist(this.myPlaylistIdArray[index],songId).pipe(
+              mergeMap(res=>this.songLibService.getSongToPlaylist(this.myPlaylistIdArray[index]))
+            ).subscribe((res)=>{
+            this.songIdPresentInPlaylist=Object.values(res)
+            this.Toast.fire({
+              icon: 'success',
+              title: 'Song Added to Liked Songs'
+            })
+            })
+            this.playlistFlag=false;
+          }
+    })
+
+            this.playlistFlag=false;
+
+  }
+
+
+
+
+
   onClick(song:any){
-   console.log(1);
 
     if(!this.mySongList){
       console.log(song.id)

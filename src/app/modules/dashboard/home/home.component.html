@@ -26,7 +26,7 @@
             <mat-icon>favorite</mat-icon>
             <span>Liked Songs</span>
           </button>
-          <button mat-menu-item *ngFor="let playlist of myPlaylistArray">
+          <button mat-menu-item *ngFor="let playlist of myPlaylistArray;let index=index" (click)="SelectedSongToSend(index,playsong.id)">
             <mat-icon>playlist_add</mat-icon>
             <span>{{playlist.title}}</span>
           </button>

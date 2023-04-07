@@ -25,4 +25,5 @@ export class UserDetailsService {
   getMyProfile(){
     return this.httpService.get(this.path+APIS.USER_PROFILE.MY_PROFILE+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
   }
+
 }

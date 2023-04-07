@@ -64,7 +64,8 @@ export const APIS ={
     TOKEN:'token',
     VERIFICATION_ID:'VerificationCode',
     UNIQUE_ID:'user_data',
-    FIREBASE_ID:'id'
+    FIREBASE_ID:'id',
+    
   }
 
   let userData:any=localStorage.getItem(STORAGE_KEYS.UNIQUE_ID)
@@ -73,7 +74,8 @@ export const APIS ={
 
   export const SONG_LIBRARY={
     MY_LIKED_LIST:'/likedSongs',
-    RECENTLY_PLAYED:'/played'
+    RECENTLY_PLAYED:'/played',
+    SONG_ID:'/songId'
   }
 
   

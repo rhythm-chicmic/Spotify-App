@@ -10,12 +10,15 @@ import { SongsLibraryService } from 'src/app/core/services/songs-library.service
 })
 export class YourLibraryComponent implements OnInit{
   myPlaylists:any;
+  myPlaylistRouteId:any
   constructor(private router:Router,private songLibraryService:SongsLibraryService){}
 
   ngOnInit(){
-    this.songLibraryService.getPlaylists().subscribe((res)=>{
+    this.songLibraryService.getAllPlaylists().subscribe((res)=>{
       this.myPlaylists= Object.values(res);
-      console.log(this.myPlaylists)
+      this.myPlaylistRouteId= Object.keys(res);
+    
+
     })
   }
 
@@ -25,7 +28,7 @@ export class YourLibraryComponent implements OnInit{
   OnLikedSongsClick(){
     this.router.navigate([PATHS.MAIN.YOUR_LIBRARY,PATHS.MAIN.LIKED_SONGS])
   }
-  OnMyPlaylistClick(){
-    this.router.navigate([PATHS.MAIN.YOUR_LIBRARY,PATHS.MAIN.PLAYLIST,'1'])
+  OnMyPlaylistClick(index:number){
+    this.router.navigate([PATHS.MAIN.YOUR_LIBRARY,PATHS.MAIN.PLAYLIST,this.myPlaylistRouteId[index]])
   }
 }

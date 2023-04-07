@@ -25,9 +25,18 @@ export class SongsLibraryService {
    postCreatePlaylist(data:any){
     return this.httpService.post(this.path+APIS.ALL_SONGS.ADD_TO_PLAYLIST+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),data)
    }
-   getPlaylists(){
+   getAllPlaylists(){
     return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_PLAYLIST+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
-
+   }
+   getPlaylistById(documentId:string){
+    return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_PLAYLIST+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'/'+documentId+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
+   }
+   postSongToPlaylist(documentId:string,songId:songIdModel){
+    const targetId={id:songId}
+    return this.httpService.post(this.path+APIS.ALL_SONGS.ADD_TO_PLAYLIST+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'/'+documentId+SONG_LIBRARY.SONG_ID+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),targetId)
+   }
+   getSongToPlaylist(documentId:string){
+    return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_PLAYLIST+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'/'+documentId+SONG_LIBRARY.SONG_ID+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN));
    }
 
 }
