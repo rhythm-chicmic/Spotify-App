@@ -23,7 +23,11 @@ export class SongsLibraryService {
     return this.httpService.get(this.path+APIS.ALL_SONGS.MY_SONGS+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+SONG_LIBRARY.MY_LIKED_LIST+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
    }
    postCreatePlaylist(data:any){
-    return this.httpService.post(this.path+APIS.ALL_SONGS.ADD_TO_PLAYLIST+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+SONG_LIBRARY.MY_LIKED_LIST+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),data)
+    return this.httpService.post(this.path+APIS.ALL_SONGS.ADD_TO_PLAYLIST+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),data)
+   }
+   getPlaylists(){
+    return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_PLAYLIST+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
+
    }
 
 }

@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, finalize } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
+import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
+import { PATHS } from 'src/app/common/constants';
 @Component({
   selector: 'app-create-playlist',
   templateUrl: './create-playlist.component.html',
@@ -14,8 +18,20 @@ export class CreatePlaylistComponent {
   storagePath!:string
   imagePath!:string
   percentageVal!: Observable<number |null|undefined>;
+//Toster
+Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
 
-  constructor(private fb:FormBuilder,private db:AngularFireDatabase,private storage:AngularFireStorage) {
+  constructor(private router:Router,private fb:FormBuilder,private db:AngularFireDatabase,private storage:AngularFireStorage,private songLibraryService:SongsLibraryService) {
     this.initCreatePlaylistForm();
   }
   initCreatePlaylistForm(){
@@ -32,17 +48,33 @@ export class CreatePlaylistComponent {
   submitCreatePlaylist(){
     if(this.createPlaylistForm.valid){
       this.createPlaylistForm.value.createdAt=new Date();
+      this.createPlaylistForm.value.imageUrl=this.imagePath
+      this.createPlaylistForm.value.playlistId=this.createPlaylistForm?.value?.title.slice(0,2)+this.createPlaylistForm?.value?.description.slice(0,2)+JSON.stringify(this.createPlaylistForm?.value?.createdAt).slice(8,25)
       console.log(this.createPlaylistForm.value);
+      this.songLibraryService.postCreatePlaylist(this.createPlaylistForm.value).subscribe((res)=>{
+        console.log(res);
+        this.Toast.fire({
+          icon: 'success',
+          title: 'Song Added to Liked Songs'
+        })
+        this.router.navigate([PATHS.MAIN.YOUR_LIBRARY]);
+      })
     }
   }
 
   selectFile(event:any,path:string){
     this.selectedFile=event.target?.files[0]
       this.storagePath=path
+      console.log(this.selectedFile)
     this.upload();
 }
+get controls(){
+  return this.createPlaylistForm.controls;
+}
+
+
 upload(){
-  const filePath = `${this.storagePath}/${this.selectedFile.name}`;
+  const filePath = `${this.storagePath}/${this.selectedFile?.name}`;
   const storageRef= this.storage.ref(filePath);
   const uploadTask = this.storage.upload(filePath,this.selectedFile);
   this.percentageVal = uploadTask.percentageChanges();
@@ -54,7 +86,7 @@ upload(){
         this.imagePath=downloadURL
       })
     })
-  )
+  ).subscribe()
 
 
 

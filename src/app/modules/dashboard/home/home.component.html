@@ -26,9 +26,9 @@
             <mat-icon>favorite</mat-icon>
             <span>Liked Songs</span>
           </button>
-          <button mat-menu-item>
+          <button mat-menu-item *ngFor="let playlist of myPlaylistArray">
             <mat-icon>playlist_add</mat-icon>
-            <span>Playlist 1</span>
+            <span>{{playlist.title}}</span>
           </button>
         </mat-menu>
       </tr>

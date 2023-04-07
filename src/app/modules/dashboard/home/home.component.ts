@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit{
 
   playSongs:any
   mySongList:any
+  myPlaylistArray:any;
   token:boolean=true;
   flag:boolean=false;
   Toast = Swal.mixin({
@@ -51,6 +52,9 @@ export class HomeComponent implements OnInit{
       res = Object.values(res)
       console.log(res)
       this.mySongList = Object.values(res)
+    })
+    this.songLibService.getPlaylists().subscribe((res)=>{
+      this.myPlaylistArray=Object.values(res);
     })
 
   }
