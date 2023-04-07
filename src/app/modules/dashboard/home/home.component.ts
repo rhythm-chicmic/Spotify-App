@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, map, mergeMap } from 'rxjs';
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
+import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
 import { UserDetailsService } from 'src/app/core/services/user-details.service';
 import Swal from "sweetalert2"
 
@@ -32,7 +33,7 @@ export class HomeComponent implements OnInit{
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
-  constructor(private router:Router,private service:AngularFirestore,private userService:UserDetailsService,private allSongService:AddSongsService){
+  constructor(private router:Router,private service:AngularFirestore,private userService:UserDetailsService,private allSongService:AddSongsService,private songLibService:SongsLibraryService){
     this.userService.getUserDetails().subscribe((res:any)=>{
       // console.log(Object.values(res))
   })
@@ -46,7 +47,9 @@ export class HomeComponent implements OnInit{
   }
   ngOnInit(): void {
 
-    this.allSongService.getMySongsList().subscribe((res:any)=>{
+    this.songLibService.getMySongsList().subscribe((res:any)=>{
+      res = Object.values(res)
+      console.log(res)
       this.mySongList = Object.values(res)
     })
 
@@ -55,9 +58,10 @@ export class HomeComponent implements OnInit{
    console.log(1);
 
     if(!this.mySongList){
-      this.allSongService.postMySongsList(song).pipe(
-        mergeMap(res=>this.allSongService.getMySongsList()))
+      this.songLibService.postMySongsList(song).pipe(
+        mergeMap(res=>this.songLibService.getMySongsList()))
         .subscribe((res)=>{
+          console.log(res)
           this.mySongList=Object.values(res);
           this.Toast.fire({
             icon: 'success',
@@ -81,8 +85,8 @@ export class HomeComponent implements OnInit{
     })
 
       if(this.flag!==true){
-        this.allSongService.postMySongsList(song).pipe(
-          mergeMap(res=>this.allSongService.getMySongsList()))
+        this.songLibService.postMySongsList(song).pipe(
+          mergeMap(res=>this.songLibService.getMySongsList()))
           .subscribe((res)=>{
             this.mySongList = Object.values(res)
             this.Toast.fire({

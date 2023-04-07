@@ -51,7 +51,7 @@ export const APIS ={
   },
   ALL_SONGS:{
     SONGS:'allSongs',
-    MY_SONGS:'mySongs/'
+    MY_SONGS:'songsLibrary/'
   },
   USER_PROFILE:{
     MY_PROFILE:'users/'
@@ -69,5 +69,9 @@ export const APIS ={
   userData=JSON.parse(userData) 
   export {userData}
 
+  export const SONG_LIBRARY={
+    MY_LIKED_LIST:'/likedSongs',
+    RECENTLY_PLAYED:'/played'
+  }
 
   
