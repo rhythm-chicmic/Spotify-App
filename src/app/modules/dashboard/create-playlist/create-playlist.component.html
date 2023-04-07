@@ -1,0 +1,27 @@
+<h2>Create Playlist </h2>
+<form   [formGroup]="createPlaylistForm" (ngSubmit)="submitCreatePlaylist()">
+
+
+    <!-- Text input -->
+    <div class="form-outline mb-4">
+      <input type="text" id="form6Example3" class="form-control" formControlName="title" />
+      <label class="form-label" for="form6Example3">Title</label>
+    </div>
+
+    <!-- Text input -->
+    <div class="form-outline mb-4">
+     <textarea name="" id="" cols="139" rows="10" formControlName="description"></textarea>
+      <label class="form-label" for="form6Example4">Description</label>
+    </div>
+
+      <!-- Image File -->
+    <div class="form-outline mb-4">
+      <input type="file" id="form6Example6"   class="form-control" formControlName="imageUrl"/>
+      <label class="form-label" for="form6Example6">Add Image</label>
+      
+    </div>
+
+
+    <!-- Submit button -->
+    <button type="submit"  class="btn btn-primary btn-block mb-4">Create Playlist</button>
+  </form>

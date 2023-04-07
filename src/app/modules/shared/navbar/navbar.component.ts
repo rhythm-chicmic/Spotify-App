@@ -22,4 +22,7 @@ constructor(private router :Router){}
   OnProfileClick(){
     this.router.navigate([PATHS.MAIN.PROFILE])
   }
+  OnCreatePlaylistClick(){
+    this.router.navigate([PATHS.MAIN.CREATE_PLAYLIST])
+  }
 }

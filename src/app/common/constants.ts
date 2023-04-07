@@ -35,7 +35,8 @@ export const PARENT_PATHS = {
       YOUR_LIBRARY:'my-library',
       LIKED_SONGS:'liked-songs',
       PLAYLISTS:'playlist/:id',
-      PLAYLIST:'playlist'
+      PLAYLIST:'playlist',
+      CREATE_PLAYLIST:'create_playlist'
   },
   SHARED:{
     NAVBAR:'navbar'
