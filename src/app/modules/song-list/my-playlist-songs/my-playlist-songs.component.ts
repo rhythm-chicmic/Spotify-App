@@ -48,10 +48,10 @@ export class MyPlaylistSongsComponent implements OnInit{
 
 
   onMouseLeave(index:number){
-    // this.songsList[index].isHovering=false;
+    this.songsList[index].isHovering=false;
   }
   onMouseOver(index:number){ 
-    // this.songsList[index].isHovering=true;
+    this.songsList[index].isHovering=true;
   }
   OnClickPlay(){
     this.globalPlaySong = !this.globalPlaySong
