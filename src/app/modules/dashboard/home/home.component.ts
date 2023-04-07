@@ -58,7 +58,8 @@ export class HomeComponent implements OnInit{
    console.log(1);
 
     if(!this.mySongList){
-      this.songLibService.postMySongsList(song).pipe(
+      console.log(song.id)
+      this.songLibService.postMySongsList(song.id).pipe(
         mergeMap(res=>this.songLibService.getMySongsList()))
         .subscribe((res)=>{
           console.log(res)
@@ -75,7 +76,7 @@ export class HomeComponent implements OnInit{
     else {
 
     this.mySongList.find((val:any)=>{
-      if(val.id===song.id){
+      if(val.songId===song.id){
         this.Toast.fire({
           icon: 'info',
           title: 'Song Already Added'
@@ -85,7 +86,7 @@ export class HomeComponent implements OnInit{
     })
 
       if(this.flag!==true){
-        this.songLibService.postMySongsList(song).pipe(
+        this.songLibService.postMySongsList(song.id).pipe(
           mergeMap(res=>this.songLibService.getMySongsList()))
           .subscribe((res)=>{
             this.mySongList = Object.values(res)

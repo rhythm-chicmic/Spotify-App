@@ -6,17 +6,34 @@
         <th scope="col">Song Name</th>
         <th scope="col">Genre</th>
         <th scope="col">Song Type</th>
+        <th></th>
       </tr>
     </thead>
     <tbody >
-      <tr  *ngFor="let playsong of playSongs" (click)="onClick(playsong)">
+      <tr  *ngFor="let playsong of playSongs" >
        
         <th scope="row">{{playsong?.artistName}}</th>
         <td>{{playsong?.songName}}</td>
         <td>{{playsong?.genre}}</td>
         <td>{{playsong?.songType}}</td>
+        <td>
+          <button  class="btn rounded-circle" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Add Song">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        </td>
+        <mat-menu #menu="matMenu" >
+          <button mat-menu-item (click)="onClick(playsong)">
+            <mat-icon>favorite</mat-icon>
+            <span>Liked Songs</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>playlist_add</mat-icon>
+            <span>Playlist 1</span>
+          </button>
+        </mat-menu>
       </tr>
     </tbody>
+    
   </table> 
 
   <div class="preview" *ngIf="token">
@@ -28,7 +45,7 @@
       <button type="button" (click)="OnSignUp()">Sign up free</button>
     </div>
   </div>
-
+ 
   
 
 

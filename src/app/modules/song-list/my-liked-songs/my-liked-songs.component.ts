@@ -9,19 +9,37 @@ import { SongsLibraryService } from 'src/app/core/services/songs-library.service
   styleUrls: ['./my-liked-songs.component.scss']
 })
 export class MyLikedSongsComponent implements OnInit{
-  songsList:any
+  allSongsList:any
+  songsList:any=[]
+  IdList:any
   isHovering:boolean=false
   globalPlaySong:boolean=true
-  constructor(private router:Router,private songLibService:SongsLibraryService){}
+  constructor(private router:Router,private songLibService:SongsLibraryService,private addSongService:AddSongsService){}
 
   ngOnInit(): void {
     this.songLibService.getMySongsList().subscribe((res:any)=>{
       res=Object.values(res)
       console.log(res)
-      this.songsList=res;
+      this.IdList=res;
+      this.addSongService.getAllSongs().subscribe((res:any)=>{
+        this.allSongsList=Object.values(res)
+        this.song()
+      })
     })
   }
 
+  song(){
+    for(let idlist of this.IdList){
+      for(let allsongs of this.allSongsList){
+        if(idlist.songId===allsongs.id){
+          console.log(typeof allsongs);
+          this.songsList.push(allsongs);
+          console.log(this.songsList)
+        }
+      }
+    }
+    
+  }
 
   onMouseLeave(index:number){
     this.songsList[index].isHovering=false;

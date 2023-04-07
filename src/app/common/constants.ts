@@ -51,7 +51,8 @@ export const APIS ={
   },
   ALL_SONGS:{
     SONGS:'allSongs',
-    MY_SONGS:'songsLibrary/'
+    MY_SONGS:'songsLibrary/',
+    ADD_TO_PLAYLIST:'playlists/'
   },
   USER_PROFILE:{
     MY_PROFILE:'users/'
