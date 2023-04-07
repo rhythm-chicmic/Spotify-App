@@ -16,12 +16,12 @@
 
       <!-- Image File -->
     <div class="form-outline mb-4">
-      <input type="file" id="form6Example6"   class="form-control" formControlName="imageUrl"/>
+      <input type="file" id="form6Example6" (change)="selectFile($event,'/playlist_images')"   class="form-control" formControlName="imageUrl"/>
       <label class="form-label" for="form6Example6">Add Image</label>
       
     </div>
 
 
     <!-- Submit button -->
-    <button type="submit"  class="btn btn-primary btn-block mb-4">Create Playlist</button>
+    <button type="submit" [disabled]="createPlaylistForm.invalid" class="btn btn-primary btn-block mb-4">Create Playlist</button>
   </form>

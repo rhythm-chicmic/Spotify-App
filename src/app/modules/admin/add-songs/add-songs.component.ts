@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { Observable, finalize } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { AngularFireDatabase,AngularFireList } from '@angular/fire/compat/database';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 @Component({
   selector: 'app-add-songs',
   templateUrl: './add-songs.component.html',
@@ -17,7 +17,7 @@ export class AddSongsComponent {
   mp3Path!:string
   percentageVal!: Observable<number |null|undefined>;
   // Track file uploading with snapshot
-  trackSnapshot!: Observable<any>;
+
   constructor(private db:AngularFireDatabase,private storage:AngularFireStorage,private fb:FormBuilder,private addSongService:AddSongsService){
     this.initAddSongForm();
     this.addSongService.getAllSongs().subscribe((res)=>console.log(Object.keys(res)))

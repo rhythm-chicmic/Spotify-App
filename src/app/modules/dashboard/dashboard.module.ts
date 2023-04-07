@@ -8,6 +8,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CreatePlaylistComponent } from './create-playlist/create-playlist.component'; 
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -21,6 +22,7 @@ import { CreatePlaylistComponent } from './create-playlist/create-playlist.compo
     MatMenuModule,
     ReactiveFormsModule,
     FormsModule,
+    MatProgressBarModule,
     MatIconModule
   ],
   exports:[HomeComponent]
