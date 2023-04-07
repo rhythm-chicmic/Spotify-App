@@ -16,6 +16,9 @@ export class MyPlaylistSongsComponent implements OnInit{
   allSongsList:any
   IdList:any=[]
   routeId!:string
+  isPlayed:boolean=false
+  audio = new Audio
+  songTime:any=''
   constructor(private activeRoute:ActivatedRoute,private songLibraryService:SongsLibraryService,private addSongService:AddSongsService){}
 
   ngOnInit(){
@@ -44,9 +47,6 @@ export class MyPlaylistSongsComponent implements OnInit{
     
   }
 
-
-
-
   onMouseLeave(index:number){
     this.songsList[index].isHovering=false;
   }
@@ -56,4 +56,24 @@ export class MyPlaylistSongsComponent implements OnInit{
   OnClickPlay(){
     this.globalPlaySong = !this.globalPlaySong
   }
+
+  PlaySong(url:string,index:number){
+    console.log(url,index)
+    this.songsList[index].isPlayed=true;
+
+
+    this.audio.src =url;
+    this.audio.load()
+    this.audio.play();
+    this.songTime = this.audio.currentTime;
+    console.log(this.songTime)
+  }
+  StopSong(index:number){
+ 
+    this.songsList[index].isPlayed=false;
+    this.audio.pause();
+    
+  }
+
+
 }

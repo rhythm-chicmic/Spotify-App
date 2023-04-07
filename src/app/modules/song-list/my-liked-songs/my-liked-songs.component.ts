@@ -12,8 +12,10 @@ export class MyLikedSongsComponent implements OnInit{
   allSongsList:any
   songsList:any=[]
   IdList:any
-  isHovering:boolean=false
+  isPlayed:boolean=true
   globalPlaySong:boolean=true
+  audio = new Audio
+
   constructor(private router:Router,private songLibService:SongsLibraryService,private addSongService:AddSongsService){}
 
   ngOnInit(): void {
@@ -49,5 +51,20 @@ export class MyLikedSongsComponent implements OnInit{
   }
   OnClickPlay(){
     this.globalPlaySong = !this.globalPlaySong
+  }
+
+  PlaySong(url:string,index:number){
+    console.log(url,index)
+    this.songsList[index].isPlayed=true;
+    this.audio.src =url;
+    this.audio.load()
+    this.audio.play();
+    this.songsList.isPlayed=false;
+  }
+  StopSong(index:number){
+    this.songsList.isPlayed=true;
+
+    this.songsList[index].isPlayed=false;
+    this.audio.pause();
   }
 }
