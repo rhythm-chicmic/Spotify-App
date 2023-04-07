@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
 
 @Component({
@@ -11,16 +12,36 @@ export class MyPlaylistSongsComponent implements OnInit{
   isHovering:boolean=false
   globalPlaySong:boolean=true
   songsList:any=[]
+  displayData:any;
+  allSongsList:any
+  IdList:any=[]
   routeId!:string
-  constructor(private activeRoute:ActivatedRoute,private songLibraryService:SongsLibraryService){}
+  constructor(private activeRoute:ActivatedRoute,private songLibraryService:SongsLibraryService,private addSongService:AddSongsService){}
 
   ngOnInit(){
     this.activeRoute.params.subscribe((res)=>{
       this.routeId=res['id']      //Route Id is sent to Firebase Api
     })
     this.songLibraryService.getPlaylistById(this.routeId).subscribe((res)=>{
-      console.log(res)
+     this.displayData=res
+      this.IdList=Object.values(res)[4]
+      this.IdList=Object.values(this.IdList)
     })
+    this.addSongService.getAllSongs().subscribe((res:any)=>{
+      this.allSongsList=Object.values(res)
+      this.song()
+    })
+  }
+
+  song(){
+    for(let idlist of this.IdList){
+      for(let allsongs of this.allSongsList){
+        if(idlist.id===allsongs.id){
+          this.songsList.push(allsongs);
+        }
+      }
+    }
+    
   }
 
 
