@@ -7,8 +7,9 @@
             <h4 class="card-title">Liked Songs</h4>
             <h6 class="card-subtitle mb-2">Played 17 Times </h6>
             <p class="card-text">Total Songs - 13</p>
-            <div class="link d-flex">
-              <mat-icon class="icon-size">play_circle_filled</mat-icon>
+            <div class="link d-flex" (click)="OnClickPlay()">
+              <mat-icon class="icon-size" *ngIf="globalPlaySong">play_circle_filled</mat-icon>
+              <mat-icon class="icon-size" *ngIf="!globalPlaySong"> pause_circle_filled</mat-icon>
              
             </div>
           </div>
@@ -24,17 +25,17 @@
         <th scope="col">Song Name</th>
         <th scope="col">Artist Name</th>
         <th scope="col">Date Added</th>
-        <th></th>
+        <th>&nbsp;&nbsp;&nbsp;</th>
       </tr>
     </thead>
     <tbody  >
       <tr class="group-item"  *ngFor="let song of songsList; let i =index" (mouseover)="onMouseOver(i)" (mouseleave)="onMouseLeave(i)">
        
-        <td >{{song.songName}}</td>
-        <td>{{song.artistName}}</td>
-        <td>5 Days Ago</td>
-        <td id="icon-td" *ngIf="song.isHovering"><mat-icon>play_circle_filled</mat-icon></td>
-        <td *ngIf="!song.isHovering"></td>
+        <td style="width:39%">{{song.songName}}</td>
+        <td  style="width:25%">{{song.artistName}}</td>
+        <td  style="width:20%">5 Days Ago</td>
+        <td  style="width: 25%" id="icon-td" *ngIf="song.isHovering"><mat-icon>play_circle_filled</mat-icon></td>
+        <td  style="width:25%" *ngIf="!song.isHovering"> &nbsp;&nbsp;&nbsp;  </td>
 
         
       </tr>

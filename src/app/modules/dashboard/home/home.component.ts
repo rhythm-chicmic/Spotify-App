@@ -54,6 +54,22 @@ export class HomeComponent implements OnInit{
   onClick(song:any){
    console.log(1);
 
+    if(!this.mySongList){
+      this.allSongService.postMySongsList(song).pipe(
+        mergeMap(res=>this.allSongService.getMySongsList()))
+        .subscribe((res)=>{
+          this.mySongList=Object.values(res);
+          this.Toast.fire({
+            icon: 'success',
+            title: 'Song Added to Liked Songs'
+          })
+          console.log(this.mySongList)
+
+        })
+      
+    }
+    else {
+
     this.mySongList.find((val:any)=>{
       if(val.id===song.id){
         this.Toast.fire({
@@ -77,6 +93,7 @@ export class HomeComponent implements OnInit{
           })
 
       }
+    }
       this.flag=false;
   }
   OnSignUp(){

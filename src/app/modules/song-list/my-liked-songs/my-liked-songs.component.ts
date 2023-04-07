@@ -10,6 +10,7 @@ import { AddSongsService } from 'src/app/core/services/add-songs.service';
 export class MyLikedSongsComponent implements OnInit{
   songsList:any
   isHovering:boolean=false
+  globalPlaySong:boolean=true
   constructor(private router:Router,private allSongService:AddSongsService){}
 
   ngOnInit(): void {
@@ -26,6 +27,8 @@ export class MyLikedSongsComponent implements OnInit{
   }
   onMouseOver(index:number){ 
     this.songsList[index].isHovering=true;
-
+  }
+  OnClickPlay(){
+    this.globalPlaySong = !this.globalPlaySong
   }
 }
