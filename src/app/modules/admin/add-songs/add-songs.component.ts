@@ -4,7 +4,7 @@ import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { Observable, finalize } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { SpinnerService } from 'src/app/common/spinner/spinner.service';
+import { IS_SONG_PAID, REGEX } from 'src/app/common/constants';
 @Component({
   selector: 'app-add-songs',
   templateUrl: './add-songs.component.html',
@@ -17,6 +17,8 @@ export class AddSongsComponent {
   imagePath!:string
   mp3Path!:string
   percentageVal!: Observable<number |null|undefined>;
+  isPaid=IS_SONG_PAID
+  paidValue!:string
   // Track file uploading with snapshot
 
   constructor(private db:AngularFireDatabase,private storage:AngularFireStorage,private fb:FormBuilder,private addSongService:AddSongsService){
@@ -31,8 +33,10 @@ export class AddSongsComponent {
       artistName:['',Validators.required],
       id:[''],
       created:[''],
-      imageUrl:['',Validators.required],
-      mp3File:['',Validators.required]
+      imageUrl:['',[Validators.required,Validators.pattern(REGEX.IMAGE)]],
+      mp3File:['',[Validators.required,Validators.pattern(REGEX.MP3)]],
+      payment:['',Validators.required],
+      amount:['0',[Validators.pattern(REGEX.NUMBER_GREATER_THAN_0_OR_EQUAL_TO_ZERO)]]
     })
   }
 
@@ -95,5 +99,11 @@ export class AddSongsComponent {
         })
       }
   }
+
+  onChange(event:any){
+   
+    this.paidValue=event
+  }
+
 
 }

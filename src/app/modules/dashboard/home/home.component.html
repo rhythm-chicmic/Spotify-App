@@ -13,6 +13,11 @@
         <th scope="col">Genre</th>
         <th scope="col">Song Type</th>
         <th></th>
+        <th></th>
+
+        
+        
+
       </tr>
     </thead>
     <tbody >
@@ -22,6 +27,9 @@
         <td>{{playsong?.songName}}</td>
         <td>{{playsong?.genre}}</td>
         <td>{{playsong?.songType}}</td>
+        <td *ngIf="playsong?.payment==='Yes'" id="paid"><mat-icon  matTooltip="Paid"> attach_money</mat-icon></td>
+        <td *ngIf="playsong?.payment!=='Yes'"></td>
+
         <td>
           <button  class="btn rounded-circle" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Add Song">
           <mat-icon>more_vert</mat-icon>
@@ -32,10 +40,15 @@
             <mat-icon>favorite</mat-icon>
             <span>Liked Songs</span>
           </button>
-          <button mat-menu-item *ngFor="let playlist of myPlaylistArray;let index=index" (click)="SelectedSongToSend(index,playsong.id)">
+          <button mat-menu-item *ngFor="let playlist of myPlaylistArray;let index=index" (click)="SelectedSongToSend(index,playsong.id,playsong?.payment)">
             <mat-icon>playlist_add</mat-icon>
             <span>{{playlist?.title}}</span>
           </button>
+          <button mat-menu-item (click)="buySong(playsong)" *ngIf="playsong?.payment==='Yes'">
+            <mat-icon>attach_money</mat-icon>
+            <span>Buy This Song</span>
+          </button>
+
         </mat-menu>
       </tr>
     </tbody>

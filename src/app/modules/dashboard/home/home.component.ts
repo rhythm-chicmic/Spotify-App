@@ -65,7 +65,15 @@ export class HomeComponent implements OnInit {
 
   }
 
-  SelectedSongToSend(index: number, songId: any) {
+  SelectedSongToSend(index: number, songId: any,paid:any) {
+    if(paid==='Yes'){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Song is Paid, please buy before Adding',
+      })
+    }
+    else{
     this.songLibService.getSongToPlaylist(this.myPlaylistIdArray[index]).subscribe((res) => {
       this.songIdPresentInPlaylist = Object.values(res)
       console.log(this.songIdPresentInPlaylist)
@@ -97,14 +105,25 @@ export class HomeComponent implements OnInit {
     })
 
     this.playlistFlag = false;
-
+  }
   }
 
   onClick(song: any) {
-
+      if(song?.payment==='Yes'){
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Song is Paid, please buy before Adding',
+        })
+      }
+      else{
     if (!this.mySongList) {
       console.log(song.id)
+
       if (localStorage.getItem(STORAGE_KEYS.TOKEN)) {
+
+        
+
         this.songLibService.postMySongsList(song.id).pipe(
           mergeMap(res => this.songLibService.getMySongsList()))
           .subscribe((res) => {
@@ -152,9 +171,12 @@ export class HomeComponent implements OnInit {
     }
     this.flag = false;
   }
+}
   OnSignUp() {
     this.router.navigate([PATHS.AUTH.LOGIN])
   }
+  buySong(song:any){
 
+  }
 
 }

@@ -32,9 +32,9 @@ export class YourLibraryComponent implements OnInit{
     this.songLibraryService.getAllPlaylists().subscribe((res)=>{
       this.myPlaylists= Object.values(res);
       this.myPlaylistRouteId= Object.keys(res);
-      setTimeout(()=>{
+ 
     this.spinner.hide();
-      },5000)
+    
     }, (e) => {
       if (e.status === 401) {
         this.Toast.fire({

@@ -9,7 +9,8 @@ export const REGEX = {
     ADDRESS: /^[a-zA-Z0-9\s,.'-]{3,}$/,
     NAME: /^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$/,
     DOB: /[A-Z][a-z]{2}\s[A-Z][a-z]{2}\s\d{2}\s\d{4}\s\d{2}:\d{2}:\d{2}\sGMT[+-]\d{4}\s\(\w+\s\w+\s\w+\)/,
-    IMAGE:/([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif|.jpeg|.webp)$/
+    IMAGE:/([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif|.jpeg|.webp)$/,
+    MP3:/([a-zA-Z0-9\s_\\.\-:])+(.mp3)$/
 }
 
 export const PARENT_PATHS = {
@@ -84,3 +85,5 @@ export const APIS ={
   LIKED_SONGS_IMAGE:'https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp',
   LIKED_SONGS_BANNER_IMAGE:'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/bologna-3.jpg'
  } 
+
+export const IS_SONG_PAID=['Yes','No']

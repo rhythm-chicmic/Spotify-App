@@ -6,25 +6,54 @@
     <div class="form-outline mb-4">
       <input type="text" id="form6Example3" class="form-control" formControlName="songName" />
       <label class="form-label" for="form6Example3">Song name</label>
+      <label class="error" *ngIf="controls['songName']?.errors?.['required'] && controls['songName'].touched">&nbsp;&nbsp; *Field Required</label>
+
     </div>
 
     <!-- Text input -->
     <div class="form-outline mb-4">
       <input type="text" id="form6Example4" class="form-control" formControlName="songType"/>
       <label class="form-label" for="form6Example4">Song Type</label>
+      <label class="error" *ngIf="controls['songType']?.errors?.['required'] && controls['songType'].touched">&nbsp;&nbsp; *Field Required</label>
+
     </div>
 
     <!-- Text input -->
     <div class="form-outline mb-4">
       <input type="text" id="form6Example5" class="form-control" formControlName="genre"/>
       <label class="form-label" for="form6Example5">Genre</label>
+      <label class="error" *ngIf="controls['genre']?.errors?.['required'] && controls['genre'].touched">&nbsp;&nbsp; *Field Required</label>
+
     </div>
 
     <!-- Text input -->
     <div class="form-outline mb-4">
       <input type="text" id="form6Example6" class="form-control" formControlName="artistName"/>
       <label class="form-label" for="form6Example6">Artist Name</label>
+      <label class="error" *ngIf="controls['artistName']?.errors?.['required'] && controls['artistName'].touched">&nbsp;&nbsp; *Field Required</label>
+
     </div>
+
+   
+    <div class="col-md-6 mb-4">
+
+      <h3 class="mb-2 pb-1">Paid Song? </h3>
+
+      <div class="form-check form-check-inline" *ngFor="let paid of isPaid">
+        <input class="form-check-input" type="radio" name="payment" formControlName="payment" 
+          value="{{paid}}" (change)="onChange(paid)" />
+        <label class="form-check-label">{{paid}}</label>
+        <label class="error" *ngIf="controls['payment']?.errors?.['required'] && controls['payment'].touched">&nbsp;&nbsp; *Field Required</label>
+      </div>
+      <div class="form-outline" style="width: 22rem;" *ngIf="paidValue==='Yes'">
+        <input id="postfix" value="₹" type="text" id="form2" class="form-control" formControlName="amount"/>
+        <label class="form-label" for="form2">Enter the amount</label>
+        <label class="error" *ngIf="controls['amount']?.errors?.['pattern']">&nbsp;&nbsp;* Enter Only Numeric Values</label>
+    </div>
+    </div>
+
+
+
 
       <!-- Mp3 File -->
     <div class="form-outline mb-4">
@@ -37,7 +66,14 @@
         <mat-progress-bar mode="determinate" value="{{ percentage}}"></mat-progress-bar>
     </ng-container>
       </div>
+    <label class="error" *ngIf="controls['mp3File']?.errors?.['pattern']">File must be .Mp3</label>
+      
     </div>
+
+  
+
+
+
 
       <!-- Image File -->
     <div class="form-outline mb-4">
@@ -48,6 +84,7 @@
         Progress: {{ percentage | number }}%
         <mat-progress-bar mode="determinate" value="{{percentage}}"></mat-progress-bar>
     </ng-container>
+    <label class="error"  *ngIf="controls['imageUrl']?.errors?.['pattern']">File must be .png,jpg,jpeg</label>
 
       </div>
     </div>
