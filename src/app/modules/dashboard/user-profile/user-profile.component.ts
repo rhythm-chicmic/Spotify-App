@@ -68,4 +68,7 @@ export class UserProfileComponent implements OnInit{
   OnAddProfile(){
     this.router.navigate([PATHS.AUTH.REGISTER]);
   }
+  OnTransaction(){
+    
+  }
 }

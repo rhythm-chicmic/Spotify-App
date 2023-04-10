@@ -24,13 +24,19 @@
               <div class="card-body p-4">
                 <div class="Container">
                   <div class="logout" (click)="OnLogout()">
-                    <h4>Log Out</h4>
+                    <h5>Log Out</h5>
                     <mat-icon> directions_run</mat-icon>
                   </div>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  <span>&nbsp;&nbsp;&nbsp;</span>
                   <div class="addSongs" *ngIf="isAdmin" (click)="OnAddSongs()">
-                    <h4>Add Songs</h4>
+                    <h5>Add Songs</h5>
                     <mat-icon>library_add</mat-icon>
+                  </div>
+                  <span>&nbsp;&nbsp;&nbsp;</span>
+                  <div class="logout" (click)="OnTransaction()">
+                    <h5>Transcation Histroy</h5>
+                    <mat-icon>history</mat-icon>
+
                   </div>
                 </div>
                 <hr class="mt-0 mb-4">
