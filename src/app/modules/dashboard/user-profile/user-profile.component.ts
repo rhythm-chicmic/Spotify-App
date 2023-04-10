@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
+import { IMAGES, PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { UserDetailsService } from 'src/app/core/services/user-details.service';
 import Swal from 'sweetalert2'
 @Component({
@@ -13,6 +13,7 @@ export class UserProfileComponent implements OnInit{
   userProfleArray:any;
   isAdmin=false;
   addProfile=true
+  image=IMAGES.ADD_PROFILE_IMAGE
   phoneNo!:string
   Toast = Swal.mixin({
     toast: true,
@@ -70,5 +71,8 @@ export class UserProfileComponent implements OnInit{
   }
   OnTransaction(){
     
+  }
+  OnEditProfile(){
+    console.log("Edit Profile")
   }
 }
