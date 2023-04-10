@@ -21,7 +21,7 @@
         </a>
       </li>
 
-      <li>
+      <li *ngIf="isLogin">
         <a (click)="OnMyLibraryClick()">
           <span class="fa fas fa-book"></span>
           <span>Your Library</span>
@@ -30,7 +30,7 @@
     </ul>
   </div>
 
-  <div class="navigation">
+  <div class="navigation" *ngIf="isLogin">
     <ul>
       <li>
         <a (click)="OnCreatePlaylistClick()">

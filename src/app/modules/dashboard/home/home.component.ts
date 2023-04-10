@@ -53,10 +53,10 @@ export class HomeComponent implements OnInit{
     this.spinner.show()
     this.songLibService.getMySongsList().subscribe((res:any)=>{
       res = Object.values(res)
-  
-
-
       this.mySongList = Object.values(res)
+
+      
+
     })
     this.songLibService.getAllPlaylists().subscribe((res)=>{
       this.myPlaylistArray=Object.values(res);

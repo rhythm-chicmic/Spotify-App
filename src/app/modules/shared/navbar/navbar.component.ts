@@ -1,15 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PATHS } from 'src/app/common/constants';
+import { UserDetailsService } from 'src/app/core/services/user-details.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
+  isLogin:boolean=false;
+constructor(private router :Router,private userService:UserDetailsService){
+  
+}
 
-constructor(private router :Router){}
+
+ngOnInit(): void {
+  this.userService.isLoggedIn$.subscribe((res)=>{
+    this.isLogin=res;
+  })
+}
+
+
+
   OnLogoClick(){
     this.router.navigate([PATHS.MAIN.DASHBOARD])
   }

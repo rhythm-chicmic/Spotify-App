@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import 'firebase/database'
+import { UserDetailsService } from './core/services/user-details.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,5 +9,11 @@ import 'firebase/database'
 })
 export class AppComponent {
   title = 'spotifyClone';
-  constructor(){}
+  // isLogin:boolean=false;
+  constructor(private userService:UserDetailsService){}
+  // ngOnInit(){
+  //   this.userService.isLoggedIn$.subscribe((res)=>{
+  //     this.isLogin=res
+  //   })
+  // }
 }
