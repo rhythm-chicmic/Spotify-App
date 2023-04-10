@@ -18,7 +18,7 @@ export class SignUpComponent {
   imageUrl=IMAGES.ADD_PROFILE_IMAGE
   startDate = new Date(1990, 0, 1);
   submitted = false;
-  RegisterForm!:FormGroup
+  addProfileForm!:FormGroup
   userData:any
   @ViewChild(FormGroupDirective)
   formDirective!:FormGroupDirective;
@@ -34,26 +34,26 @@ export class SignUpComponent {
     }
   })
   constructor(private fb:FormBuilder,private router:Router,private service:UserDetailsService,private fireService:AngularFirestore){
-    this.initRegisterForm();
+    this.initaddProfileFormForm();
    
   }
-  initRegisterForm(){
-    this.RegisterForm=this.fb.group({
+  initaddProfileFormForm(){
+    this.addProfileForm=this.fb.group({
       firstName:['',[Validators.required,Validators.pattern(REGEX.NAME)]],
       lastName:['',[Validators.required,Validators.pattern(REGEX.NAME)]],
       email:['',[Validators.required,Validators.email,Validators.pattern(REGEX.EMAIL)]],
-      password:['',[Validators.required,Validators.minLength(6),Validators.pattern(REGEX.PASSWORD)]],
+      image:['',[Validators.required,Validators.pattern(REGEX.IMAGE)]],
       uId:['']
     })
 }
 get controls(){
-  return this.RegisterForm.controls;
+  return this.addProfileForm.controls;
 }
-Register(){
-  if((this.RegisterForm as FormGroup).valid){
-    this.RegisterForm.value.uId=userData?.user?.uid
-      console.log(this.RegisterForm.value);
-        this.service.postUserDetails(this.RegisterForm?.value).subscribe((res)=>{
+addProfile(){
+  if((this.addProfileForm as FormGroup).valid){
+    this.addProfileForm.value.uId=userData?.user?.uid
+      console.log(this.addProfileForm.value);
+        this.service.postUserDetails(this.addProfileForm?.value).subscribe((res)=>{
           console.log(res)
         })
        
