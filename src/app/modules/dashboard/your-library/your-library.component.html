@@ -12,7 +12,8 @@
                   <div class="card-body">
                       <h5 class="card-title">Liked Songs</h5>
                       <p class="card-text">
-                          This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                          Listen your Favorite music here, Add new Songs from our latest Hits.
+                         <span style="color:green"> Eat ,Sleep , Song Repeat</span>
                       </p>
                       <p class="card-text">
                           <small class="text-muted">Last updated 3 mins ago</small>
@@ -28,9 +29,9 @@
               </div>
               <div class="col-md-8">
                   <div class="card-body">
-                      <h5 class="card-title">{{playlist.title}}</h5>
+                      <h5 class="card-title">{{playlist?.title}}</h5>
                       <p class="card-text">
-                          {{playlist.description}}
+                          {{playlist?.description}}
                       </p>
                       <p class="card-text">
                           <small class="text-muted">Created on {{playlist.createdAt|date}}</small>

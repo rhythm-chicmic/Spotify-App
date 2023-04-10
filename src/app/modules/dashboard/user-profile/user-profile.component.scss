@@ -11,3 +11,22 @@
 .fa{
     cursor: pointer;
 }    
+.Container{
+    cursor: pointer;
+    display: flex;
+}
+.logout{
+    display: flex;
+}
+.logout:hover{
+   color:  rgb(175, 133, 253);
+ 
+}
+
+.addSongs{
+    display: flex;
+}
+.addSongs:hover{
+   color:  rgb(175, 133, 253);
+
+}
