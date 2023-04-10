@@ -4,6 +4,7 @@ import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { IMAGES } from 'src/app/common/constants';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-my-liked-songs',
   templateUrl: './my-liked-songs.component.html',
@@ -17,6 +18,17 @@ export class MyLikedSongsComponent implements OnInit{
   globalPlaySong:boolean=true
   audio = new Audio
   imageUrl=IMAGES.LIKED_SONGS_BANNER_IMAGE
+  Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
   constructor(private spinner:NgxSpinnerService,private router:Router,private songLibService:SongsLibraryService,private addSongService:AddSongsService){}
 
   ngOnInit(): void {
@@ -29,9 +41,14 @@ export class MyLikedSongsComponent implements OnInit{
       this.IdList=res;
       this.addSongService.getAllSongs().subscribe((res:any)=>{
         this.allSongsList=Object.values(res)
+        this.spinner.hide();
+
         this.song()
       })
     })
+    setTimeout(()=>{
+      this.spinner.hide();
+    },5000)
   }
 
   song(){
