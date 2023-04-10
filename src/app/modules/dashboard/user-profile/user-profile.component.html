@@ -7,7 +7,7 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-lg-6 mb-4 mb-lg-0">
           <div class="card mb-3" style="border-radius: .5rem;">
-            <div class="addProfile" *ngIf="true" (click)="OnAddProfile()">
+            <div class="addProfile" *ngIf="addProfile" (click)="OnAddProfile()">
               <h4>  Add Profile</h4>
               <span>&nbsp;</span>
               <mat-icon>person_add</mat-icon>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-6 mb-3">
                       <h6>Phone</h6>
-                      <p class="text-muted">{{profile?.phoneNo}}</p>
+                      <p class="text-muted">{{phoneNo}}</p>
                     </div>
                   </div>
 

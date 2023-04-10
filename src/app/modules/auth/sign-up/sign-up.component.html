@@ -49,20 +49,23 @@
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fa fa-image fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="file" id="form3Example3c" class="form-control" formControlName="image" />
+                      <input type="file" id="form3Example3c" class="form-control" formControlName="image" (change)="selectFile($event,'/profile_image')"/>
                       <label class="form-label" for="form3Example3c">Image</label>
                       <label class="from-label-1"
                         *ngIf="controls['image']?.errors?.['pattern'] && controls['image']?.touched">File Must be
                         of .jpg, .jepg, .gif, .png</label>
+                        <div *ngIf="percentageVal | async as percentage">
+                          <ng-container *ngIf="controls['image'].touched ">
+                            Progress: {{ percentage | number }}%
+                            <mat-progress-bar mode="determinate" value="{{percentage}}"></mat-progress-bar>
+                        </ng-container>
+                          </div>
                     </div>
                   </div>
 
 
-
-
-
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="button" [disabled]="addProfileForm.invalid" class="btn btn-primary btn-lg">Submit</button>
+                    <button type="submit" [disabled]="addProfileForm.invalid" class="btn btn-primary btn-lg">Submit</button>
                   </div>
 
                 </form>

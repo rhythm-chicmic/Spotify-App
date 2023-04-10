@@ -5,8 +5,10 @@ import { PATHS, REGEX, STORAGE_KEYS } from 'src/app/common/constants';
 import { IMAGES } from 'src/app/common/constants';
 import { userData } from 'src/app/common/constants';
 import swal from 'sweetalert2'
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { UserDetailsService } from 'src/app/core/services/user-details.service';
+import { Observable, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-sign-up',
@@ -20,6 +22,10 @@ export class SignUpComponent {
   submitted = false;
   addProfileForm!:FormGroup
   userData:any
+  selectedFile:any
+  percentageVal!: Observable<number |null|undefined>;
+  storagePath!:string
+  imagePath!:string
   @ViewChild(FormGroupDirective)
   formDirective!:FormGroupDirective;
   Toast =swal.mixin({
@@ -33,7 +39,7 @@ export class SignUpComponent {
       toast.addEventListener('mouseleave', swal.resumeTimer)
     }
   })
-  constructor(private fb:FormBuilder,private router:Router,private service:UserDetailsService,private fireService:AngularFirestore){
+  constructor(private fb:FormBuilder,private storage:AngularFireStorage,private router:Router,private service:UserDetailsService,private fireService:AngularFirestore){
     this.initaddProfileFormForm();
    
   }
@@ -53,21 +59,48 @@ addProfile(){
   if((this.addProfileForm as FormGroup).valid){
     this.addProfileForm.value.uId=userData?.user?.uid
       console.log(this.addProfileForm.value);
+      this.addProfileForm.value.image=this.imagePath
         this.service.postUserDetails(this.addProfileForm?.value).subscribe((res)=>{
           console.log(res)
         })
+      console.log(this.addProfileForm.value);
        
-    // this.formDirective.resetForm();
+    this.formDirective.resetForm();
     this.Toast.fire({
       icon: 'success',
       title: 'Account created successfully'
     })
  
-    // this.router.navigate([PATHS.MAIN.DASHBOARD]);
+    this.router.navigate([PATHS.MAIN.DASHBOARD]);
     }
     else{
       this.submitted =false;
+      console.log("HII")
     }
 }
+selectFile(event:any,path:string){
+  this.selectedFile=event.target?.files[0]
+    this.storagePath=path
+  this.upload();
+}
+upload(){
+  const filePath = `${this.storagePath}/${this.selectedFile.name}`;
+  const storageRef= this.storage.ref(filePath);
+  const uploadTask = this.storage.upload(filePath,this.selectedFile);
+  this.percentageVal = uploadTask.percentageChanges();
+  uploadTask.snapshotChanges().pipe(
+    finalize(() => {
+      storageRef.getDownloadURL().subscribe(downloadURL => {
+          this.imagePath=downloadURL
+          console.log(this.imagePath,1)
+      });
+    })
+  ).subscribe(()=>{
+
+  });
+
+
+ }
+
 
 }

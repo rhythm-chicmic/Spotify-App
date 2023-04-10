@@ -17,16 +17,16 @@ import Swal from "sweetalert2"
 
 
 
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
 
-  playSongs:any
-  mySongList:any
-  myPlaylistArray:any;
-  myPlaylistIdArray:any
-  songIdPresentInPlaylist:any
-  token:boolean=true;
-  flag:boolean=false;
-  playlistFlag:boolean=false;
+  playSongs: any
+  mySongList: any
+  myPlaylistArray: any;
+  myPlaylistIdArray: any
+  songIdPresentInPlaylist: any
+  token: boolean = true;
+  flag: boolean = false;
+  playlistFlag: boolean = false;
   Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -38,87 +38,84 @@ export class HomeComponent implements OnInit{
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
-  constructor(private spinner:NgxSpinnerService,private router:Router,private service:AngularFirestore,private userService:UserDetailsService,private allSongService:AddSongsService,private songLibService:SongsLibraryService){
-   
-    this.allSongService.getAllSongs().subscribe((res:any)=>{
-      this.playSongs=Object.values(res)
+  constructor(private spinner: NgxSpinnerService, private router: Router, private service: AngularFirestore, private userService: UserDetailsService, private allSongService: AddSongsService, private songLibService: SongsLibraryService) {
+
+    this.allSongService.getAllSongs().subscribe((res: any) => {
+      this.playSongs = Object.values(res)
       this.spinner.hide()
     })
-    if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
-      this.token=false;
+    if (localStorage.getItem(STORAGE_KEYS.TOKEN)) {
+      this.token = false;
     }
 
   }
   ngOnInit(): void {
     this.spinner.show()
-    this.songLibService.getMySongsList().subscribe((res:any)=>{
+    this.songLibService.getMySongsList().subscribe((res: any) => {
       res = Object.values(res)
       this.mySongList = Object.values(res)
-
-      
-
     })
-    this.songLibService.getAllPlaylists().subscribe((res)=>{
-      this.myPlaylistArray=Object.values(res);
-      this.myPlaylistIdArray=Object.keys(res);
+    this.songLibService.getAllPlaylists().subscribe((res) => {
+      this.myPlaylistArray = Object.values(res);
+      this.myPlaylistIdArray = Object.keys(res);
       console.log(this.myPlaylistIdArray)
     })
 
-    
+
 
   }
 
-  SelectedSongToSend(index:number,songId:any){
-    this.songLibService.getSongToPlaylist(this.myPlaylistIdArray[index]).subscribe((res)=>{
-      this.songIdPresentInPlaylist=Object.values(res)
+  SelectedSongToSend(index: number, songId: any) {
+    this.songLibService.getSongToPlaylist(this.myPlaylistIdArray[index]).subscribe((res) => {
+      this.songIdPresentInPlaylist = Object.values(res)
       console.log(this.songIdPresentInPlaylist)
-      this.songIdPresentInPlaylist.find((res:any)=>{
-        if(res.id===songId){
+      this.songIdPresentInPlaylist.find((res: any) => {
+        if (res.id === songId) {
           this.Toast.fire({
             icon: 'info',
             title: 'Song Already Added'
           })
-          this.playlistFlag=true;
+          this.playlistFlag = true;
           console.log(this.playlistFlag);
         }
       })
 
-        if(this.playlistFlag!==true){
-          console.log("Hello1")
-    
-            this.songLibService.postSongToPlaylist(this.myPlaylistIdArray[index],songId).pipe(
-              mergeMap(res=>this.songLibService.getSongToPlaylist(this.myPlaylistIdArray[index]))
-            ).subscribe((res)=>{
-            this.songIdPresentInPlaylist=Object.values(res)
-            this.Toast.fire({
-              icon: 'success',
-              title: 'Song Added to Liked Songs'
-            })
-            })
-            this.playlistFlag=false;
-          }
-    })
+      if (this.playlistFlag !== true) {
+        console.log("Hello1")
 
-            this.playlistFlag=false;
-
-  }
-
-  onClick(song:any){
-
-    if(!this.mySongList){
-      console.log(song.id)
-      if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
-      this.songLibService.postMySongsList(song.id).pipe(
-        mergeMap(res=>this.songLibService.getMySongsList()))
-        .subscribe((res)=>{
-          console.log(res)
-          this.mySongList=Object.values(res);
+        this.songLibService.postSongToPlaylist(this.myPlaylistIdArray[index], songId).pipe(
+          mergeMap(res => this.songLibService.getSongToPlaylist(this.myPlaylistIdArray[index]))
+        ).subscribe((res) => {
+          this.songIdPresentInPlaylist = Object.values(res)
           this.Toast.fire({
             icon: 'success',
             title: 'Song Added to Liked Songs'
           })
-        
         })
+        this.playlistFlag = false;
+      }
+    })
+
+    this.playlistFlag = false;
+
+  }
+
+  onClick(song: any) {
+
+    if (!this.mySongList) {
+      console.log(song.id)
+      if (localStorage.getItem(STORAGE_KEYS.TOKEN)) {
+        this.songLibService.postMySongsList(song.id).pipe(
+          mergeMap(res => this.songLibService.getMySongsList()))
+          .subscribe((res) => {
+            console.log(res)
+            this.mySongList = Object.values(res);
+            this.Toast.fire({
+              icon: 'success',
+              title: 'Song Added to Liked Songs'
+            })
+
+          })
       }
       else {
         this.Toast.fire({
@@ -129,20 +126,20 @@ export class HomeComponent implements OnInit{
     }
     else {
 
-    this.mySongList.find((val:any)=>{
-      if(val.songId===song.id){
-        this.Toast.fire({
-          icon: 'info',
-          title: 'Song Already Added'
-        })
-        this.flag=true;
-      }
-    })
+      this.mySongList.find((val: any) => {
+        if (val.songId === song.id) {
+          this.Toast.fire({
+            icon: 'info',
+            title: 'Song Already Added'
+          })
+          this.flag = true;
+        }
+      })
 
-      if(this.flag!==true){
+      if (this.flag !== true) {
         this.songLibService.postMySongsList(song.id).pipe(
-          mergeMap(res=>this.songLibService.getMySongsList()))
-          .subscribe((res)=>{
+          mergeMap(res => this.songLibService.getMySongsList()))
+          .subscribe((res) => {
             this.mySongList = Object.values(res)
             this.Toast.fire({
               icon: 'success',
@@ -153,9 +150,9 @@ export class HomeComponent implements OnInit{
 
       }
     }
-      this.flag=false;
+    this.flag = false;
   }
-  OnSignUp(){
+  OnSignUp() {
     this.router.navigate([PATHS.AUTH.LOGIN])
   }
 
