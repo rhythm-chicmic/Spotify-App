@@ -50,7 +50,7 @@ export class OtpComponent implements OnInit{
 
   handleClick() {
     console.log(this.otp);
-   var credential = PhoneAuthProvider.credential(
+   const credential = PhoneAuthProvider.credential(
       this.verify,
       this.otp
     );

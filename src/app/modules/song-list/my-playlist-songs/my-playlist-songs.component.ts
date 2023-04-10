@@ -9,14 +9,14 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./my-playlist-songs.component.scss']
 })
 export class MyPlaylistSongsComponent implements OnInit{
-  isHovering:boolean=false
-  globalPlaySong:boolean=true
+  isHovering=false
+  globalPlaySong=true
   songsList:any=[]
   displayData:any;
   allSongsList:any
   IdList:any=[]
   routeId!:string
-  isPlayed:boolean=false
+  isPlayed=false
   audio = new Audio
   songTime:any=''
   constructor(private spinner:NgxSpinnerService,private activeRoute:ActivatedRoute,private songLibraryService:SongsLibraryService,private addSongService:AddSongsService){}
@@ -40,8 +40,8 @@ export class MyPlaylistSongsComponent implements OnInit{
   }
 
   song(){
-    for(let idlist of this.IdList){
-      for(let allsongs of this.allSongsList){
+    for(const idlist of this.IdList){
+      for(const allsongs of this.allSongsList){
         if(idlist.id===allsongs.id){
           this.songsList.push(allsongs);
         }

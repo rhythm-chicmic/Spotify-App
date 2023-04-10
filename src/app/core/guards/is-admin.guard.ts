@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Injectable }from '@angular/core';
+import {  CanActivate, Router, } from '@angular/router';
 
-import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
+import { PATHS } from 'src/app/common/constants';
 
 @Injectable({
   providedIn: 'root'

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Observable, map, mergeMap } from 'rxjs';
+import {  mergeMap } from 'rxjs';
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
@@ -24,9 +24,9 @@ export class HomeComponent implements OnInit {
   myPlaylistArray: any;
   myPlaylistIdArray: any
   songIdPresentInPlaylist: any
-  token: boolean = true;
-  flag: boolean = false;
-  playlistFlag: boolean = false;
+  token = true;
+  flag = false;
+  playlistFlag = false;
   Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -92,7 +92,7 @@ export class HomeComponent implements OnInit {
         console.log("Hello1")
 
         this.songLibService.postSongToPlaylist(this.myPlaylistIdArray[index], songId).pipe(
-          mergeMap(res => this.songLibService.getSongToPlaylist(this.myPlaylistIdArray[index]))
+          mergeMap(() => this.songLibService.getSongToPlaylist(this.myPlaylistIdArray[index]))
         ).subscribe((res) => {
           this.songIdPresentInPlaylist = Object.values(res)
           this.Toast.fire({
@@ -125,7 +125,7 @@ export class HomeComponent implements OnInit {
         
 
         this.songLibService.postMySongsList(song.id).pipe(
-          mergeMap(res => this.songLibService.getMySongsList()))
+          mergeMap(() => this.songLibService.getMySongsList()))
           .subscribe((res) => {
             console.log(res)
             this.mySongList = Object.values(res);
@@ -157,7 +157,7 @@ export class HomeComponent implements OnInit {
 
       if (this.flag !== true) {
         this.songLibService.postMySongsList(song.id).pipe(
-          mergeMap(res => this.songLibService.getMySongsList()))
+          mergeMap(() => this.songLibService.getMySongsList()))
           .subscribe((res) => {
             this.mySongList = Object.values(res)
             this.Toast.fire({

@@ -11,7 +11,7 @@ import { STORAGE_KEYS } from 'src/app/common/constants';
 @Injectable()
 export class HttpRequestInterceptor implements HttpInterceptor {
 
-  constructor() {}
+
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const localToken = localStorage.getItem(STORAGE_KEYS?.TOKEN);

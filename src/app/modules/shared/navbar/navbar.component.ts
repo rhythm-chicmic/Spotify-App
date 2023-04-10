@@ -9,7 +9,7 @@ import { UserDetailsService } from 'src/app/core/services/user-details.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit{
-  isLogin:boolean=false;
+  isLogin=false;
 constructor(private router :Router,private userService:UserDetailsService){
   
 }

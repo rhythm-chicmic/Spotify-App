@@ -11,8 +11,8 @@ import Swal from 'sweetalert2'
 })
 export class UserProfileComponent implements OnInit{
   userProfleArray:any;
-  isAdmin:boolean=false;
-  addProfile:boolean=true
+  isAdmin=false;
+  addProfile=true
   phoneNo!:string
   Toast = Swal.mixin({
     toast: true,

@@ -20,7 +20,8 @@ export const PARENT_PATHS = {
     ADMIN:'admin',
     SHARED:'shared',
     WILDCARD: '**',
-    USER_PROFILE:'user-profile'
+    USER_PROFILE:'user-profile',
+    PAYMENT:'payment'
   }
 
   export const PATHS = {
@@ -45,6 +46,9 @@ export const PARENT_PATHS = {
   },
   ADMIN:{
     ADD_SONGS:'add-songs'
+  },
+  PAYMENT:{
+    PAY_MONEY:'pay-money'
   }
   } 
 

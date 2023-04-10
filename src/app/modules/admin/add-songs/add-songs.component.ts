@@ -73,9 +73,7 @@ export class AddSongsComponent {
 
         });
       })
-    ).subscribe(()=>{
-
-    });
+    ).subscribe();
 
 
    }

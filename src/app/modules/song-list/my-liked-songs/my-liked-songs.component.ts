@@ -14,8 +14,8 @@ export class MyLikedSongsComponent implements OnInit{
   allSongsList:any
   songsList:any=[]
   IdList:any
-  isPlayed:boolean=true
-  globalPlaySong:boolean=true
+  isPlayed=true
+  globalPlaySong=true
   audio = new Audio
   imageUrl=IMAGES.LIKED_SONGS_BANNER_IMAGE
   Toast = Swal.mixin({
@@ -52,8 +52,8 @@ export class MyLikedSongsComponent implements OnInit{
   }
 
   song(){
-    for(let idlist of this.IdList){
-      for(let allsongs of this.allSongsList){
+    for(const idlist of this.IdList){
+      for(const allsongs of this.allSongsList){
         if(idlist.songId===allsongs.id){
           console.log(typeof allsongs);
           this.songsList.push(allsongs);

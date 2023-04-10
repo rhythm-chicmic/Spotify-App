@@ -95,9 +95,7 @@ upload(){
           console.log(this.imagePath,1)
       });
     })
-  ).subscribe(()=>{
-
-  });
+  ).subscribe();
 
 
  }
