@@ -5,7 +5,7 @@ import { SongListRoutingModule } from './song-list-routing.module';
 import { MyPlaylistSongsComponent } from './my-playlist-songs/my-playlist-songs.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button'; 
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
     MyLikedSongsComponent,
@@ -14,6 +14,7 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     CommonModule,
     MatIconModule,
+    NgxSpinnerModule,
     SongListRoutingModule,
     MatButtonModule
   ],

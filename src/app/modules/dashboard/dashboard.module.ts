@@ -9,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CreatePlaylistComponent } from './create-playlist/create-playlist.component'; 
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -22,6 +23,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatMenuModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxSpinnerModule,
     MatProgressBarModule,
     MatIconModule
   ],

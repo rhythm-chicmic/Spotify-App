@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, map, mergeMap } from 'rxjs';
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
+import { SpinnerComponent } from 'src/app/common/spinner/spinner.component';
+import { SpinnerService } from 'src/app/common/spinner/spinner.service';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
 import { UserDetailsService } from 'src/app/core/services/user-details.service';
@@ -37,7 +40,7 @@ export class HomeComponent implements OnInit{
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
-  constructor(private router:Router,private service:AngularFirestore,private userService:UserDetailsService,private allSongService:AddSongsService,private songLibService:SongsLibraryService){
+  constructor(private spinner:NgxSpinnerService,private router:Router,private service:AngularFirestore,private userService:UserDetailsService,private allSongService:AddSongsService,private songLibService:SongsLibraryService){
    
     this.allSongService.getAllSongs().subscribe((res:any)=>{
       this.playSongs=Object.values(res)
@@ -48,9 +51,12 @@ export class HomeComponent implements OnInit{
 
   }
   ngOnInit(): void {
-
+    this.spinner.show()
     this.songLibService.getMySongsList().subscribe((res:any)=>{
       res = Object.values(res)
+  
+    this.spinner.hide()
+
       this.mySongList = Object.values(res)
     })
     this.songLibService.getAllPlaylists().subscribe((res)=>{

@@ -6,6 +6,7 @@ import "firebase/firestore"
 import { Router } from '@angular/router';
 import { Firebase } from 'src/app/core/services/firebase.service';
 import Swal from "sweetalert2"
+import { SpinnerService } from 'src/app/common/spinner/spinner.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit{
   })
   recaptchaVerifier:any
   LoginForm!: FormGroup
-  constructor(private fb:FormBuilder,private router :Router,private firebase:Firebase){
+  constructor(private fb:FormBuilder,private router :Router,private spinner:SpinnerService,private firebase:Firebase){
     this.initLoginForm();
       this.auth = getAuth(firebase.firebaseApp);
   }
@@ -56,9 +57,10 @@ export class LoginComponent implements OnInit{
           }
           this.LoginForm.value.phoneNo='+91'+this.LoginForm?.value?.phoneNo
       console.log(this.LoginForm.value);
+      this.spinner.showSpinner();
       signInWithPhoneNumber(this.auth, this.LoginForm?.value?.phoneNo, this.recaptchaVerifier).then((result:any)=>{
         console.log(result)
-
+        this.spinner.hideSpinner();
 
         localStorage.setItem(STORAGE_KEYS.VERIFICATION_ID,JSON.stringify(result.verificationId))
         this.router.navigate([PATHS.AUTH.GET_OTP])

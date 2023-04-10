@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
-
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-my-liked-songs',
   templateUrl: './my-liked-songs.component.html',
@@ -16,12 +16,15 @@ export class MyLikedSongsComponent implements OnInit{
   globalPlaySong:boolean=true
   audio = new Audio
 
-  constructor(private router:Router,private songLibService:SongsLibraryService,private addSongService:AddSongsService){}
+  constructor(private spinner:NgxSpinnerService,private router:Router,private songLibService:SongsLibraryService,private addSongService:AddSongsService){}
 
   ngOnInit(): void {
+    this.spinner.show();
     this.songLibService.getMySongsList().subscribe((res:any)=>{
       res=Object.values(res)
       console.log(res)
+    this.spinner.hide();
+
       this.IdList=res;
       this.addSongService.getAllSongs().subscribe((res:any)=>{
         this.allSongsList=Object.values(res)

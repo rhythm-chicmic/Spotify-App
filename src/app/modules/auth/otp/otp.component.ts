@@ -5,6 +5,8 @@ import { PATHS, STORAGE_KEYS, userData } from 'src/app/common/constants';
 import { PhoneAuthProvider, getAuth, signInWithCredential } from 'firebase/auth';
 import { Firebase } from 'src/app/core/services/firebase.service';
 import Swal from 'sweetalert2'
+import { SpinnerService } from 'src/app/common/spinner/spinner.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
@@ -36,7 +38,7 @@ export class OtpComponent implements OnInit{
     },
   }
   verify!:any;
-  constructor(private router:Router,private ngZone:NgZone,private firebase:Firebase){
+  constructor(private spinner:NgxSpinnerService,private router:Router,private ngZone:NgZone,private firebase:Firebase){
      this.auth = getAuth(firebase.firebaseApp);
   }
   ngOnInit(): void {
@@ -54,9 +56,11 @@ export class OtpComponent implements OnInit{
     );
 
     console.log(credential);
+   
     signInWithCredential(this.auth,credential)
       .then((response:any) => {
         console.log(response);
+        this.spinner.show();
         localStorage.setItem('user_data', JSON.stringify(response));
         localStorage.setItem(STORAGE_KEYS.FIREBASE_ID, response.user.uid);
 

@@ -4,6 +4,7 @@ import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { Observable, finalize } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { SpinnerService } from 'src/app/common/spinner/spinner.service';
 @Component({
   selector: 'app-add-songs',
   templateUrl: './add-songs.component.html',
@@ -68,7 +69,9 @@ export class AddSongsComponent {
 
         });
       })
-    ).subscribe();
+    ).subscribe(()=>{
+
+    });
 
 
    }
@@ -81,10 +84,14 @@ export class AddSongsComponent {
         this.addSongForm.value.imageUrl=this.imagePath
         this.addSongForm.value.mp3File=this.mp3Path
         console.log(this.addSongForm.value);
+
+
         this.addSongForm.value.id = this.addSongForm?.value?.songName.slice(0,2)+this.addSongForm?.value?.songType.slice(0,2)+this.addSongForm?.value?.genre.slice(0,2)+this.addSongForm?.value?.artistName.slice(0,2)
         console.log(this.addSongForm.value)
         this.addSongService.postAllSongs(this.addSongForm.value).subscribe((res:any)=>{
           console.log(res);
+ 
+
         })
       }
   }

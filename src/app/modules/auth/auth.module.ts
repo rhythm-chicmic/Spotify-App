@@ -11,6 +11,7 @@ import { NgOtpInputModule } from  'ng-otp-input';
 import { HttpClientModule } from '@angular/common/http';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MatInputModule } from '@angular/material/input';
+
 @NgModule({
   declarations: [
     LoginComponent,
