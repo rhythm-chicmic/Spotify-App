@@ -2,7 +2,7 @@ import { Component, OnChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PATHS, REGEX, STORAGE_KEYS } from 'src/app/common/constants';
-import { AddSongsService } from 'src/app/core/services/add-songs.service';
+import { IMAGES } from 'src/app/common/constants';
 import { userData } from 'src/app/common/constants';
 import swal from 'sweetalert2'
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -15,6 +15,7 @@ import { UserDetailsService } from 'src/app/core/services/user-details.service';
 })
 export class SignUpComponent {
   hide = true;
+  imageUrl=IMAGES.ADD_PROFILE_IMAGE
   startDate = new Date(1990, 0, 1);
   submitted = false;
   RegisterForm!:FormGroup
@@ -42,7 +43,6 @@ export class SignUpComponent {
       lastName:['',[Validators.required,Validators.pattern(REGEX.NAME)]],
       email:['',[Validators.required,Validators.email,Validators.pattern(REGEX.EMAIL)]],
       password:['',[Validators.required,Validators.minLength(6),Validators.pattern(REGEX.PASSWORD)]],
-      phoneNo:['',[Validators.required,Validators.pattern(REGEX.PHONE_NUMBER)]],
       uId:['']
     })
 }

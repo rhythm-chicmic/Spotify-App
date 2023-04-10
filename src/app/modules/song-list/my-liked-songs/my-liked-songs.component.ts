@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { IMAGES } from 'src/app/common/constants';
 @Component({
   selector: 'app-my-liked-songs',
   templateUrl: './my-liked-songs.component.html',
@@ -15,7 +16,7 @@ export class MyLikedSongsComponent implements OnInit{
   isPlayed:boolean=true
   globalPlaySong:boolean=true
   audio = new Audio
-
+  imageUrl=IMAGES.LIKED_SONGS_BANNER_IMAGE
   constructor(private spinner:NgxSpinnerService,private router:Router,private songLibService:SongsLibraryService,private addSongService:AddSongsService){}
 
   ngOnInit(): void {

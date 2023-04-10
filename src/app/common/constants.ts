@@ -78,4 +78,8 @@ export const APIS ={
     SONG_ID:'/songId'
   }
 
-  
+ export const IMAGES={
+  ADD_PROFILE_IMAGE:'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp',
+  LIKED_SONGS_IMAGE:'https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp',
+  LIKED_SONGS_BANNER_IMAGE:'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/bologna-3.jpg'
+ } 

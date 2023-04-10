@@ -5,12 +5,13 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { PATHS } from 'src/app/common/constants';
 import { OtpComponent } from './otp/otp.component';
 import { IsLoginGuard } from 'src/app/core/guards/is-login.guard';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 
 const routes: Routes = [
     {path:'',redirectTo:PATHS.AUTH.LOGIN,pathMatch:'full'},
   {path:PATHS.AUTH.LOGIN,canActivate:[IsLoginGuard],component:LoginComponent},
-  {path:PATHS.AUTH.REGISTER,canActivate:[IsLoginGuard],component:SignUpComponent},
+  {path:PATHS.AUTH.REGISTER,canActivate:[AuthGuard],component:SignUpComponent},
   {path:PATHS.AUTH.GET_OTP,canActivate:[IsLoginGuard],component:OtpComponent},
 
 ];

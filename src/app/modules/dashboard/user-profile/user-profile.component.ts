@@ -12,12 +12,16 @@ import { UserDetailsService } from 'src/app/core/services/user-details.service';
 export class UserProfileComponent implements OnInit{
   userProfleArray:any;
   isAdmin:boolean=false;
+  addProfile:boolean=false
   constructor(private spinner :NgxSpinnerService,private userService:UserDetailsService,private router:Router){}
   ngOnInit(): void {
     this.spinner.show();
     this.userService.getMyProfile().subscribe((res)=>{
       res =Object.values(res)
       this.userProfleArray=res;
+      if(!this.userProfleArray){
+        this.addProfile=true;
+      }
       console.log(res)
       if(this.userProfleArray[0].email==='rhythm.sharma@chicmic.co.in'){
         this.isAdmin=true;
@@ -33,5 +37,8 @@ export class UserProfileComponent implements OnInit{
   }
   OnAddSongs(){
     this.router.navigate([PATHS.ADMIN.ADD_SONGS])
+  }
+  OnAddProfile(){
+    this.router.navigate([PATHS.AUTH.REGISTER]);
   }
 }

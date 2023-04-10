@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PATHS } from 'src/app/common/constants';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
-
+import { IMAGES } from 'src/app/common/constants';
 @Component({
   selector: 'app-your-library',
   templateUrl: './your-library.component.html',
@@ -12,6 +12,7 @@ import { SongsLibraryService } from 'src/app/core/services/songs-library.service
 export class YourLibraryComponent implements OnInit{
   myPlaylists:any;
   myPlaylistRouteId:any
+  imageUrl=IMAGES.LIKED_SONGS_IMAGE
   constructor(private spinner:NgxSpinnerService,private router:Router,private songLibraryService:SongsLibraryService){}
 
   ngOnInit(){
