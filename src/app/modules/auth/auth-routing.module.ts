@@ -4,14 +4,15 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { PATHS } from 'src/app/common/constants';
 import { OtpComponent } from './otp/otp.component';
+import { IsLoginGuard } from 'src/app/core/guards/is-login.guard';
 
 
 const routes: Routes = [
     {path:'',redirectTo:PATHS.AUTH.LOGIN,pathMatch:'full'},
-  {path:PATHS.AUTH.LOGIN,component:LoginComponent},
-  {path:PATHS.AUTH.REGISTER,component:SignUpComponent},
-  {path:PATHS.AUTH.GET_OTP,component:OtpComponent},
-  {path:PATHS.AUTH.REGISTER,component:SignUpComponent}
+  {path:PATHS.AUTH.LOGIN,canActivate:[IsLoginGuard],component:LoginComponent},
+  {path:PATHS.AUTH.REGISTER,canActivate:[IsLoginGuard],component:SignUpComponent},
+  {path:PATHS.AUTH.GET_OTP,canActivate:[IsLoginGuard],component:OtpComponent},
+
 ];
 
 @NgModule({

@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore,AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable, map, mergeMap } from 'rxjs';
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
-import { SpinnerComponent } from 'src/app/common/spinner/spinner.component';
-import { SpinnerService } from 'src/app/common/spinner/spinner.service';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
 import { UserDetailsService } from 'src/app/core/services/user-details.service';
@@ -44,6 +42,7 @@ export class HomeComponent implements OnInit{
    
     this.allSongService.getAllSongs().subscribe((res:any)=>{
       this.playSongs=Object.values(res)
+      this.spinner.hide()
     })
     if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
       this.token=false;
@@ -55,7 +54,7 @@ export class HomeComponent implements OnInit{
     this.songLibService.getMySongsList().subscribe((res:any)=>{
       res = Object.values(res)
   
-    this.spinner.hide()
+
 
       this.mySongList = Object.values(res)
     })
@@ -104,14 +103,11 @@ export class HomeComponent implements OnInit{
 
   }
 
-
-
-
-
   onClick(song:any){
 
     if(!this.mySongList){
       console.log(song.id)
+      if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
       this.songLibService.postMySongsList(song.id).pipe(
         mergeMap(res=>this.songLibService.getMySongsList()))
         .subscribe((res)=>{
@@ -121,10 +117,15 @@ export class HomeComponent implements OnInit{
             icon: 'success',
             title: 'Song Added to Liked Songs'
           })
-          console.log(this.mySongList)
-
+        
         })
-      
+      }
+      else {
+        this.Toast.fire({
+          icon: 'error',
+          title: 'Login To Add Song'
+        })
+      }
     }
     else {
 
