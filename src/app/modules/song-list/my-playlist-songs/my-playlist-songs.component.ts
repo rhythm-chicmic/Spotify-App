@@ -103,7 +103,7 @@ export class MyPlaylistSongsComponent implements OnInit{
         console.log(res)
         this.playlistPlayed++;
       })
-    }, 15000);
+    }, 25000);
   }
   StopSong(index:number){
  
