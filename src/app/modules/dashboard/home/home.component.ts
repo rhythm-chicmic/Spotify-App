@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   myPlaylistArray: any;
   myPlaylistIdArray: any
   songIdPresentInPlaylist: any
+  purchasedSongArray:any
   token = true;
   flag = false;
   playlistFlag = false;
@@ -43,6 +44,17 @@ export class HomeComponent implements OnInit {
 
     this.allSongService.getAllSongs().subscribe((res: any) => {
       this.playSongs = Object.values(res)
+      this.transactionService.getPurchasedSong().subscribe((res)=>{
+        this.purchasedSongArray=Object.values(res);
+        for(let song of this.playSongs){
+          for(let purch of this.purchasedSongArray){
+            if(song.id===purch.songId){
+              song.payment='No'
+            }
+          }
+        }
+        console.log(this.playSongs);
+      })
       this.spinner.hide()
     })
     if (localStorage.getItem(STORAGE_KEYS.TOKEN)) {
@@ -52,6 +64,7 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.spinner.show()
+
     this.songLibService.getMySongsList().subscribe((res: any) => {
       res = Object.values(res)
       this.mySongList = Object.values(res)
@@ -62,7 +75,7 @@ export class HomeComponent implements OnInit {
       console.log(this.myPlaylistIdArray)
     })
 
-
+    
 
   }
 

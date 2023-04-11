@@ -28,7 +28,7 @@
         <td>{{playsong?.genre}}</td>
         <td>{{playsong?.songType}}</td>
         <td *ngIf="playsong?.payment==='Yes'" id="paid"><mat-icon  matTooltip="Paid"> attach_money</mat-icon></td>
-        <td *ngIf="playsong?.payment!=='Yes'"></td>
+        <td *ngIf="playsong?.payment!=='Yes' "></td>
 
         <td>
           <button  class="btn rounded-circle" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Add Song">
