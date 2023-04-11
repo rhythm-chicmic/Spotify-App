@@ -1,7 +1,7 @@
-import { Component, OnChanges, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PATHS, REGEX, STORAGE_KEYS } from 'src/app/common/constants';
+import { PATHS, REGEX } from 'src/app/common/constants';
 import { IMAGES } from 'src/app/common/constants';
 import { userData } from 'src/app/common/constants';
 import swal from 'sweetalert2'

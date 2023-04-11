@@ -6,7 +6,7 @@ import "firebase/firestore"
 import { Router } from '@angular/router';
 import { Firebase } from 'src/app/core/services/firebase.service';
 import Swal from "sweetalert2"
-import { SpinnerService } from 'src/app/common/spinner/spinner.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

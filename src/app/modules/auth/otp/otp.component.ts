@@ -1,11 +1,10 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import 'firebase/firestore';
 import { Router } from '@angular/router';
-import { PATHS, STORAGE_KEYS, userData } from 'src/app/common/constants';
+import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { PhoneAuthProvider, getAuth, signInWithCredential } from 'firebase/auth';
 import { Firebase } from 'src/app/core/services/firebase.service';
 import Swal from 'sweetalert2'
-import { SpinnerService } from 'src/app/common/spinner/spinner.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-otp',

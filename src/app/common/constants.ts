@@ -66,7 +66,12 @@ export const APIS ={
     MY_PROFILE:'users/'
   },
   TRANSACTION:{
-    POST_SONG_BUY_DATA:'transaction/'
+    POST_SONG_BUY_DATA:'transaction/',
+    GET_SONG_BUY_DATA:'transaction/'
+  },
+  EVENT_TRACK:{
+    PLAYLIST_TRACK:'playlist-track',
+    SONGS_TRACK:'song-track'
   }
 }
 

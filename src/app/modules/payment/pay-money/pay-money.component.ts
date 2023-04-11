@@ -14,8 +14,8 @@ import Swal from 'sweetalert2'
 export class PayMoneyComponent implements OnInit{
   invalidError:any
   cardDetailsFilledOut:any
-  songsArray:Array<Object>=[]
-  buySong:Array<Object>=[]
+  songsArray:Array<any>=[]
+  buySong:Array<any>=[]
   transactionResult:any;
   songId!:string
   amount!:string

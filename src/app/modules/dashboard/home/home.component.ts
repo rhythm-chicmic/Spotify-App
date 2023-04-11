@@ -46,8 +46,8 @@ export class HomeComponent implements OnInit {
       this.playSongs = Object.values(res)
       this.transactionService.getPurchasedSong().subscribe((res)=>{
         this.purchasedSongArray=Object.values(res);
-        for(let song of this.playSongs){
-          for(let purch of this.purchasedSongArray){
+        for(const song of this.playSongs){
+          for(const purch of this.purchasedSongArray){
             if(song.id===purch.songId){
               song.payment='No'
             }
