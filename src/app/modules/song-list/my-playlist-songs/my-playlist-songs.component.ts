@@ -101,6 +101,7 @@ export class MyPlaylistSongsComponent implements OnInit{
     setTimeout(() => {
       this.eventService.postPlaylistTrack(this.playlistId).subscribe((res)=>{
         console.log(res)
+        this.playlistPlayed++;
       })
     }, 15000);
   }
