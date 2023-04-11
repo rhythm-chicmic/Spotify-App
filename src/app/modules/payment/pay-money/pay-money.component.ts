@@ -6,6 +6,7 @@ import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { TransactionService } from 'src/app/core/services/transaction.service';
 import { StripeScriptTag } from "stripe-angular"
 import Swal from 'sweetalert2'
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-pay-money',
   templateUrl: './pay-money.component.html',
@@ -34,7 +35,7 @@ export class PayMoneyComponent implements OnInit{
 
   transactionForm!:FormGroup
 
-  constructor(private fb:FormBuilder,private songService:AddSongsService,private route:Router,private stripeScriptTag: StripeScriptTag,private transactionService:TransactionService) {
+  constructor(private spinner :NgxSpinnerService,private fb:FormBuilder,private songService:AddSongsService,private route:Router,private stripeScriptTag: StripeScriptTag,private transactionService:TransactionService) {
     if (!this.stripeScriptTag.StripeInstance) {
       this.stripeScriptTag.setPublishableKey(STRIPE_KEYS.PUBLIC_KEY);
     }
@@ -73,14 +74,15 @@ export class PayMoneyComponent implements OnInit{
   cardCaptureReady = false
 
   ngOnInit(): void {
+    this.spinner.show();
      this.amount= this.transactionService?.amount
      this.songId=this.transactionService?.songId
       this.songService?.getAllSongs().subscribe((res:any)=>{
           this.songsArray= Object.values(res);
+          this.spinner.hide();
           this.songsArray.find((res:any)=>{
             if(res.id===this.songId){
               this.buySong=res;
-             
             } 
           })
       })
