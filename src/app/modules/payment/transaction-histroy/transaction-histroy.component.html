@@ -1,0 +1,30 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+</ngx-spinner>
+
+
+
+<table class="table ">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Song Id</th>
+            <th scope="col">Transaction Date</th>
+            <th scope="col">Card</th>
+            <th scope="col">Token Id</th>
+            <th scope="col">Card Ends With</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="group-item" *ngFor="let transaction of purchasedSongList">
+
+            <td>{{transaction?.name}}</td>
+            <td>{{transaction?.songId}}</td>
+            <td>{{transaction?.transcationDate|date:'short'}}</td>
+            <td>{{transaction?.cardBrand}}</td>
+            <td>{{transaction?.tokenId}}</td>
+            <td>{{transaction?.last4Digit}}</td>
+
+        </tr>
+    </tbody>
+</table>

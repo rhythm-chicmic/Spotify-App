@@ -18,5 +18,7 @@ private path= environment.url
   postPurchasedSong(data:any){
     return this.httpService.post(this.path+APIS.TRANSACTION.POST_SONG_BUY_DATA+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),data)
   } 
-
+  getPurchasedSong(){
+    return this.httpService.get(this.path+APIS.TRANSACTION.POST_SONG_BUY_DATA+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
+  }
 }

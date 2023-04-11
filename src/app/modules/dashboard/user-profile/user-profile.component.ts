@@ -70,7 +70,7 @@ export class UserProfileComponent implements OnInit{
     this.router.navigate([PATHS.AUTH.REGISTER]);
   }
   OnTransaction(){
-    
+      this.router.navigate([PATHS.PAYMENT.TRANSACTION_HISTORY])
   }
   OnEditProfile(){
     console.log("Edit Profile")

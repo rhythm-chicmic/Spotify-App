@@ -48,7 +48,8 @@ export const PARENT_PATHS = {
     ADD_SONGS:'add-songs'
   },
   PAYMENT:{
-    PAY_MONEY:'pay-money'
+    PAY_MONEY:'pay-money',
+    TRANSACTION_HISTORY:'transaction-history'
   }
   } 
 
