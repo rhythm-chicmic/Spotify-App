@@ -1,1 +1,49 @@
-<p>pay-money works!</p>
+<div class="container">
+    <div class='row'>
+        <div class='col-md-4'></div>
+        <div class='col-md-4'>
+          <script src='https://js.stripe.com/v2/' type='text/javascript'></script>
+          <form  [formGroup]="transactionForm" >
+            <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓" /><input name="_method" type="hidden" value="PUT" /><input name="authenticity_token" type="hidden" value="qLZ9cScer7ZxqulsUWazw4x3cSEzv899SP/7ThPCOV8=" /></div>
+            <div class='form-row'>
+              <div class='col-xs-12 form-group required'>
+                <label class='control-label'>Name on Card</label>
+                <input class='form-control' size='4' type='text' formControlName="name">
+              </div>
+            </div>
+            <br>
+            <div class='form-row'>
+                <stripe-card class='form-control' size='20' type='text' #stripeCard 
+                (catch) = "onStripeError"
+                [(complete)] = "cardDetailsFilledOut"
+                [(invalid)] = "invalidError"
+                (cardMounted) = "cardCaptureReady = true"
+                (paymentMethodChange) = "setPaymentMethod($event)"
+                (tokenChange) = "setStripeToken($event)"
+                (sourceChange) = "setStripeSource($event)"
+               
+              ></stripe-card>
+            </div>
+            <br>
+
+            <div class='form-row'>
+              <div class='col-md-12'>
+                <div class='form-control total btn btn-info'>
+                  Total:
+                  <span class='amount'>{{amount}}</span>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <div class='form-row'>
+              <div class='col-md-12 form-group'>
+                <button class='form-control btn btn-primary submit-button' [disabled]="transactionForm.invalid"   (click)="stripeCard.createToken()" type='submit'>Pay »</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class='col-md-4'></div>
+    </div>
+</div>
+

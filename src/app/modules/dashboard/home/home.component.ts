@@ -6,6 +6,7 @@ import {  mergeMap } from 'rxjs';
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
+import { TransactionService } from 'src/app/core/services/transaction.service';
 import { UserDetailsService } from 'src/app/core/services/user-details.service';
 import Swal from "sweetalert2"
 
@@ -38,7 +39,7 @@ export class HomeComponent implements OnInit {
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
-  constructor(private spinner: NgxSpinnerService, private router: Router, private service: AngularFirestore, private userService: UserDetailsService, private allSongService: AddSongsService, private songLibService: SongsLibraryService) {
+  constructor(private transactionService:TransactionService,private spinner: NgxSpinnerService, private router: Router, private service: AngularFirestore, private userService: UserDetailsService, private allSongService: AddSongsService, private songLibService: SongsLibraryService) {
 
     this.allSongService.getAllSongs().subscribe((res: any) => {
       this.playSongs = Object.values(res)
@@ -175,8 +176,9 @@ export class HomeComponent implements OnInit {
   OnSignUp() {
     this.router.navigate([PATHS.AUTH.LOGIN])
   }
-  buySong(song:any){
-
+  buySong(songId:any,amount:string){
+    this.transactionService.getSongData(songId,amount);
+    this.router.navigate([PATHS.PAYMENT.PAY_MONEY])
   }
 
 }

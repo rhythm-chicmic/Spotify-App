@@ -44,7 +44,7 @@
             <mat-icon>playlist_add</mat-icon>
             <span>{{playlist?.title}}</span>
           </button>
-          <button mat-menu-item (click)="buySong(playsong)" *ngIf="playsong?.payment==='Yes'">
+          <button mat-menu-item (click)="buySong(playsong?.id,playsong?.amount)" *ngIf="playsong?.payment==='Yes'">
             <mat-icon>attach_money</mat-icon>
             <span>Buy This Song</span>
           </button>

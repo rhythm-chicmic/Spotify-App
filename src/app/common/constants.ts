@@ -63,6 +63,9 @@ export const APIS ={
   },
   USER_PROFILE:{
     MY_PROFILE:'users/'
+  },
+  TRANSACTION:{
+    POST_SONG_BUY_DATA:'transaction/'
   }
 }
 
@@ -91,3 +94,8 @@ export const APIS ={
  } 
 
 export const IS_SONG_PAID=['Yes','No']
+
+export const STRIPE_KEYS ={
+  SECRET_KEY:'sk_test_51MvHaBSGq7tprvVChzZUHit3fnKEAiz2GfbFnUrsA3MRlxKy65rVGpXmlMoYps2J4eJGfUqLdZNwiF8fj0fxwM7i00T1M0wAWA',
+  PUBLIC_KEY:'pk_test_51MvHaBSGq7tprvVCWj6hmCgOIw8a0O6UZ1iRI0rbzmKMmgAeFZ7FgbjCLHhJoE1QAOFoL4SVg8U19aPiOZVsnwt200efatgtzf'
+}
