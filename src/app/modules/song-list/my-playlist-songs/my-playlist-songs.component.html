@@ -8,7 +8,7 @@
            <img class="card-img" [src]="displayData?.imageUrl"  alt="Bologna">
           <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
             <h4 class="card-title">{{displayData?.title}}</h4>
-            <h6 class="card-subtitle mb-2">Played 17 Times </h6>
+            <h6 class="card-subtitle mb-2">Played {{playlistPlayed}} Times </h6>
             <p class="card-text">Total Songs - {{songsList.length}}</p>
             <div class="link d-flex" (click)="OnClickPlay()">
               <mat-icon class="icon-size" *ngIf="globalPlaySong">play_circle_filled</mat-icon>

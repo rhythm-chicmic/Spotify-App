@@ -7,6 +7,7 @@ import { SongsLibraryService } from 'src/app/core/services/songs-library.service
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { PATHS } from 'src/app/common/constants';
+import { EventTrackService } from 'src/app/core/services/event-track.service';
 @Component({
   selector: 'app-create-playlist',
   templateUrl: './create-playlist.component.html',
@@ -31,7 +32,7 @@ Toast = Swal.mixin({
   }
 })
 
-  constructor(private router:Router,private fb:FormBuilder,private db:AngularFireDatabase,private storage:AngularFireStorage,private songLibraryService:SongsLibraryService) {
+  constructor(private eventService:EventTrackService,private router:Router,private fb:FormBuilder,private db:AngularFireDatabase,private storage:AngularFireStorage,private songLibraryService:SongsLibraryService) {
     this.initCreatePlaylistForm();
   }
   initCreatePlaylistForm(){
@@ -56,6 +57,10 @@ Toast = Swal.mixin({
         this.Toast.fire({
           icon: 'success',
           title: 'Song Added to Liked Songs'
+        }).then(()=>{
+          this.eventService.postPlaylistTrack(this.createPlaylistForm.value.playlistId).subscribe((res)=>{
+            console.log(res)
+          })
         })
         this.router.navigate([PATHS.MAIN.YOUR_LIBRARY]);
       })

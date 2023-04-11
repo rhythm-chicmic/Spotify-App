@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { EventTrackService } from 'src/app/core/services/event-track.service';
 @Component({
   selector: 'app-my-playlist-songs',
   templateUrl: './my-playlist-songs.component.html',
@@ -11,25 +12,52 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class MyPlaylistSongsComponent implements OnInit{
   isHovering=false
   globalPlaySong=true
+  playlistPlayed:number=0
   songsList:any=[]
+  playlistId!:string
   displayData:any;
   allSongsList:any
   IdList:any=[]
   routeId!:string
   isPlayed=false
+  timesPlaylistPlayed:any;
   audio = new Audio
   songTime:any=''
-  constructor(private spinner:NgxSpinnerService,private activeRoute:ActivatedRoute,private songLibraryService:SongsLibraryService,private addSongService:AddSongsService){}
+  constructor(private eventService:EventTrackService,private spinner:NgxSpinnerService,private activeRoute:ActivatedRoute,private songLibraryService:SongsLibraryService,private addSongService:AddSongsService){}
 
   ngOnInit(){
     this.spinner.show();
+
+   
+    
+
+
+
     this.activeRoute.params.subscribe((res)=>{
       this.routeId=res['id']      //Route Id is sent to Firebase Api
     })
-    this.songLibraryService.getPlaylistById(this.routeId).subscribe((res)=>{
+    this.songLibraryService.getPlaylistById(this.routeId).subscribe((res:any)=>{
      this.displayData=res
+     this.playlistId= res.playlistId
       this.IdList=Object.values(res)[4]
       this.IdList=Object.values(this.IdList)
+
+      this.eventService.getPlaylistTrack().subscribe((res:any)=>{
+        res =Object.values(res);
+
+        res.filter((res:any)=>{
+          if(res.playlistId===this.playlistId){
+            this.playlistPlayed++;
+            // console.log(this.playlistPlayed)
+          }
+        })
+        
+        
+
+      })
+  
+
+
     })
     this.addSongService.getAllSongs().subscribe((res:any)=>{
       this.allSongsList=Object.values(res)
@@ -69,7 +97,12 @@ export class MyPlaylistSongsComponent implements OnInit{
     this.audio.load()
     this.audio.play();
     this.songTime = this.audio.currentTime;
-    console.log(this.songTime)
+    
+    setTimeout(() => {
+      this.eventService.postPlaylistTrack(this.playlistId).subscribe((res)=>{
+        console.log(res)
+      })
+    }, 15000);
   }
   StopSong(index:number){
  

@@ -70,8 +70,8 @@ export const APIS ={
     GET_SONG_BUY_DATA:'transaction/'
   },
   EVENT_TRACK:{
-    PLAYLIST_TRACK:'playlist-track',
-    SONGS_TRACK:'song-track'
+    PLAYLIST_TRACK:'eventTrack/',
+    SONGS_TRACK:'eventTrack/song-track'
   }
 }
 
