@@ -47,7 +47,7 @@ export class YourLibraryComponent implements OnInit{
     })
     setTimeout(()=>{
       this.spinner.hide();
-        },5000)
+        },3000)
   }
 
 

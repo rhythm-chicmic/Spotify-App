@@ -62,10 +62,11 @@ export class PayMoneyComponent implements OnInit{
       this.transactionForm.value.cardId=this.transactionResult?.card?.id
       this.transactionForm.value.cardBrand=this.transactionResult?.card?.brand
       console.log(this.transactionForm.value)
-      this.transactionService.postPurchasedSong(this.transactionForm.value).subscribe((res)=>{
+      this.transactionService.postPurchasedSong(this.transactionForm?.value).subscribe((res)=>{
         console.log(res)
       })
     }
+    this.route.navigate([PATHS.MAIN.DASHBOARD])
   }
 
 
@@ -113,9 +114,7 @@ export class PayMoneyComponent implements OnInit{
     
   }
 
-  setPaymentMethod( token: stripe.paymentMethod.PaymentMethod ){
-    console.log('Stripe Payment Method', token)
-  }
+
 
   setStripeToken( token: stripe.Token ){
     console.log('Stripe Token', token)
@@ -125,6 +124,7 @@ export class PayMoneyComponent implements OnInit{
         title:'Amount paid Successfully'
     })
     this.OnBuying();
+
   }
 
   setStripeSource( source: stripe.Source ){
