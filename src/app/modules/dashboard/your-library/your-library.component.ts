@@ -31,11 +31,12 @@ export class YourLibraryComponent implements OnInit{
   ngOnInit(){
     this.spinner.show();
     this.songLibraryService.getAllPlaylists().subscribe((res)=>{
+      if(res){
       this.myPlaylists= Object.values(res);
       this.myPlaylistRouteId= Object.keys(res);
- 
+      
     this.spinner.hide();
-    
+      }
     }, (e) => {
       if (e.status === 401) {
         this.Toast.fire({

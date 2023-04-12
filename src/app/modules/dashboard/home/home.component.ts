@@ -20,7 +20,9 @@ import Swal from "sweetalert2"
 
 
 export class HomeComponent implements OnInit {
+  audio = new Audio
   searchTerm=''
+  
   playSongs: any
   mySongList: any
   myPlaylistArray: any;
@@ -46,7 +48,9 @@ export class HomeComponent implements OnInit {
     this.allSongService.getAllSongs().subscribe((res: any) => {
       this.playSongs = Object.values(res)
       this.transactionService.getPurchasedSong().subscribe((res)=>{
+        if(res){
         this.purchasedSongArray=Object.values(res);
+        
         for(const song of this.playSongs){
           for(const purchase of this.purchasedSongArray){
             if(song.id===purchase.songId){
@@ -54,6 +58,7 @@ export class HomeComponent implements OnInit {
             }
           }
         }
+      }
       })
       this.spinner.hide()
     })
@@ -71,12 +76,16 @@ export class HomeComponent implements OnInit {
     this.spinner.show()
 
     this.songLibService.getMySongsList().subscribe((res: any) => {
+      if(res){
       res = Object.values(res)
       this.mySongList = Object.values(res)
+      }
     })
     this.songLibService.getAllPlaylists().subscribe((res) => {
+      if(res){
       this.myPlaylistArray = Object.values(res);
       this.myPlaylistIdArray = Object.keys(res);
+      }
     })
 
     
@@ -196,6 +205,13 @@ export class HomeComponent implements OnInit {
   buySong(songId:any,amount:string){
     this.transactionService.getSongData(songId,amount);
     this.router.navigate([PATHS.PAYMENT.PAY_MONEY])
+  }
+
+  playSong(url:any,songId:string,index:number){
+    this.playSongs[index].isPlayed=true;
+    this.audio.src =url;
+    this.audio.load()
+    this.audio.play();
   }
 
 }

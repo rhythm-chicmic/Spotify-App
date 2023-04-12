@@ -44,14 +44,17 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.spinner.show();
     this.userService.getMyProfile().subscribe((res:any) => {
+      if(res){
       this.documentId= Object.keys(res)[0];
    
       res = Object.values(res)
       this.userProfleArray = res;
+      
       this.addProfile = false;
       if (this.userProfleArray[0].email === 'rhythm.sharma@chicmic.co.in') {
         this.isAdmin = true;
       }
+    }
       this.spinner.hide();  
     }, (e) => {
       if (e.status === 401) {
@@ -69,6 +72,7 @@ export class UserProfileComponent implements OnInit {
     })
 
     this.mostPlayedSongService.getMostPlayedSong().subscribe((res: any) => {
+      if(res){
       res = Object.values(res);
       this.frequentPlayedSongs = res;
 
@@ -85,7 +89,7 @@ export class UserProfileComponent implements OnInit {
           }
         })
       })
-
+    }
 
     })
 

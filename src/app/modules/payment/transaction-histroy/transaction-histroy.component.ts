@@ -15,7 +15,9 @@ export class TransactionHistroyComponent implements OnInit{
   ngOnInit(): void {
     this.spinner.show()
     this.transactionService.getPurchasedSong().subscribe((res)=>{
+      if(res){
       this.purchasedSongList=Object.values(res)
+      }
     this.spinner.hide()
 
   

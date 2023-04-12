@@ -35,16 +35,20 @@ export class MyLikedSongsComponent implements OnInit{
   ngOnInit(): void {
     this.spinner.show();
     this.songLibService.getMySongsList().subscribe((res:any)=>{
+      if(res){
       res=Object.values(res)
-  
+      }
     this.spinner.hide();
 
       this.IdList=res;
       this.addSongService.getAllSongs().subscribe((res:any)=>{
+        if(res){
         this.allSongsList=Object.values(res)
+        this.song()
+        }
         this.spinner.hide();
 
-        this.song()
+      
       })
     })
     setTimeout(()=>{
@@ -53,6 +57,7 @@ export class MyLikedSongsComponent implements OnInit{
   }
 
   song(){
+    if(this.IdList){
     for(const idlist of this.IdList){
       for(const allsongs of this.allSongsList){
         if(idlist.songId===allsongs.id){
@@ -62,7 +67,7 @@ export class MyLikedSongsComponent implements OnInit{
         }
       }
     }
-    
+  }
   }
 
   onMouseLeave(index:number){
