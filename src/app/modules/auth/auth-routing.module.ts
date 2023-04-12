@@ -11,7 +11,7 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
 const routes: Routes = [
     {path:'',redirectTo:PATHS.AUTH.LOGIN,pathMatch:'full'},
   {path:PATHS.AUTH.LOGIN,canActivate:[IsLoginGuard],component:LoginComponent},
-  {path:PATHS.AUTH.REGISTER,canActivate:[AuthGuard],component:SignUpComponent},
+  {path:PATHS.AUTH.REGISTER,canActivate:[IsLoginGuard],component:SignUpComponent},
   {path:PATHS.AUTH.GET_OTP,canActivate:[IsLoginGuard],component:OtpComponent},
 
 ];

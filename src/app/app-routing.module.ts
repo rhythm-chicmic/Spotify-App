@@ -6,7 +6,7 @@ import { AuthRoutingModule } from './modules/auth/auth-routing.module';
 import { DashboardRoutingModule } from './modules/dashboard/dashboard-routing.module';
 import { PaymentModule } from './modules/payment/payment.module';
 const routes: Routes = [
-  {path:PARENT_PATHS.DEFAULT,loadChildren:()=>import('./modules/auth/auth.module').then(m=>m.AuthModule)},
+  {path:PARENT_PATHS.DEFAULT,loadChildren:()=>import('./modules/dashboard/dashboard.module').then(m=>m.DashboardModule)},
   {path:PARENT_PATHS.AUTH, loadChildren:()=>import('./modules/auth/auth.module').then(m=>m.AuthModule)},
   {path:PARENT_PATHS.MAIN,loadChildren:()=>import('./modules/dashboard/dashboard.module').then(m=>m.DashboardModule)},
   {path:PARENT_PATHS.ADMIN,loadChildren:()=>import('./modules/admin/admin.module').then(m=>m.AdminModule)},

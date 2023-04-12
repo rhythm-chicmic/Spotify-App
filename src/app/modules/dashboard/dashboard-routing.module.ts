@@ -9,6 +9,7 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 
 const routes: Routes = [
+  {path:'',redirectTo:PATHS.MAIN.DASHBOARD,pathMatch:'full'},
   {path:PATHS.MAIN.DASHBOARD,component:HomeComponent},
   {path:PATHS.MAIN.YOUR_LIBRARY,canActivate:[AuthGuard],component:YourLibraryComponent},
   {path:PATHS.MAIN.PROFILE,canActivate:[AuthGuard],component:UserProfileComponent},

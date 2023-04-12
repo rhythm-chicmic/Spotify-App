@@ -6,19 +6,23 @@
 
 <table class="table">
     <thead>
+      
       <tr>
       
         <th scope="col">Artist Name</th>
         <th scope="col">Song Name</th>
         <th scope="col">Genre</th>
         <th scope="col">Song Type</th>
-        <th></th>
-        <th></th>
-
+        <th cope="col">
+          <div class="search-div">
+            <mat-icon  matTooltip="Search"> search</mat-icon><input placeholder="search" type="text">
+          </div>
+        </th>
+        <th cope="col"></th>
         
-        
-
       </tr>
+     
+    
     </thead>
     <tbody >
       <tr  *ngFor="let playsong of playSongs" >
@@ -27,8 +31,8 @@
         <td>{{playsong?.songName}}</td>
         <td>{{playsong?.genre}}</td>
         <td>{{playsong?.songType}}</td>
-        <td *ngIf="playsong?.payment==='Yes'" id="paid"><mat-icon  matTooltip="Paid"> attach_money</mat-icon></td>
-        <td *ngIf="playsong?.payment!=='Yes' "></td>
+        <td id="search-icon" *ngIf="playsong?.payment==='Yes'" id="paid"><mat-icon  matTooltip="Paid"> attach_money</mat-icon></td>
+        <td id="search-icon" *ngIf="playsong?.payment!=='Yes' "></td>
 
         <td>
           <button  class="btn rounded-circle" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Add Song">

@@ -6,6 +6,8 @@ import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { MostPlayedSongsService } from 'src/app/core/services/most-played-songs.service';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
 import { UserDetailsService } from 'src/app/core/services/user-details.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditProfileComponent } from '../../shared/edit-profile/edit-profile.component';
 import Swal from 'sweetalert2'
 @Component({
   selector: 'app-user-profile',
@@ -15,6 +17,7 @@ import Swal from 'sweetalert2'
 export class UserProfileComponent implements OnInit {
   userProfleArray: any;
   isAdmin = false;
+  documentId!:string
   totalLikedSongs: number = 0
   myFavouriteSong: any = []
   frequentPlayedSongs: any = []
@@ -32,7 +35,7 @@ export class UserProfileComponent implements OnInit {
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
-  constructor(private AllSongsService: AddSongsService, private mostPlayedSongService: MostPlayedSongsService, private songLibraryService: SongsLibraryService, private spinner: NgxSpinnerService, private userService: UserDetailsService, private router: Router) {
+  constructor(private dialog:MatDialog,private AllSongsService: AddSongsService, private mostPlayedSongService: MostPlayedSongsService, private songLibraryService: SongsLibraryService, private spinner: NgxSpinnerService, private userService: UserDetailsService, private router: Router) {
     let user_data: any = localStorage.getItem(STORAGE_KEYS.UNIQUE_ID);
     user_data = JSON.parse(user_data);
     this.phoneNo = user_data.user.phoneNumber
@@ -40,7 +43,9 @@ export class UserProfileComponent implements OnInit {
   }
   ngOnInit(): void {
     this.spinner.show();
-    this.userService.getMyProfile().subscribe((res) => {
+    this.userService.getMyProfile().subscribe((res:any) => {
+      this.documentId= Object.keys(res)[0];
+   
       res = Object.values(res)
       this.userProfleArray = res;
       this.addProfile = false;
@@ -104,6 +109,17 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate([PATHS.PAYMENT.TRANSACTION_HISTORY])
   }
   OnEditProfile() {
-    console.log("Edit Profile")
+    const dialogRef = this.dialog.open(EditProfileComponent,{
+      width:'940px',
+      height:'700px',
+     data:{data:this.userProfleArray, docId:this.documentId}
+    })
+    dialogRef.afterClosed().subscribe(()=>{
+        this.userService.getMyProfile().subscribe((res:any)=>{
+          res = Object.values(res)
+        this.userProfleArray = res;
+        })
+    })
   }
+  
 }
