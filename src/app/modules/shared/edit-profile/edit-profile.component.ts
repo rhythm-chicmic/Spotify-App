@@ -1,7 +1,7 @@
 import { Component, Inject, Optional, ViewChild } from '@angular/core';
 import { MatDialog,MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { DeleteComponent } from '../delete/delete.component';
+
 import { PATHS, REGEX, userData } from 'src/app/common/constants';
 import { Router } from '@angular/router';
 import { UserDetailsService } from 'src/app/core/services/user-details.service';

@@ -8,22 +8,26 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { DeleteComponent } from './delete/delete.component';
+import {MatIconModule} from '@angular/material/icon';
+import { MusicBarComponent } from './music-bar/music-bar.component';
+
 @NgModule({
   declarations: [
     NavbarComponent,
     EditProfileComponent,
-    DeleteComponent
+    MusicBarComponent
+
   ],
   imports: [
     CommonModule,
     SharedRoutingModule,
     MatDialogModule,
+    MatIconModule,
     MatGridListModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatRadioModule
   ],
-  exports:[NavbarComponent]
+  exports:[NavbarComponent,MusicBarComponent]
 })
 export class SharedModule { }

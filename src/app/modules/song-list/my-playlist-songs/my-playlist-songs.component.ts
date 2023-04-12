@@ -91,13 +91,15 @@ export class MyPlaylistSongsComponent implements OnInit{
 
   PlaySong(url:string,index:number,songId:string){
 
+    if(!this.addSongService.isPlayed$.getValue()){
     this.songsList[index].isPlayed=true;
+      this.addSongService.isPlayed$.next(true);
 
-
-    this.audio.src =url;
-    this.audio.load()
-    this.audio.play();
+    this.addSongService.audio.src =url;
+    this.addSongService.audio.load()
+    this.addSongService.audio.play();
     this.songTime = this.audio.currentTime;
+    
     
     setTimeout(() => {
       this.eventService.postPlaylistTrack(this.playlistId).subscribe((res)=>{
@@ -109,10 +111,22 @@ export class MyPlaylistSongsComponent implements OnInit{
       this.mostPlayedSongs.postMostPlayedSong(songId).subscribe()
     }, 30000);
   }
+  else {
+    this.addSongService.isPlayed$.next(false);
+    this.songsList[index].isPlayed=false;
+    this.addSongService.audio.pause()
+  }
+  }
   StopSong(index:number){
- 
+    if(this.addSongService.isPlayed$.getValue()){
     this.songsList[index].isPlayed=false;
     this.audio.pause();
+    this.addSongService.isPlayed$.next(false);
+    }
+    else{
+      this.addSongService.isPlayed$.next(true)
+      this.addSongService.audio.play();
+    }
     
   }
 

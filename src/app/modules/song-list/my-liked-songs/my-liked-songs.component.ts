@@ -17,7 +17,7 @@ export class MyLikedSongsComponent implements OnInit{
   IdList:any
   isPlayed=true
   globalPlaySong=true
-  audio = new Audio
+  // audio = new Audio
   imageUrl=IMAGES.LIKED_SONGS_BANNER_IMAGE
   Toast = Swal.mixin({
     toast: true,
@@ -81,22 +81,37 @@ export class MyLikedSongsComponent implements OnInit{
   }
 
   PlaySong(url:string,index:number,songId:string){
-   
+    if(!this.addSongService.isPlayed$.getValue()){
     this.songsList[index].isPlayed=true;
-    this.audio.src =url;
-    this.audio.load()
-    this.audio.play();
+    this.addSongService.audio.src =url;
+    this.addSongService.audio.load()
+    this.addSongService.audio.play();
     this.songsList.isPlayed=false;
+    this.addSongService.isPlayed$.next(true);
     setTimeout(() => {
       this.mostPlayedSongService.postMostPlayedSong(songId).subscribe((res)=>{
       })
     }, 30000);
-   
+  }
+  else {
+    this.addSongService.audio.pause();
+    this.songsList.isPlayed=false;
+
+    this.addSongService.isPlayed$.next(false);
+  }
   }
   StopSong(index:number){
+    if(this.addSongService.isPlayed$.getValue()){
     this.songsList.isPlayed=true;
 
     this.songsList[index].isPlayed=false;
-    this.audio.pause();
+    this.addSongService.audio.pause();
+    this.addSongService.isPlayed$.next(false);
+  }
+  else {
+    this.addSongService.audio.play();
+    this.songsList[index].isPlayed=true;
+    this.addSongService.isPlayed$.next(true)
+  }
   }
 }

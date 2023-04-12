@@ -20,7 +20,7 @@ import Swal from "sweetalert2"
 
 
 export class HomeComponent implements OnInit {
-  audio = new Audio
+  // audio = new Audio
   searchTerm=''
   
   playSongs: any
@@ -215,9 +215,22 @@ export class HomeComponent implements OnInit {
 
   playSong(url:any,songId:string,index:number){
     this.playSongs[index].isPlayed=true;
-    this.audio.src =url;
-    this.audio.load()
-    this.audio.play();
+    this.allSongService.audio.src=url
+    this.allSongService.audio.load();
+
+    // this.audio.src =url;
+    // this.audio.load()
+    if(!this.allSongService.isPlayed$.getValue()){
+    // this.audio.play();
+    this.allSongService.audio.play();
+
+    this.allSongService.isPlayed$.next(true)
+    console.log(this.allSongService.isPlayed$.getValue())
+    }
+    else {
+      this.allSongService.audio.pause();
+      this.allSongService.isPlayed$.next(false)
+    }
   }
 
 }
