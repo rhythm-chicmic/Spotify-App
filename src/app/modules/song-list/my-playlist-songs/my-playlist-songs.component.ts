@@ -107,7 +107,7 @@ export class MyPlaylistSongsComponent implements OnInit{
     }, 25000);
     setTimeout(() => {
       this.mostPlayedSongs.postMostPlayedSong(songId).subscribe((res)=>console.log(res))
-    }, 2000);
+    }, 30000);
   }
   StopSong(index:number){
  
