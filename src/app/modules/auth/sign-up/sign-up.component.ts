@@ -58,12 +58,12 @@ get controls(){
 addProfile(){
   if((this.addProfileForm as FormGroup).valid){
     this.addProfileForm.value.uId=userData?.user?.uid
-      console.log(this.addProfileForm.value);
+  
       this.addProfileForm.value.image=this.imagePath
         this.service.postUserDetails(this.addProfileForm?.value).subscribe((res)=>{
-          console.log(res)
+         
         })
-      console.log(this.addProfileForm.value);
+    
        
     this.formDirective.resetForm();
     this.Toast.fire({
@@ -75,7 +75,7 @@ addProfile(){
     }
     else{
       this.submitted =false;
-      console.log("HII")
+      
     }
 }
 selectFile(event:any,path:string){
@@ -92,7 +92,7 @@ upload(){
     finalize(() => {
       storageRef.getDownloadURL().subscribe(downloadURL => {
           this.imagePath=downloadURL
-          console.log(this.imagePath,1)
+         
       });
     })
   ).subscribe();

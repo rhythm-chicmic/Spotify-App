@@ -14,7 +14,7 @@ export class SongsLibraryService {
    constructor(private httpService:HttpClient,private userService:UserDetailsService) {
    }
    postMySongsList(data:songIdModel){
-    console.log(data)
+  
     const targetId = {songId:data}
     return this.httpService.post(this.path+APIS.ALL_SONGS.MY_SONGS+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+SONG_LIBRARY.MY_LIKED_LIST+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),targetId)
    }

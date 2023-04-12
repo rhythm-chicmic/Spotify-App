@@ -48,17 +48,17 @@ export class OtpComponent implements OnInit{
   }
 
   handleClick() {
-    console.log(this.otp);
+  
    const credential = PhoneAuthProvider.credential(
       this.verify,
       this.otp
     );
 
-    console.log(credential);
+  
    
     signInWithCredential(this.auth,credential)
       .then((response:any) => {
-        console.log(response);
+        
         this.spinner.show();
         localStorage.setItem('user_data', JSON.stringify(response));
         localStorage.setItem(STORAGE_KEYS.FIREBASE_ID, response.user.uid);
@@ -75,7 +75,7 @@ export class OtpComponent implements OnInit{
         });
       })
       .catch((error) => {
-        console.log(error);
+   
         this.Toast.fire({
           icon: 'error',
           title: 'Wrong OTP/OTP Expired'

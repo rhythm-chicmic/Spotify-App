@@ -49,7 +49,7 @@ export class MyPlaylistSongsComponent implements OnInit{
         res.filter((res:any)=>{
           if(res.playlistId===this.playlistId){
             this.playlistPlayed++;
-            // console.log(this.playlistPlayed)
+      
           }
         })
         
@@ -90,7 +90,7 @@ export class MyPlaylistSongsComponent implements OnInit{
   }
 
   PlaySong(url:string,index:number,songId:string){
-    console.log(url,index)
+
     this.songsList[index].isPlayed=true;
 
 
@@ -101,12 +101,12 @@ export class MyPlaylistSongsComponent implements OnInit{
     
     setTimeout(() => {
       this.eventService.postPlaylistTrack(this.playlistId).subscribe((res)=>{
-        console.log(res)
+ 
         this.playlistPlayed++;
       })
     }, 25000);
     setTimeout(() => {
-      this.mostPlayedSongs.postMostPlayedSong(songId).subscribe((res)=>console.log(res))
+      this.mostPlayedSongs.postMostPlayedSong(songId).subscribe()
     }, 30000);
   }
   StopSong(index:number){

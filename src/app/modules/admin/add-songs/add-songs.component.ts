@@ -23,7 +23,7 @@ export class AddSongsComponent {
 
   constructor(private db:AngularFireDatabase,private storage:AngularFireStorage,private fb:FormBuilder,private addSongService:AddSongsService){
     this.initAddSongForm();
-    this.addSongService.getAllSongs().subscribe((res)=>console.log(Object.keys(res)))
+    this.addSongService.getAllSongs().subscribe()
   }
   initAddSongForm(){
     this.addSongForm = this.fb.group({
@@ -62,12 +62,12 @@ export class AddSongsComponent {
         storageRef.getDownloadURL().subscribe(downloadURL => {
           if(this.storagePath==='/images'){
             this.imagePath=downloadURL
-            console.log(this.storagePath,1)
+          
 
           }
           else{
             this.mp3Path=downloadURL;
-            console.log(this.storagePath,2)
+        
 
           }
 
@@ -85,13 +85,12 @@ export class AddSongsComponent {
         this.addSongForm.value.created= new Date()
         this.addSongForm.value.imageUrl=this.imagePath
         this.addSongForm.value.mp3File=this.mp3Path
-        console.log(this.addSongForm.value);
-
+  
 
         this.addSongForm.value.id = this.addSongForm?.value?.songName.slice(0,2)+this.addSongForm?.value?.songType.slice(0,2)+this.addSongForm?.value?.genre.slice(0,2)+this.addSongForm?.value?.artistName.slice(0,2)
-        console.log(this.addSongForm.value)
+    
         this.addSongService.postAllSongs(this.addSongForm.value).subscribe((res:any)=>{
-          console.log(res);
+        
  
 
         })

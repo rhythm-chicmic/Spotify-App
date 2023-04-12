@@ -51,15 +51,15 @@ Toast = Swal.mixin({
       this.createPlaylistForm.value.createdAt=new Date();
       this.createPlaylistForm.value.imageUrl=this.imagePath
       this.createPlaylistForm.value.playlistId=this.createPlaylistForm?.value?.title.slice(0,2)+this.createPlaylistForm?.value?.description.slice(0,2)+JSON.stringify(this.createPlaylistForm?.value?.createdAt).slice(8,25)
-      console.log(this.createPlaylistForm.value);
+  
       this.songLibraryService.postCreatePlaylist(this.createPlaylistForm.value).subscribe((res)=>{
-        console.log(res);
+ 
         this.Toast.fire({
           icon: 'success',
           title: 'Song Added to Liked Songs'
         }).then(()=>{
           this.eventService.postPlaylistTrack(this.createPlaylistForm.value.playlistId).subscribe((res)=>{
-            console.log(res)
+         
           })
         })
         this.router.navigate([PATHS.MAIN.YOUR_LIBRARY]);
@@ -70,7 +70,7 @@ Toast = Swal.mixin({
   selectFile(event:any,path:string){
     this.selectedFile=event.target?.files[0]
       this.storagePath=path
-      console.log(this.selectedFile)
+      
     this.upload();
 }
 get controls(){
@@ -87,7 +87,7 @@ upload(){
   uploadTask.snapshotChanges().pipe(
     finalize(()=>{
       storageRef.getDownloadURL().subscribe((downloadURL)=>{
-        console.log(downloadURL)
+     
         this.imagePath=downloadURL
       })
     })

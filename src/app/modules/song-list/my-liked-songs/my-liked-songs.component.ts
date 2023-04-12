@@ -76,7 +76,7 @@ export class MyLikedSongsComponent implements OnInit{
   }
 
   PlaySong(url:string,index:number,songId:string){
-    console.log(songId)
+   
     this.songsList[index].isPlayed=true;
     this.audio.src =url;
     this.audio.load()

@@ -40,7 +40,7 @@ export class EditProfileComponent {
   constructor(private dialogRef:MatDialogRef<UserProfileComponent>,private storage:AngularFireStorage,private service:UserDetailsService, @Optional() @Inject(MAT_DIALOG_DATA) public data:any,  private fb: FormBuilder, public dialog: MatDialog,private router:Router ) { 
       this.myProfile = Object.values(data)[0]
       this.documentId=data?.docId
-      console.log(this.myProfile[0])
+    
     this.initaddProfileFormForm();
   }
 

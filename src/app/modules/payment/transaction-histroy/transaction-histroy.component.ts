@@ -18,7 +18,7 @@ export class TransactionHistroyComponent implements OnInit{
       this.purchasedSongList=Object.values(res)
     this.spinner.hide()
 
-      console.log(this.purchasedSongList)
+  
     })
   }
 

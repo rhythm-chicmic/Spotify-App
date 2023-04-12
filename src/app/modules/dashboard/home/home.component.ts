@@ -48,8 +48,8 @@ export class HomeComponent implements OnInit {
       this.transactionService.getPurchasedSong().subscribe((res)=>{
         this.purchasedSongArray=Object.values(res);
         for(const song of this.playSongs){
-          for(const purch of this.purchasedSongArray){
-            if(song.id===purch.songId){
+          for(const purchase of this.purchasedSongArray){
+            if(song.id===purchase.songId){
               song.payment='No'
             }
           }
@@ -94,7 +94,7 @@ export class HomeComponent implements OnInit {
     else{
     this.songLibService.getSongToPlaylist(this.myPlaylistIdArray[index]).subscribe((res) => {
       this.songIdPresentInPlaylist = Object.values(res)
-      console.log(this.songIdPresentInPlaylist)
+     
       this.songIdPresentInPlaylist.find((res: any) => {
         if (res.id === songId) {
           this.Toast.fire({
@@ -102,7 +102,7 @@ export class HomeComponent implements OnInit {
             title: 'Song Already Added'
           })
           this.playlistFlag = true;
-          console.log(this.playlistFlag);
+         
         }
       })
 
@@ -136,7 +136,7 @@ export class HomeComponent implements OnInit {
       }
       else{
     if (!this.mySongList) {
-      console.log(song.id)
+    
 
       if (localStorage.getItem(STORAGE_KEYS.TOKEN)) {
 

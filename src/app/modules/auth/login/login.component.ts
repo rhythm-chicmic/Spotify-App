@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit{
   this.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
     'size': 'normal',
     'callback': (response:any) => {
-      console.log(response)
+  
       this.flag=true;
     }
   }, this.auth);
@@ -56,14 +56,14 @@ export class LoginComponent implements OnInit{
             this.alert=true
           }
           this.LoginForm.value.phoneNo='+91'+this.LoginForm?.value?.phoneNo
-      console.log(this.LoginForm.value);
+   
       signInWithPhoneNumber(this.auth, this.LoginForm?.value?.phoneNo, this.recaptchaVerifier).then((result:any)=>{
-        console.log(result)
+      
 
         localStorage.setItem(STORAGE_KEYS.VERIFICATION_ID,JSON.stringify(result.verificationId))
         this.router.navigate([PATHS.AUTH.GET_OTP])
       }).catch((err)=>{
-        console.log(err);
+      
         setTimeout(()=>{
           window.location.reload();
         },5000)
