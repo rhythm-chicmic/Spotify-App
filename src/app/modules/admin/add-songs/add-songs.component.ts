@@ -35,8 +35,8 @@ export class AddSongsComponent {
       created:[''],
       imageUrl:['',[Validators.required,Validators.pattern(REGEX.IMAGE)]],
       mp3File:['',[Validators.required,Validators.pattern(REGEX.MP3)]],
-      payment:['',Validators.required],
-      amount:['0',[Validators.pattern(REGEX.NUMBER_GREATER_THAN_0_OR_EQUAL_TO_ZERO)]]
+      payment:[''],
+      amount:['0']
     })
   }
 
@@ -62,12 +62,13 @@ export class AddSongsComponent {
         storageRef.getDownloadURL().subscribe(downloadURL => {
           if(this.storagePath==='/images'){
             this.imagePath=downloadURL
-          
+         
 
           }
           else{
             this.mp3Path=downloadURL;
-        
+    
+
 
           }
 
@@ -79,7 +80,7 @@ export class AddSongsComponent {
    }
 
   addSong(){
-
+      console.log(this.addSongForm.value)
       if(this.addSongForm.valid){
 
         this.addSongForm.value.created= new Date()
@@ -88,11 +89,9 @@ export class AddSongsComponent {
   
 
         this.addSongForm.value.id = this.addSongForm?.value?.songName.slice(0,2)+this.addSongForm?.value?.songType.slice(0,2)+this.addSongForm?.value?.genre.slice(0,2)+this.addSongForm?.value?.artistName.slice(0,2)
-    
+        console.log(this.addSongForm.value)
         this.addSongService.postAllSongs(this.addSongForm.value).subscribe((res:any)=>{
-        
- 
-
+          console.log(res)
         })
       }
   }
