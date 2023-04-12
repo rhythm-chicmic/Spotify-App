@@ -213,7 +213,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate([PATHS.PAYMENT.PAY_MONEY])
   }
 
-  playSong(url:any,songId:string,index:number){
+  playSong(url:any,songId:string,index:number,payment:string){
+    if(payment==='No'){
     this.playSongs[index].isPlayed=true;
     this.allSongService.audio.src=url
     this.allSongService.audio.load();
@@ -232,5 +233,12 @@ export class HomeComponent implements OnInit {
       this.allSongService.isPlayed$.next(false)
     }
   }
-
+  
+  else {
+    this.Toast.fire({
+      icon: 'error',
+      title: 'Buy this Song'
+    })
+  }
+}
 }

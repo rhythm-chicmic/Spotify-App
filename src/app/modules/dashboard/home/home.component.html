@@ -25,7 +25,7 @@
     
     </thead>
     <tbody >
-      <tr  *ngFor="let playsong of playSongs |search: searchTerm; index as i" (click)="playSong(playsong?.mp3File,playsong?.id,i)">
+      <tr  *ngFor="let playsong of playSongs |search: searchTerm; index as i" (click)="playSong(playsong?.mp3File,playsong?.id,i,playsong?.payment)">
        
         <th scope="row">{{playsong?.artistName}}</th>
         <td>{{playsong?.songName}}</td>
