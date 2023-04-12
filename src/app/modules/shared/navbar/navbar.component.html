@@ -6,50 +6,50 @@
   </div>
 
   <div class="navigation">
-    <ul>
+    <ul >
       <li>
         <a (click)="OnLogoClick()">
-          <span class="fa fa-home"></span>
-          <span>Home</span>
+          <span  id="fa"  class="fa fa-home"></span>
+          <span  class="li">Home</span>
         </a>
       </li>
 
       <li>
-        <a href="#">
-          <span class="fa fa-search"></span>
-          <span>Search</span>
+        <a (click)="OnLogoClick()">
+          <span  id="fa" class="fa fa-search"></span>
+          <span  class="li">Search</span>
         </a>
       </li>
 
       <li *ngIf="isLogin">
         <a (click)="OnMyLibraryClick()">
-          <span class="fa fas fa-book"></span>
-          <span>Your Library</span>
+          <span id="fa" class="fa fas fa-book"></span>
+          <span  class="li">Your Library</span>
         </a>
       </li>
     </ul>
   </div>
 
   <div class="navigation" *ngIf="isLogin">
-    <ul>
-      <li>
+    <ul  >
+      <li >
         <a (click)="OnCreatePlaylistClick()">
-          <span class="fa fas fa-plus-square"></span>
-          <span>Playlist</span>
+          <span  id="fa"  class="fa fas fa-plus-square"></span>
+          <span  class="li">Playlist</span>
         </a>
       </li>
 
       <li>
         <a (click)="OnLikedSongsClick()">
-          <span class="fa fas fa-heart"></span>
-          <span>Liked Songs</span>
+          <span  id="fa" class="fa fas fa-heart"></span>
+          <span class="li">Liked Songs</span>
         </a>
       </li>
 
       <li>
         <a (click)="OnProfileClick()">
-          <span class="fa fas fa-user"></span>
-          <span>Profile</span>
+          <span  id="fa" class="fa fas fa-user"></span>
+          <span  class="li">Profile</span>
         </a>
       </li>
     </ul>

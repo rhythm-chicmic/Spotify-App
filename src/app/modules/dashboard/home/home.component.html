@@ -15,7 +15,7 @@
         <th scope="col">Song Type</th>
         <th cope="col">
           <div class="search-div">
-            <mat-icon  matTooltip="Search"> search</mat-icon><input placeholder="search" type="text">
+            <mat-icon  matTooltip="Search"> search</mat-icon><input placeholder="Search Song Name"  [(ngModel)]="searchTerm" (input)="search(searchTerm)" type="text">
           </div>
         </th>
         <th cope="col"></th>
@@ -25,7 +25,7 @@
     
     </thead>
     <tbody >
-      <tr  *ngFor="let playsong of playSongs" >
+      <tr  *ngFor="let playsong of playSongs |search: searchTerm; index as i" >
        
         <th scope="row">{{playsong?.artistName}}</th>
         <td>{{playsong?.songName}}</td>

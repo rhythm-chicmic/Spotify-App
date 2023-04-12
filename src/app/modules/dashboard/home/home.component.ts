@@ -10,6 +10,7 @@ import { TransactionService } from 'src/app/core/services/transaction.service';
 import { UserDetailsService } from 'src/app/core/services/user-details.service';
 import Swal from "sweetalert2"
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,7 +20,7 @@ import Swal from "sweetalert2"
 
 
 export class HomeComponent implements OnInit {
-
+  searchTerm=''
   playSongs: any
   mySongList: any
   myPlaylistArray: any;
@@ -60,6 +61,11 @@ export class HomeComponent implements OnInit {
       this.token = false;
     }
 
+  }
+  search(value: string): void {
+    this.playSongs = this.playSongs.filter((val:any) =>
+      val.toLowerCase().includes(value)
+    );
   }
   ngOnInit(): void {
     this.spinner.show()

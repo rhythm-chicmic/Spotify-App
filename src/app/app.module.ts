@@ -17,11 +17,14 @@ import { SharedModule } from './modules/shared/shared.module';
 import { SongListModule } from './modules/song-list/song-list.module';
 import { SpinnerComponent } from './common/spinner/spinner.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+
+
 const firebaseApp = AngularFireModule.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
     AppComponent,
     SpinnerComponent,
+
   
   ],
   imports: [
@@ -45,6 +48,7 @@ const firebaseApp = AngularFireModule.initializeApp(environment.firebase);
     provide: FIREBASE_OPTIONS,
     useValue: environment.firebase
   },],
+  exports:[],
   bootstrap: [AppComponent]
 })
 export class AppModule {

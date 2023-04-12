@@ -10,13 +10,16 @@ import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { CreatePlaylistComponent } from './create-playlist/create-playlist.component'; 
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { SearchPipe } from 'src/app/common/pipes/search.pipe';
 import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     HomeComponent,
     YourLibraryComponent,
     UserProfileComponent,
-    CreatePlaylistComponent
+    CreatePlaylistComponent,
+    SearchPipe
+ 
   ],
   imports: [
     CommonModule,
@@ -25,6 +28,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     ReactiveFormsModule,
     MatTooltipModule,
     FormsModule,
+
     NgxSpinnerModule,
     MatProgressBarModule,
     MatIconModule
