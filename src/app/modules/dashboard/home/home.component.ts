@@ -68,8 +68,14 @@ export class HomeComponent implements OnInit {
 
   }
   search(value: string): void {
-    this.playSongs = this.playSongs.filter((val:any) =>
-      val.toLowerCase().includes(value)
+    this.playSongs = this.playSongs.filter((val:any) =>{
+     if(val.songName.toLowerCase().includes(value)){
+      return val;
+     }
+     else{
+      return val
+     }
+    }
     );
   }
   ngOnInit(): void {
