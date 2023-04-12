@@ -12,7 +12,6 @@ export class SongsLibraryService {
   private path= environment.url
   token!:string;
    constructor(private httpService:HttpClient,private userService:UserDetailsService) {
-     console.log(userData)
    }
    postMySongsList(data:songIdModel){
     console.log(data)

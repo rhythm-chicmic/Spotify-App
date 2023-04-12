@@ -4,6 +4,7 @@ import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { EventTrackService } from 'src/app/core/services/event-track.service';
+import { MostPlayedSongsService } from 'src/app/core/services/most-played-songs.service';
 @Component({
   selector: 'app-my-playlist-songs',
   templateUrl: './my-playlist-songs.component.html',
@@ -23,7 +24,7 @@ export class MyPlaylistSongsComponent implements OnInit{
   timesPlaylistPlayed:any;
   audio = new Audio
   songTime:any=''
-  constructor(private eventService:EventTrackService,private spinner:NgxSpinnerService,private activeRoute:ActivatedRoute,private songLibraryService:SongsLibraryService,private addSongService:AddSongsService){}
+  constructor(private mostPlayedSongs:MostPlayedSongsService,private eventService:EventTrackService,private spinner:NgxSpinnerService,private activeRoute:ActivatedRoute,private songLibraryService:SongsLibraryService,private addSongService:AddSongsService){}
 
   ngOnInit(){
     this.spinner.show();
@@ -88,7 +89,7 @@ export class MyPlaylistSongsComponent implements OnInit{
     this.globalPlaySong = !this.globalPlaySong
   }
 
-  PlaySong(url:string,index:number){
+  PlaySong(url:string,index:number,songId:string){
     console.log(url,index)
     this.songsList[index].isPlayed=true;
 
@@ -104,6 +105,9 @@ export class MyPlaylistSongsComponent implements OnInit{
         this.playlistPlayed++;
       })
     }, 25000);
+    setTimeout(() => {
+      this.mostPlayedSongs.postMostPlayedSong(songId).subscribe((res)=>console.log(res))
+    }, 2000);
   }
   StopSong(index:number){
  

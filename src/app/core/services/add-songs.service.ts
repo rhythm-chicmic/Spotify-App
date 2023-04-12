@@ -8,7 +8,6 @@ export class AddSongsService {
  private path= environment.url
  token!:string;
   constructor(private httpService:HttpClient) {
-    console.log(userData)
   }
  getAllSongs(){
      

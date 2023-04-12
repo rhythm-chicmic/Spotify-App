@@ -38,7 +38,7 @@
         <td style="width:39%">{{song?.songName}}</td>
         <td  style="width:25%">{{song?.artistName}}</td>
         <td  style="width:20%">5 Days Ago</td>
-        <td  style="width: 95%" id="icon-td" *ngIf="!song.isPlayed"  (click)="PlaySong(song?.mp3File,i)"><mat-icon>play_circle_filled</mat-icon></td>
+        <td  style="width: 95%" id="icon-td" *ngIf="!song.isPlayed"  (click)="PlaySong(song?.mp3File,i,song?.id)"><mat-icon>play_circle_filled</mat-icon></td>
         <td  style="width: 95%" id="icon-td" *ngIf="song.isPlayed" (click)="StopSong(i)"><mat-icon>pause_circle_filled</mat-icon></td>
         <td style="width:15%"></td>
       </tr>

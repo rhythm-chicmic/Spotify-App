@@ -53,7 +53,6 @@ export class HomeComponent implements OnInit {
             }
           }
         }
-        console.log(this.playSongs);
       })
       this.spinner.hide()
     })
@@ -72,7 +71,6 @@ export class HomeComponent implements OnInit {
     this.songLibService.getAllPlaylists().subscribe((res) => {
       this.myPlaylistArray = Object.values(res);
       this.myPlaylistIdArray = Object.keys(res);
-      console.log(this.myPlaylistIdArray)
     })
 
     
@@ -103,7 +101,7 @@ export class HomeComponent implements OnInit {
       })
 
       if (this.playlistFlag !== true) {
-        console.log("Hello1")
+ 
 
         this.songLibService.postSongToPlaylist(this.myPlaylistIdArray[index], songId).pipe(
           mergeMap(() => this.songLibService.getSongToPlaylist(this.myPlaylistIdArray[index]))
@@ -141,7 +139,7 @@ export class HomeComponent implements OnInit {
         this.songLibService.postMySongsList(song.id).pipe(
           mergeMap(() => this.songLibService.getMySongsList()))
           .subscribe((res) => {
-            console.log(res)
+         
             this.mySongList = Object.values(res);
             this.Toast.fire({
               icon: 'success',
@@ -178,7 +176,7 @@ export class HomeComponent implements OnInit {
               icon: 'success',
               title: 'Song Added to Liked Songs'
             })
-            console.log(this.mySongList)
+        
           })
 
       }

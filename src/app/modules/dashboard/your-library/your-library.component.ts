@@ -5,6 +5,7 @@ import { PATHS } from 'src/app/common/constants';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
 import { IMAGES } from 'src/app/common/constants';
 import Swal from 'sweetalert2'
+import { UserDetailsService } from 'src/app/core/services/user-details.service';
 @Component({
   selector: 'app-your-library',
   templateUrl: './your-library.component.html',
@@ -25,7 +26,7 @@ export class YourLibraryComponent implements OnInit{
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
-  constructor(private spinner:NgxSpinnerService,private router:Router,private songLibraryService:SongsLibraryService){}
+  constructor(private userService:UserDetailsService,private spinner:NgxSpinnerService,private router:Router,private songLibraryService:SongsLibraryService){}
 
   ngOnInit(){
     this.spinner.show();
@@ -42,6 +43,7 @@ export class YourLibraryComponent implements OnInit{
           title: 'Session Expired'
         })
         localStorage.clear();
+        this.userService.isLoggedIn$.next(false);
         this.router.navigate([PATHS.AUTH.LOGIN])
       }
     })

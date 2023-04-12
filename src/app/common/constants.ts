@@ -71,7 +71,10 @@ export const APIS ={
   },
   EVENT_TRACK:{
     PLAYLIST_TRACK:'eventTrack/',
-    SONGS_TRACK:'eventTrack/song-track'
+
+  },
+  MOST_PLAYED_SONGS:{
+    POST_PLAYED_SONGS:'mostPlayedSongs/'
   }
 }
 

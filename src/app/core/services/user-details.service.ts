@@ -13,7 +13,6 @@ export class UserDetailsService {
   private path= environment.url
  token!:string;
   constructor(private httpService:HttpClient) {
-    console.log(userData)
   }
   isLoggedIn$ = new BehaviorSubject(localStorage.getItem(STORAGE_KEYS.TOKEN)?true:false);
  

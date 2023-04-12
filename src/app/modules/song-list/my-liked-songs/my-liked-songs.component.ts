@@ -5,6 +5,7 @@ import { SongsLibraryService } from 'src/app/core/services/songs-library.service
 import { NgxSpinnerService } from 'ngx-spinner';
 import { IMAGES } from 'src/app/common/constants';
 import Swal from 'sweetalert2'
+import { MostPlayedSongsService } from 'src/app/core/services/most-played-songs.service';
 @Component({
   selector: 'app-my-liked-songs',
   templateUrl: './my-liked-songs.component.html',
@@ -29,13 +30,13 @@ export class MyLikedSongsComponent implements OnInit{
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
-  constructor(private spinner:NgxSpinnerService,private router:Router,private songLibService:SongsLibraryService,private addSongService:AddSongsService){}
+  constructor(private mostPlayedSongService:MostPlayedSongsService,private spinner:NgxSpinnerService,private router:Router,private songLibService:SongsLibraryService,private addSongService:AddSongsService){}
 
   ngOnInit(): void {
     this.spinner.show();
     this.songLibService.getMySongsList().subscribe((res:any)=>{
       res=Object.values(res)
-      console.log(res)
+  
     this.spinner.hide();
 
       this.IdList=res;
@@ -55,9 +56,9 @@ export class MyLikedSongsComponent implements OnInit{
     for(const idlist of this.IdList){
       for(const allsongs of this.allSongsList){
         if(idlist.songId===allsongs.id){
-          console.log(typeof allsongs);
+         
           this.songsList.push(allsongs);
-          console.log(this.songsList)
+         
         }
       }
     }
@@ -74,13 +75,18 @@ export class MyLikedSongsComponent implements OnInit{
     this.globalPlaySong = !this.globalPlaySong
   }
 
-  PlaySong(url:string,index:number){
-    console.log(url,index)
+  PlaySong(url:string,index:number,songId:string){
+    console.log(songId)
     this.songsList[index].isPlayed=true;
     this.audio.src =url;
     this.audio.load()
     this.audio.play();
     this.songsList.isPlayed=false;
+    setTimeout(() => {
+      this.mostPlayedSongService.postMostPlayedSong(songId).subscribe((res)=>{
+      })
+    }, 30000);
+   
   }
   StopSong(index:number){
     this.songsList.isPlayed=true;
