@@ -115,9 +115,14 @@ export class MyPlaylistSongsComponent implements OnInit{
     }, 30000);
   }
   else {
-    this.addSongService.isPlayed$.next(false);
+    // this.addSongService.isPlayed$.next(false);
     this.songsList[index].isPlayed=false;
-    this.addSongService.audio.pause()
+    // this.addSongService.audio.pause()
+    this.addSongService.audio.src =url;
+    this.addSongService.audio.load()
+    this.addSongService.audio.play();
+    this.addSongService?.songImage$.next(song?.imageUrl);
+    this.addSongService?.songName$.next(song?.songName);
   }
   }
   StopSong(index:number){

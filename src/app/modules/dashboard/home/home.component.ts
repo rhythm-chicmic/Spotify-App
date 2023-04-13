@@ -259,8 +259,13 @@ export class HomeComponent implements OnInit {
 
     }
     else {
-      this.allSongService.audio.pause();
-      this.allSongService.isPlayed$.next(false)
+    this.allSongService.audio.src=url
+    this.allSongService.audio.play();
+    this.allSongService.songImage$.next(playsong?.imageUrl);
+    this.allSongService.songName$.next(playsong?.songName)
+      // this.allSongService.audio.pause();
+      // this.allSongService.isPlayed$.next(false)
+     
     
 
     }
