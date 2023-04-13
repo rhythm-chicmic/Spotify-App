@@ -89,7 +89,7 @@ export class MyPlaylistSongsComponent implements OnInit{
     this.globalPlaySong = !this.globalPlaySong
   }
 
-  PlaySong(url:string,index:number,songId:string){
+  PlaySong(url:string,index:number,songId:string,song:any){
 
     if(!this.addSongService.isPlayed$.getValue()){
     this.songsList[index].isPlayed=true;
@@ -99,6 +99,9 @@ export class MyPlaylistSongsComponent implements OnInit{
     this.addSongService.audio.load()
     this.addSongService.audio.play();
     this.songTime = this.audio.currentTime;
+    this.addSongService?.songImage$.next(song?.imageUrl);
+    this.addSongService?.songName$.next(song?.songName);
+
     
     
     setTimeout(() => {

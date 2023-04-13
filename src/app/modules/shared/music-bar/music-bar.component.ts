@@ -11,12 +11,20 @@ export class MusicBarComponent implements OnInit{
   showing=true;
   volumeOfSong=true;
   repeatSong=true
+  songName!:string
+  songImage!:string
   constructor(private allSongsService:AddSongsService){}
   globalPlaySong=true
   ngOnInit(): void {
     this.allSongsService.isPlayed$.subscribe((res)=>{
       
       this.globalPlaySong=res;
+    })
+    this.allSongsService.songImage$.subscribe((res:any)=>{
+      this.songImage=res
+    })
+    this.allSongsService.songName$.subscribe((res:any)=>{
+      this.songName=res;
     })
   }
 
@@ -49,7 +57,7 @@ export class MusicBarComponent implements OnInit{
       else{
     this.allSongsService.audio.loop=false;
       }
-    console.log(this.allSongsService.audio.loop,11)
+
   }
 
   OnCancel(){

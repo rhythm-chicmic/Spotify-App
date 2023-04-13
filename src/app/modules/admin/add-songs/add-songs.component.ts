@@ -4,7 +4,9 @@ import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { Observable, finalize } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { IS_SONG_PAID, REGEX } from 'src/app/common/constants';
+import { IS_SONG_PAID, PATHS, REGEX } from 'src/app/common/constants';
+import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-songs',
   templateUrl: './add-songs.component.html',
@@ -20,8 +22,20 @@ export class AddSongsComponent {
   isPaid=IS_SONG_PAID
   paidValue!:string
   // Track file uploading with snapshot
+  
+  Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
 
-  constructor(private db:AngularFireDatabase,private storage:AngularFireStorage,private fb:FormBuilder,private addSongService:AddSongsService){
+  constructor(private router:Router,private db:AngularFireDatabase,private storage:AngularFireStorage,private fb:FormBuilder,private addSongService:AddSongsService){
     this.initAddSongForm();
     this.addSongService.getAllSongs().subscribe()
   }
@@ -89,9 +103,18 @@ export class AddSongsComponent {
   
 
         this.addSongForm.value.id = this.addSongForm?.value?.songName.slice(0,2)+this.addSongForm?.value?.songType.slice(0,2)+this.addSongForm?.value?.genre.slice(0,2)+this.addSongForm?.value?.artistName.slice(0,2)
-        console.log(this.addSongForm.value)
+
         this.addSongService.postAllSongs(this.addSongForm.value).subscribe((res:any)=>{
-          console.log(res)
+      
+          this.Toast.fire({
+            icon: 'success',
+            title: 'Song Added to List'
+          }).then(()=>{
+              this.router.navigate([PATHS.MAIN.DASHBOARD])
+          })
+      
+
+
         })
       }
   }

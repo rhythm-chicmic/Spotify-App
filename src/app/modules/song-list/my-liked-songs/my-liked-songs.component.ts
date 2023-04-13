@@ -83,14 +83,15 @@ export class MyLikedSongsComponent implements OnInit{
     this.globalPlaySong = !this.globalPlaySong
   }
 
-  PlaySong(url:string,index:number,songId:string){
+  PlaySong(url:string,index:number,songId:string,song:any){
     if(!this.addSongService.isPlayed$.getValue()){
     this.songsList[index].isPlayed=true;
     this.addSongService.audio.src =url;
     this.addSongService.audio.load()
     this.addSongService.audio.play();
-
-    this.addSongService.isPlayed$.next(true);
+      this.addSongService?.songImage$.next(song?.imageUrl);
+      this.addSongService?.songName$.next(song?.songName);
+    this.addSongService?.isPlayed$.next(true);
     setTimeout(() => {
       this.mostPlayedSongService.postMostPlayedSong(songId).subscribe((res)=>{
       })

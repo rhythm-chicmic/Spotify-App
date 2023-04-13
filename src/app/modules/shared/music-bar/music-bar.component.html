@@ -1,36 +1,47 @@
-
 <div class="container" *ngIf="showing">
-        <div class="song-details">
-         <div class="cancel"><mat-icon matTooltip="Hide Music Bar" (click)="OnCancel()">cancel</mat-icon></div> 
-            <label for="file" class="label-file bouncing"><mat-icon>radio</mat-icon></label>
-           
-        </div>    
-       
-        <div class="audio-btns">
-            <button class="loop-btn"  (click)="onReplay()" >
-                <mat-icon *ngIf="repeatSong">repeat</mat-icon>
-                   <mat-icon *ngIf="!repeatSong">repeat_one</mat-icon>
-            </button>
-            <button class="play-stop_btn" (click)="onClick()">
-              <mat-icon *ngIf="!globalPlaySong" style="font-size: 40px;width: 70px;height:40px">play_circle_filled</mat-icon>
-              <mat-icon  *ngIf="globalPlaySong" style="font-size: 40px;width: 70px;height:40px">pause_circle_filled</mat-icon>
+ 
+  <div class="song-details">
+    
+    <div class="cancel"><mat-icon matTooltip="Hide Music Bar" (click)="OnCancel()">cancel</mat-icon></div>
+  
+      <label for="file" class="label-file bouncing">
+        <mat-icon>radio</mat-icon>
+      </label>
+    
+      <p>{{songName}}</p>
+    
 
-            </button>
-           
-            
-              <div class="volume">
-                <button class="volume-button" (click)="OnVolumeClick()">
-                    <mat-icon *ngIf="volumeOfSong">volume_up</mat-icon>
-                    <mat-icon *ngIf="!volumeOfSong">volume_off</mat-icon>
-                </button>
-              </div>
-        </div>
+  </div>
+
+  <div class="audio-btns">
+    <div class="img-div">
+      <img src="{{songImage}}" style="object-fit: cover;" alt="Hello" width="70px" height="70px">
     </div>
+    <button class="loop-btn" (click)="onReplay()">
+      <mat-icon *ngIf="repeatSong">repeat</mat-icon>
+
+      <mat-icon *ngIf="!repeatSong">repeat_one</mat-icon>
+    </button>
+    <button class="play-stop_btn" (click)="onClick()">
+      <mat-icon *ngIf="!globalPlaySong" style="font-size: 40px;width: 70px;height:40px">play_circle_filled</mat-icon>
+      <mat-icon *ngIf="globalPlaySong" style="font-size: 40px;width: 70px;height:40px">pause_circle_filled</mat-icon>
+
+    </button>
+
+
+    <div class="volume">
+      <button class="volume-button" (click)="OnVolumeClick()">
+        <mat-icon *ngIf="volumeOfSong">volume_up</mat-icon>
+        <mat-icon *ngIf="!volumeOfSong">volume_off</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
 
 
 <div class="eject" *ngIf="!showing">
- 
-    <mat-icon  matTooltip="Show Music Bar" class="label-file bouncing" style="margin-top: 90px; font-size: 40px;width: 70px;height:40px" (click)="OnCancel()">eject</mat-icon>
+
+  <mat-icon matTooltip="Show Music Bar" class="label-file bouncing"
+    style="margin-top: 90px; font-size: 40px;width: 70px;height:40px" (click)="OnCancel()">eject</mat-icon>
 
 </div>
- 

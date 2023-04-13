@@ -214,7 +214,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate([PATHS.PAYMENT.PAY_MONEY])
   }
 
-  playSong(url:any,songId:string,index:number,payment:string){
+  playSong(url:any,songId:string,index:number,payment:string,playsong:any){
     if(payment==='No'){
     this.playSongs[index].isPlayed=true;
     this.allSongService.audio.src=url
@@ -223,16 +223,17 @@ export class HomeComponent implements OnInit {
     if(!this.allSongService.isPlayed$.getValue()){
 
     this.allSongService.audio.play();
+    this.allSongService.songImage$.next(playsong?.imageUrl);
+    this.allSongService.songName$.next(playsong?.songName)
 
     this.allSongService.isPlayed$.next(true)
       
-    console.log(this.allSongService.isPlayed$.getValue())
+
     }
     else {
       this.allSongService.audio.pause();
       this.allSongService.isPlayed$.next(false)
-     
-
+    
 
     }
   }
