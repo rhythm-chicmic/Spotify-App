@@ -25,12 +25,12 @@
     
     </thead>
     <tbody >
-      <tr  *ngFor="let playsong of playSongs |search: searchTerm; index as i" (click)="playSong(playsong?.mp3File,playsong?.id,i,playsong?.payment)">
+      <tr  *ngFor="let playsong of playSongs |search: searchTerm; index as i">
        
-        <th scope="row">{{playsong?.artistName}}</th>
-        <td>{{playsong?.songName}}</td>
-        <td>{{playsong?.genre}}</td>
-        <td>{{playsong?.songType}}</td>
+        <th scope="row"  (click)="playSong(playsong?.mp3File,playsong?.id,i,playsong?.payment)">{{playsong?.artistName}}</th>
+        <td (click)="playSong(playsong?.mp3File,playsong?.id,i,playsong?.payment)">{{playsong?.songName}}</td>
+        <td (click)="playSong(playsong?.mp3File,playsong?.id,i,playsong?.payment)">{{playsong?.genre}}</td>
+        <td (click)="playSong(playsong?.mp3File,playsong?.id,i,playsong?.payment)">{{playsong?.songType}}</td>
         <td id="search-icon" *ngIf="playsong?.payment==='Yes'" id="paid"><mat-icon  matTooltip="Paid"> attach_money</mat-icon></td>
         <td id="search-icon" *ngIf="playsong?.payment!=='Yes' "></td>
 
