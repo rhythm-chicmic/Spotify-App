@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { APIS, STORAGE_KEYS, userData } from 'src/app/common/constants';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({providedIn:'root'})
 export class AddSongsService {
  private path= environment.url
  audio = new Audio
- isPlayed$ = new BehaviorSubject(false);
+ isPlayed$ = new BehaviorSubject<boolean>(false);
+ globalPlaySong$= new BehaviorSubject<boolean>(true);
+
  token!:string;
   constructor(private httpService:HttpClient) {
   }

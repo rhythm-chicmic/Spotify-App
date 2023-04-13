@@ -8,6 +8,7 @@ import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
 import { TransactionService } from 'src/app/core/services/transaction.service';
 import { UserDetailsService } from 'src/app/core/services/user-details.service';
+
 import Swal from "sweetalert2"
 
 
@@ -218,19 +219,21 @@ export class HomeComponent implements OnInit {
     this.playSongs[index].isPlayed=true;
     this.allSongService.audio.src=url
     this.allSongService.audio.load();
-
-    // this.audio.src =url;
-    // this.audio.load()
+   
     if(!this.allSongService.isPlayed$.getValue()){
-    // this.audio.play();
+
     this.allSongService.audio.play();
 
     this.allSongService.isPlayed$.next(true)
+      
     console.log(this.allSongService.isPlayed$.getValue())
     }
     else {
       this.allSongService.audio.pause();
       this.allSongService.isPlayed$.next(false)
+     
+
+
     }
   }
   
