@@ -33,6 +33,9 @@ export class MyLikedSongsComponent implements OnInit{
   constructor(private mostPlayedSongService:MostPlayedSongsService,private spinner:NgxSpinnerService,private router:Router,private songLibService:SongsLibraryService,private addSongService:AddSongsService){}
 
   ngOnInit(): void {
+    
+
+
     this.spinner.show();
     this.songLibService.getMySongsList().subscribe((res:any)=>{
       if(res){
@@ -86,7 +89,7 @@ export class MyLikedSongsComponent implements OnInit{
     this.addSongService.audio.src =url;
     this.addSongService.audio.load()
     this.addSongService.audio.play();
-    this.songsList.isPlayed=false;
+
     this.addSongService.isPlayed$.next(true);
     setTimeout(() => {
       this.mostPlayedSongService.postMostPlayedSong(songId).subscribe((res)=>{
@@ -95,14 +98,16 @@ export class MyLikedSongsComponent implements OnInit{
   }
   else {
     this.addSongService.audio.pause();
-    this.songsList.isPlayed=false;
+
 
     this.addSongService.isPlayed$.next(false);
   }
   }
   StopSong(index:number){
+       
+     
     if(this.addSongService.isPlayed$.getValue()){
-    this.songsList.isPlayed=true;
+   
 
     this.songsList[index].isPlayed=false;
     this.addSongService.audio.pause();

@@ -1,14 +1,15 @@
 
-<div class="container">
+<div class="container" *ngIf="showing">
         <div class="song-details">
-         <div class="cancel"><mat-icon>cancel</mat-icon></div> 
+         <div class="cancel"><mat-icon matTooltip="Hide Music Bar" (click)="OnCancel()">cancel</mat-icon></div> 
             <label for="file" class="label-file bouncing"><mat-icon>radio</mat-icon></label>
            
         </div>    
        
         <div class="audio-btns">
-            <button class="loop-btn">
-                <mat-icon>repeat</mat-icon>
+            <button class="loop-btn"  (click)="onReplay()" >
+                <mat-icon *ngIf="repeatSong">repeat</mat-icon>
+                   <mat-icon *ngIf="!repeatSong">repeat_one</mat-icon>
             </button>
             <button class="play-stop_btn" (click)="onClick()">
               <mat-icon *ngIf="!globalPlaySong" style="font-size: 40px;width: 70px;height:40px">play_circle_filled</mat-icon>
@@ -27,5 +28,9 @@
     </div>
 
 
+<div class="eject" *ngIf="!showing">
+ 
+    <mat-icon  matTooltip="Show Music Bar" class="label-file bouncing" style="margin-top: 90px; font-size: 40px;width: 70px;height:40px" (click)="OnCancel()">eject</mat-icon>
 
+</div>
  

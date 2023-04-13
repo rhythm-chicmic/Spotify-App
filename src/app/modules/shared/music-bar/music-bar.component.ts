@@ -8,33 +8,27 @@ import { AddSongsService } from 'src/app/core/services/add-songs.service';
   styleUrls: ['./music-bar.component.scss']
 })
 export class MusicBarComponent implements OnInit{
-
+  showing=true;
   volumeOfSong=true;
+  repeatSong=true
   constructor(private allSongsService:AddSongsService){}
   globalPlaySong=true
-
-
-
   ngOnInit(): void {
     this.allSongsService.isPlayed$.subscribe((res)=>{
-      console.log(res)
+      
       this.globalPlaySong=res;
     })
   }
 
   onClick(){
-    // this.globalPlaySong=!this.globalPlaySong
     if(this.globalPlaySong){
       this.allSongsService.isPlayed$.next(false);
       this.allSongsService.audio.pause()
-      console.log(this.allSongsService.isPlayed$.getValue())
     }
     else{
       this.allSongsService.isPlayed$.next(true);
       this.allSongsService.audio.play()
-
     }
-
   }
   OnVolumeClick(){
     this.volumeOfSong=!this.volumeOfSong
@@ -46,5 +40,19 @@ export class MusicBarComponent implements OnInit{
 
     }
   }
+  onReplay(){
+      this.repeatSong=!this.repeatSong
+      if(!this.repeatSong){
+    this.allSongsService.audio.loop=true;
 
+      }
+      else{
+    this.allSongsService.audio.loop=false;
+      }
+    console.log(this.allSongsService.audio.loop,11)
+  }
+
+  OnCancel(){
+    this.showing=!this.showing
+  }
 }

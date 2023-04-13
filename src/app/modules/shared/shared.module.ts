@@ -5,12 +5,13 @@ import  {SharedRoutingModule} from './shared-routing.module';
 import { EditProfileComponent } from './edit-profile/edit-profile.component'
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatRadioModule} from '@angular/material/radio'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import { MusicBarComponent } from './music-bar/music-bar.component';
-
+import {MatTooltipModule} from '@angular/material/tooltip'; 
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -20,7 +21,9 @@ import { MusicBarComponent } from './music-bar/music-bar.component';
   ],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     SharedRoutingModule,
+    MatTooltipModule,
     MatDialogModule,
     MatIconModule,
     MatGridListModule,
