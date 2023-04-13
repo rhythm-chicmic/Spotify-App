@@ -123,6 +123,15 @@ export class MyPlaylistSongsComponent implements OnInit{
     this.addSongService.audio.play();
     this.addSongService?.songImage$.next(song?.imageUrl);
     this.addSongService?.songName$.next(song?.songName);
+    setTimeout(() => {
+      this.eventService.postPlaylistTrack(this.playlistId).subscribe((res)=>{
+ 
+        this.playlistPlayed++;
+      })
+    }, 25000);
+    setTimeout(() => {
+      this.mostPlayedSongs.postMostPlayedSong(songId).subscribe()
+    }, 30000);
   }
   }
   StopSong(index:number){

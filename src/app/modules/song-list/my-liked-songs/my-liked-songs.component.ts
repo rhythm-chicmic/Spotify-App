@@ -103,10 +103,14 @@ export class MyLikedSongsComponent implements OnInit{
     this.addSongService.audio.play();
       this.addSongService?.songImage$.next(song?.imageUrl);
       this.addSongService?.songName$.next(song?.songName);
-    // this.addSongService.audio.pause();
-    this.songsList[index].isPlayed=false;
 
-    // this.addSongService.isPlayed$.next(false);
+    this.songsList[index].isPlayed=false;
+    setTimeout(() => {
+      this.mostPlayedSongService.postMostPlayedSong(songId).subscribe((res)=>{
+      })
+    }, 30000);
+
+
   }
   }
   StopSong(index:number){
