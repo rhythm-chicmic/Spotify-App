@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { APIS, STORAGE_KEYS } from 'src/app/common/constants';
 import { BehaviorSubject } from 'rxjs';
 import { MostPlayedSongsService } from './most-played-songs.service';
-
+import Swal from 'sweetalert2'
 @Injectable({providedIn:'root'})
 export class AddSongsService {
  private path= environment.url
@@ -16,6 +16,17 @@ export class AddSongsService {
  frequentPlayedSongs:any
  token!:string;
  myFavouriteSong:any
+ Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
   constructor(private httpService:HttpClient, private mostPlayedSongService: MostPlayedSongsService) {
    this.mostPlayedSongService.getMostPlayedSong().subscribe((res:any)=>{
       if(res){
@@ -41,7 +52,9 @@ export class AddSongsService {
 
       }
 
-     })
+     }, (e)=>this.Toast.fire({
+      
+     }) )
   }
 
  

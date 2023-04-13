@@ -1,4 +1,5 @@
 import { Component, Injectable, Injector, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { STORAGE_KEYS } from 'src/app/common/constants';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 
 
@@ -13,7 +14,11 @@ export class MusicBarComponent implements OnInit{
   repeatSong=true
   songName!:string
   songImage!:string
-  constructor(private allSongsService:AddSongsService){}
+  constructor(private allSongsService:AddSongsService){
+    if(!localStorage.getItem(STORAGE_KEYS.TOKEN)){
+      this.showing=false;
+    }
+  }
   globalPlaySong=true
   ngOnInit(): void {
     this.allSongsService.isPlayed$.subscribe((res)=>{

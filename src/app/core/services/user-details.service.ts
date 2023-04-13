@@ -4,28 +4,43 @@ import { BehaviorSubject } from 'rxjs';
 import { APIS, STORAGE_KEYS, userData } from 'src/app/common/constants';
 import { signUpModel } from 'src/app/common/interfaces';
 import { environment } from 'src/environments/environment';
-
+import Swal from 'sweetalert2'
 @Injectable({
   providedIn: 'root'
 })
 export class UserDetailsService {
+    Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
   userProfile$=new BehaviorSubject<boolean>(true);
   private path= environment.url
  token!:string;
   constructor(private httpService:HttpClient) {
    this.getMyProfile().subscribe((res:any) => {
       if(res){
-        console.log(true)
+    
   
       this.userProfile$.next(true);
   
     }
     else {
-      console.log(false)
+   
 
       this.userProfile$.next(false);
     }
-    })
+    },(e)=>this.Toast.fire({
+      icon: 'info',
+      title: 'Not Logged In'
+    }))
   }
   isLoggedIn$ = new BehaviorSubject(localStorage.getItem(STORAGE_KEYS.TOKEN)?true:false);
  

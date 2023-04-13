@@ -11,9 +11,5 @@ export class AppComponent {
   title = 'spotifyClone';
   // isLogin:boolean=false;
   constructor(private userService:UserDetailsService){}
-  // ngOnInit(){
-  //   this.userService.isLoggedIn$.subscribe((res)=>{
-  //     this.isLogin=res
-  //   })
-  // }
+ 
 }

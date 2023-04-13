@@ -94,7 +94,7 @@ export class AddSongsComponent {
    }
 
   addSong(){
-      console.log(this.addSongForm.value)
+    
       if(this.addSongForm.valid){
 
         this.addSongForm.value.created= new Date()
