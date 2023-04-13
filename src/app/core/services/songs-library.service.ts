@@ -20,6 +20,7 @@ export class SongsLibraryService {
    }
 
    getMySongsList(){
+   
     if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
       this.userService.isLoggedIn$.next(true);
     }
@@ -29,6 +30,7 @@ export class SongsLibraryService {
     return this.httpService.post(this.path+APIS.ALL_SONGS.ADD_TO_PLAYLIST+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),data)
    }
    getAllPlaylists(){
+   
     if(localStorage.getItem(STORAGE_KEYS.TOKEN)){
       this.userService.isLoggedIn$.next(true);
     }
@@ -36,6 +38,7 @@ export class SongsLibraryService {
     return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_PLAYLIST+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
    }
    getPlaylistById(documentId:string){
+   
     return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_PLAYLIST+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'/'+documentId+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
    }
    postSongToPlaylist(documentId:string,songId:songIdModel){
@@ -43,6 +46,7 @@ export class SongsLibraryService {
     return this.httpService.post(this.path+APIS.ALL_SONGS.ADD_TO_PLAYLIST+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'/'+documentId+SONG_LIBRARY.SONG_ID+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),targetId)
    }
    getSongToPlaylist(documentId:string){
+  
     return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_PLAYLIST+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'/'+documentId+SONG_LIBRARY.SONG_ID+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN));
    }
 

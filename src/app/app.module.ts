@@ -17,6 +17,8 @@ import { SharedModule } from './modules/shared/shared.module';
 import { SongListModule } from './modules/song-list/song-list.module';
 import { SpinnerComponent } from './common/spinner/spinner.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpRequestInterceptor } from './core/interceptors/http-request.interceptor';
 
 
 const firebaseApp = AngularFireModule.initializeApp(environment.firebase);
@@ -47,8 +49,11 @@ const firebaseApp = AngularFireModule.initializeApp(environment.firebase);
   providers: [ {
     provide: FIREBASE_OPTIONS,
     useValue: environment.firebase
-  },],
+  },
+  {provide:HTTP_INTERCEPTORS,useClass:HttpRequestInterceptor,multi:true}
+],
   exports:[],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {

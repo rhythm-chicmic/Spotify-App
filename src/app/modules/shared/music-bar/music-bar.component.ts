@@ -1,7 +1,7 @@
 import { Component, Injectable, Injector, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { STORAGE_KEYS } from 'src/app/common/constants';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
-
+import { IMAGES } from 'src/app/common/constants';
 
 @Component({
   selector: 'app-music-bar',
@@ -14,6 +14,7 @@ export class MusicBarComponent implements OnInit{
   repeatSong=true
   songName!:string
   songImage!:string
+  demoImage=IMAGES.LIKED_SONGS_IMAGE
   constructor(private allSongsService:AddSongsService){
     if(!localStorage.getItem(STORAGE_KEYS.TOKEN)){
       this.showing=false;
