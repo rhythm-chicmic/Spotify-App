@@ -9,10 +9,23 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserDetailsService {
-
+  userProfile$=new BehaviorSubject<boolean>(true);
   private path= environment.url
  token!:string;
   constructor(private httpService:HttpClient) {
+   this.getMyProfile().subscribe((res:any) => {
+      if(res){
+        console.log(true)
+  
+      this.userProfile$.next(true);
+  
+    }
+    else {
+      console.log(false)
+
+      this.userProfile$.next(false);
+    }
+    })
   }
   isLoggedIn$ = new BehaviorSubject(localStorage.getItem(STORAGE_KEYS.TOKEN)?true:false);
  

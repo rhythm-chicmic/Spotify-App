@@ -67,8 +67,10 @@ export class UserProfileComponent implements OnInit {
     })
 
     this.songLibraryService.getMySongsList().subscribe((res: any) => {
+      if(res){
       res = Object.values(res)
       this.totalLikedSongs = res.length
+      }
     })
 
     this.mostPlayedSongService.getMostPlayedSong().subscribe((res: any) => {
