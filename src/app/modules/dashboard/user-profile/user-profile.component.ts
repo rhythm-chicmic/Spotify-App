@@ -63,17 +63,18 @@ export class UserProfileComponent implements OnInit {
           title: 'Session Expired'
         })
         localStorage.clear();
+        this.router.navigate([PATHS.AUTH.LOGIN])
       }
     })
 
-    this.songLibraryService.getMySongsList().subscribe((res: any) => {
+    this.songLibraryService?.getMySongsList()?.subscribe((res: any) => {
       if(res){
       res = Object.values(res)
       this.totalLikedSongs = res.length
       }
     })
 
-    this.mostPlayedSongService.getMostPlayedSong().subscribe((res: any) => {
+    this.mostPlayedSongService?.getMostPlayedSong()?.subscribe((res: any) => {
       if(res){
       res = Object.values(res);
       this.frequentPlayedSongs = res;
@@ -82,7 +83,7 @@ export class UserProfileComponent implements OnInit {
         this.frequentPlayedSongs.filter((v: any) => v === a).length
         - this.frequentPlayedSongs.filter((v: any) => v === b).length).pop()
 
-      this.AllSongsService.getAllSongs().subscribe((res: any) => {
+      this.AllSongsService?.getAllSongs()?.subscribe((res: any) => {
         res = Object.values(res);
         res.find((value: any) => {
           if (value.id === song?.songId) {
@@ -102,7 +103,7 @@ export class UserProfileComponent implements OnInit {
   }
   OnLogout() {
     localStorage.clear();
-    this.userService.isLoggedIn$.next(false);
+    this.userService?.isLoggedIn$?.next(false);
     this.router.navigate([PATHS.MAIN.DASHBOARD])
   }
   OnAddSongs() {

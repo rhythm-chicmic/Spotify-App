@@ -22,26 +22,26 @@ export class MusicBarComponent implements OnInit{
   }
   globalPlaySong=true
   ngOnInit(): void {
-    this.allSongsService.isPlayed$.subscribe((res)=>{
+    this.allSongsService?.isPlayed$?.subscribe((res)=>{
       
       this.globalPlaySong=res;
     })
-    this.allSongsService.songImage$.subscribe((res:any)=>{
+    this.allSongsService?.songImage$?.subscribe((res:any)=>{
       this.songImage=res
     })
-    this.allSongsService.songName$.subscribe((res:any)=>{
+    this.allSongsService?.songName$?.subscribe((res:any)=>{
       this.songName=res;
     })
   }
 
   onClick(){
     if(this.globalPlaySong){
-      this.allSongsService.isPlayed$.next(false);
-      this.allSongsService.audio.pause()
+      this.allSongsService?.isPlayed$?.next(false);
+      this.allSongsService?.audio?.pause()
     }
     else{
-      this.allSongsService.isPlayed$.next(true);
-      this.allSongsService.audio.play()
+      this.allSongsService?.isPlayed$?.next(true);
+      this.allSongsService?.audio?.play()
     }
   }
   OnVolumeClick(){

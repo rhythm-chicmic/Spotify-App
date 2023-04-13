@@ -16,7 +16,7 @@ export class PayMoneyComponent implements OnInit{
   invalidError:any
   cardDetailsFilledOut:any
   songsArray:Array<any>=[]
-  buySong:Array<any>=[]
+  buySong:any;
   transactionResult:any;
   songId!:string
   amount!:string
@@ -50,7 +50,9 @@ export class PayMoneyComponent implements OnInit{
         cardBrand:[''],
         last4Digit:[''],
          cardId:[''],
-         tokenId:[''] 
+         tokenId:[''],
+         songName:['']
+         
     })
   }
 
@@ -62,8 +64,9 @@ export class PayMoneyComponent implements OnInit{
       this.transactionForm.value.last4Digit = this.transactionResult?.card?.last4
       this.transactionForm.value.cardId=this.transactionResult?.card?.id
       this.transactionForm.value.cardBrand=this.transactionResult?.card?.brand
+      this.transactionForm.value.songName=this.buySong.songName
     
-      this.transactionService.postPurchasedSong(this.transactionForm?.value).subscribe()
+      this.transactionService?.postPurchasedSong(this.transactionForm?.value)?.subscribe()
     }
     this.route.navigate([PATHS.MAIN.DASHBOARD])
   }
@@ -75,12 +78,13 @@ export class PayMoneyComponent implements OnInit{
     this.spinner.show();
      this.amount= this.transactionService?.amount
      this.songId=this.transactionService?.songId
-      this.songService?.getAllSongs().subscribe((res:any)=>{
+      this.songService?.getAllSongs()?.subscribe((res:any)=>{
           this.songsArray= Object.values(res);
           this.spinner.hide();
           this.songsArray.find((res:any)=>{
             if(res.id===this.songId){
               this.buySong=res;
+           
             } 
           })
       })

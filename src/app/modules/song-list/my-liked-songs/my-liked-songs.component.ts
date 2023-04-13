@@ -87,10 +87,10 @@ export class MyLikedSongsComponent implements OnInit{
     if(!this.addSongService.isPlayed$.getValue()){
     this.songsList[index].isPlayed=true;
     this.addSongService.audio.src =url;
-    this.addSongService.audio.load()
-    this.addSongService.audio.play();
-      this.addSongService?.songImage$.next(song?.imageUrl);
-      this.addSongService?.songName$.next(song?.songName);
+    this.addSongService?.audio?.load()
+    this.addSongService?.audio?.play();
+      this.addSongService?.songImage$?.next(song?.imageUrl);
+      this.addSongService?.songName$?.next(song?.songName);
     this.addSongService?.isPlayed$.next(true);
     setTimeout(() => {
       this.mostPlayedSongService.postMostPlayedSong(songId).subscribe((res)=>{
@@ -99,14 +99,14 @@ export class MyLikedSongsComponent implements OnInit{
   }
   else {
     this.addSongService.audio.src =url;
-    this.addSongService.audio.load()
-    this.addSongService.audio.play();
-      this.addSongService?.songImage$.next(song?.imageUrl);
-      this.addSongService?.songName$.next(song?.songName);
+    this.addSongService?.audio?.load()
+    this.addSongService?.audio?.play();
+      this.addSongService?.songImage$?.next(song?.imageUrl);
+      this.addSongService?.songName$?.next(song?.songName);
 
     this.songsList[index].isPlayed=false;
     setTimeout(() => {
-      this.mostPlayedSongService.postMostPlayedSong(songId).subscribe((res)=>{
+      this.mostPlayedSongService?.postMostPlayedSong(songId)?.subscribe((res)=>{
       })
     }, 30000);
 
@@ -116,17 +116,17 @@ export class MyLikedSongsComponent implements OnInit{
   StopSong(index:number){
        
      
-    if(this.addSongService.isPlayed$.getValue()){
+    if(this.addSongService?.isPlayed$?.getValue()){
    
 
     this.songsList[index].isPlayed=false;
-    this.addSongService.audio.pause();
-    this.addSongService.isPlayed$.next(false);
+    this.addSongService?.audio?.pause();
+    this.addSongService?.isPlayed$?.next(false);
   }
   else {
-    this.addSongService.audio.play();
+    this.addSongService?.audio?.play();
     this.songsList[index].isPlayed=true;
-    this.addSongService.isPlayed$.next(true)
+    this.addSongService?.isPlayed$?.next(true)
   }
   }
 }

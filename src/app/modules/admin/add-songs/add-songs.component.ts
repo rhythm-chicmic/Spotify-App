@@ -68,9 +68,9 @@ export class AddSongsComponent {
 
    upload(){
     const filePath = `${this.storagePath}/${this.selectedFile.name}`;
-    const storageRef= this.storage.ref(filePath);
-    const uploadTask = this.storage.upload(filePath,this.selectedFile);
-    this.percentageVal = uploadTask.percentageChanges();
+    const storageRef= this.storage?.ref(filePath);
+    const uploadTask = this.storage?.upload(filePath,this.selectedFile);
+    this.percentageVal = uploadTask?.percentageChanges();
     uploadTask.snapshotChanges().pipe(
       finalize(() => {
         storageRef.getDownloadURL().subscribe(downloadURL => {

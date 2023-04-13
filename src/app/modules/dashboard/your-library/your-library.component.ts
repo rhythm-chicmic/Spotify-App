@@ -30,7 +30,7 @@ export class YourLibraryComponent implements OnInit{
 
   ngOnInit(){
     this.spinner.show();
-    this.songLibraryService.getAllPlaylists().subscribe((res)=>{
+    this.songLibraryService?.getAllPlaylists()?.subscribe((res)=>{
       if(res){
       this.myPlaylists= Object.values(res);
       this.myPlaylistRouteId= Object.keys(res);
@@ -44,7 +44,7 @@ export class YourLibraryComponent implements OnInit{
           title: 'Session Expired'
         })
         localStorage.clear();
-        this.userService.isLoggedIn$.next(false);
+        this.userService?.isLoggedIn$?.next(false);
         this.router.navigate([PATHS.AUTH.LOGIN])
       }
     })

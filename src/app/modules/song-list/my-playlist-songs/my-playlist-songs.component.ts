@@ -34,16 +34,16 @@ export class MyPlaylistSongsComponent implements OnInit{
 
 
 
-    this.activeRoute.params.subscribe((res)=>{
+    this.activeRoute?.params?.subscribe((res)=>{
       this.routeId=res['id']      //Route Id is sent to Firebase Api
     })
-    this.songLibraryService.getPlaylistById(this.routeId).subscribe((res:any)=>{
+    this.songLibraryService?.getPlaylistById(this.routeId)?.subscribe((res:any)=>{
      this.displayData=res
      this.playlistId= res.playlistId
       this.IdList=Object.values(res)[4]
       this.IdList=Object.values(this.IdList)
 
-      this.eventService.getPlaylistTrack().subscribe((res:any)=>{
+      this.eventService?.getPlaylistTrack()?.subscribe((res:any)=>{
         res =Object.values(res);
 
         res.filter((res:any)=>{
@@ -60,7 +60,7 @@ export class MyPlaylistSongsComponent implements OnInit{
 
 
     })
-    this.addSongService.getAllSongs().subscribe((res:any)=>{
+    this.addSongService?.getAllSongs()?.subscribe((res:any)=>{
       this.allSongsList=Object.values(res)
     this.spinner.hide();
 
@@ -93,25 +93,25 @@ export class MyPlaylistSongsComponent implements OnInit{
 
     if(!this.addSongService.isPlayed$.getValue()){
     this.songsList[index].isPlayed=true;
-      this.addSongService.isPlayed$.next(true);
+      this.addSongService?.isPlayed$?.next(true);
 
     this.addSongService.audio.src =url;
-    this.addSongService.audio.load()
-    this.addSongService.audio.play();
-    this.songTime = this.audio.currentTime;
-    this.addSongService?.songImage$.next(song?.imageUrl);
-    this.addSongService?.songName$.next(song?.songName);
+    this.addSongService?.audio?.load()
+    this.addSongService?.audio?.play();
+    this.songTime = this.audio?.currentTime;
+    this.addSongService?.songImage$?.next(song?.imageUrl);
+    this.addSongService?.songName$?.next(song?.songName);
 
     
     
     setTimeout(() => {
-      this.eventService.postPlaylistTrack(this.playlistId).subscribe((res)=>{
+      this.eventService?.postPlaylistTrack(this.playlistId)?.subscribe((res)=>{
  
         this.playlistPlayed++;
       })
     }, 25000);
     setTimeout(() => {
-      this.mostPlayedSongs.postMostPlayedSong(songId).subscribe()
+      this.mostPlayedSongs?.postMostPlayedSong(songId)?.subscribe()
     }, 30000);
   }
   else {
@@ -119,30 +119,30 @@ export class MyPlaylistSongsComponent implements OnInit{
     this.songsList[index].isPlayed=false;
     // this.addSongService.audio.pause()
     this.addSongService.audio.src =url;
-    this.addSongService.audio.load()
-    this.addSongService.audio.play();
-    this.addSongService?.songImage$.next(song?.imageUrl);
-    this.addSongService?.songName$.next(song?.songName);
+    this.addSongService?.audio?.load()
+    this.addSongService?.audio?.play();
+    this.addSongService?.songImage$?.next(song?.imageUrl);
+    this.addSongService?.songName$?.next(song?.songName);
     setTimeout(() => {
-      this.eventService.postPlaylistTrack(this.playlistId).subscribe((res)=>{
+      this.eventService?.postPlaylistTrack(this.playlistId)?.subscribe((res)=>{
  
         this.playlistPlayed++;
       })
     }, 25000);
     setTimeout(() => {
-      this.mostPlayedSongs.postMostPlayedSong(songId).subscribe()
+      this.mostPlayedSongs?.postMostPlayedSong(songId)?.subscribe()
     }, 30000);
   }
   }
   StopSong(index:number){
-    if(this.addSongService.isPlayed$.getValue()){
+    if(this.addSongService?.isPlayed$?.getValue()){
     this.songsList[index].isPlayed=false;
     this.audio.pause();
-    this.addSongService.isPlayed$.next(false);
+    this.addSongService?.isPlayed$?.next(false);
     }
     else{
-      this.addSongService.isPlayed$.next(true)
-      this.addSongService.audio.play();
+      this.addSongService?.isPlayed$?.next(true)
+      this.addSongService?.audio?.play();
     }
     
   }

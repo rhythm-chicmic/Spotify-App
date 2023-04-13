@@ -53,7 +53,7 @@ export class EditProfileComponent {
     })
 }
 get controls(){
-  return this.addProfileForm.controls;
+  return this.addProfileForm?.controls;
 }
 addProfile(){
   if((this.addProfileForm as FormGroup).valid){
@@ -84,9 +84,9 @@ selectFile(event:any,path:string){
 
 upload(){
   const filePath = `${this.storagePath}/${this.selectedFile.name}`;
-  const storageRef= this.storage.ref(filePath);
-  const uploadTask = this.storage.upload(filePath,this.selectedFile);
-  this.percentageVal = uploadTask.percentageChanges();
+  const storageRef= this.storage?.ref(filePath);
+  const uploadTask = this.storage?.upload(filePath,this.selectedFile);
+  this.percentageVal = uploadTask?.percentageChanges();
   uploadTask.snapshotChanges().pipe(
     finalize(() => {
       storageRef.getDownloadURL().subscribe(downloadURL => {

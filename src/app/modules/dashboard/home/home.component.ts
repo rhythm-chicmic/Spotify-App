@@ -63,7 +63,11 @@ export class HomeComponent implements OnInit {
       },(e)=>this.Toast.fire({
         icon: 'info',
         title: 'Not Logged In'
-      }))
+      }).then(()=>{
+        this.userService.isLoggedIn$.next(false);
+      })
+      
+      )
       this.spinner.hide()
     },(e)=>this.Toast.fire({
       icon: 'info',
@@ -140,7 +144,7 @@ export class HomeComponent implements OnInit {
  
 
         this.songLibService.postSongToPlaylist(this.myPlaylistIdArray[index], songId).pipe(
-          mergeMap(() => this.songLibService.getSongToPlaylist(this.myPlaylistIdArray[index]))
+          mergeMap(() => this.songLibService?.getSongToPlaylist(this.myPlaylistIdArray[index]))
         ).subscribe((res) => {
           this.songIdPresentInPlaylist = Object.values(res)
           this.Toast.fire({
@@ -181,7 +185,7 @@ export class HomeComponent implements OnInit {
         
 
         this.songLibService.postMySongsList(song.id).pipe(
-          mergeMap(() => this.songLibService.getMySongsList()))
+          mergeMap(() => this.songLibService?.getMySongsList()))
           .subscribe((res) => {
          
             this.mySongList = Object.values(res);
@@ -216,7 +220,7 @@ export class HomeComponent implements OnInit {
 
       if (this.flag !== true) {
         this.songLibService.postMySongsList(song.id).pipe(
-          mergeMap(() => this.songLibService.getMySongsList()))
+          mergeMap(() => this.songLibService?.getMySongsList()))
           .subscribe((res) => {
             this.mySongList = Object.values(res)
             this.Toast.fire({
@@ -246,28 +250,26 @@ export class HomeComponent implements OnInit {
     if(payment==='No'){
     this.playSongs[index].isPlayed=true;
     this.allSongService.audio.src=url
-    this.allSongService.audio.load();
+    this.allSongService?.audio?.load();
    
-    if(!this.allSongService.isPlayed$.getValue()){
+    if(!this.allSongService?.isPlayed$?.getValue()){
 
-    this.allSongService.audio.play();
-    this.allSongService.songImage$.next(playsong?.imageUrl);
-    this.allSongService.songName$.next(playsong?.songName)
+    this.allSongService?.audio.play();
+    this.allSongService?.songImage$.next(playsong?.imageUrl);
+    this.allSongService?.songName$.next(playsong?.songName)
 
-    this.allSongService.isPlayed$.next(true)
+    this.allSongService?.isPlayed$.next(true)
       
 
     }
     else {
     this.allSongService.audio.src=url
-    this.allSongService.audio.play();
-    this.allSongService.songImage$.next(playsong?.imageUrl);
-    this.allSongService.songName$.next(playsong?.songName)
-      // this.allSongService.audio.pause();
-      // this.allSongService.isPlayed$.next(false)
-     
-    
+    this.allSongService?.audio.play();
+    this.allSongService?.songImage$.next(playsong?.imageUrl);
+    this.allSongService?.songName$.next(playsong?.songName)
 
+     
+  
     }
   }
   

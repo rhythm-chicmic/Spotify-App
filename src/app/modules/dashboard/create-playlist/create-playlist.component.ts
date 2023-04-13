@@ -80,8 +80,8 @@ get controls(){
 
 upload(){
   const filePath = `${this.storagePath}/${this.selectedFile?.name}`;
-  const storageRef= this.storage.ref(filePath);
-  const uploadTask = this.storage.upload(filePath,this.selectedFile);
+  const storageRef= this.storage?.ref(filePath);
+  const uploadTask = this.storage?.upload(filePath,this.selectedFile);
   this.percentageVal = uploadTask.percentageChanges();
 
   uploadTask.snapshotChanges().pipe(

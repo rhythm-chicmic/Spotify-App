@@ -16,7 +16,7 @@ constructor(private router :Router,private userService:UserDetailsService){
 
 
 ngOnInit(): void {
-  this.userService.isLoggedIn$.subscribe((res)=>{
+  this.userService?.isLoggedIn$?.subscribe((res)=>{
     this.isLogin=res;
   })
 }

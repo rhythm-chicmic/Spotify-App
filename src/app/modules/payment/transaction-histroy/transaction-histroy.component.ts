@@ -13,12 +13,12 @@ export class TransactionHistroyComponent implements OnInit{
   constructor(private spinner:NgxSpinnerService,private transactionService:TransactionService){}
 
   ngOnInit(): void {
-    this.spinner.show()
-    this.transactionService.getPurchasedSong().subscribe((res)=>{
+    this.spinner?.show()
+    this.transactionService?.getPurchasedSong()?.subscribe((res)=>{
       if(res){
       this.purchasedSongList=Object.values(res)
       }
-    this.spinner.hide()
+    this.spinner?.hide()
 
   
     })
