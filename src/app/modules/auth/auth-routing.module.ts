@@ -11,7 +11,7 @@ import { IsprofileCreatedGuard } from 'src/app/core/guards/isprofile-created.gua
 const routes: Routes = [
     {path:'',redirectTo:PATHS.AUTH.LOGIN,pathMatch:'full'},
   {path:PATHS.AUTH.LOGIN,canActivate:[IsLoginGuard],component:LoginComponent},
-  {path:PATHS.AUTH.REGISTER,component:SignUpComponent},
+  {path:PATHS.AUTH.REGISTER,canActivate:[IsprofileCreatedGuard],component:SignUpComponent},
   {path:PATHS.AUTH.GET_OTP,canActivate:[IsLoginGuard],component:OtpComponent},
 
 ];

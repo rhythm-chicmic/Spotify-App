@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PATHS, REGEX } from 'src/app/common/constants';
+import { PATHS, REGEX, STORAGE_KEYS } from 'src/app/common/constants';
 import { IMAGES } from 'src/app/common/constants';
 import { userData } from 'src/app/common/constants';
 import swal from 'sweetalert2'
@@ -60,7 +60,9 @@ addProfile(){
     this.addProfileForm.value.uId=userData?.user?.uid
   
       this.addProfileForm.value.image=this.imagePath
-        this.service.postUserDetails(this.addProfileForm?.value).subscribe()
+        this.service.postUserDetails(this.addProfileForm?.value).subscribe(()=>{
+          localStorage.setItem(STORAGE_KEYS.USER_PROFILE,'True')
+        })
        
     this.formDirective.resetForm();
     this.Toast.fire({

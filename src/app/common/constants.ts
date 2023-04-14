@@ -85,6 +85,7 @@ export const APIS ={
     VERIFICATION_ID:'VerificationCode',
     UNIQUE_ID:'user_data',
     FIREBASE_ID:'id',
+    USER_PROFILE:'userProfile'
     
   }
 
