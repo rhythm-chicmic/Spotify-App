@@ -27,6 +27,10 @@ export class MusicBarComponent implements OnInit{
     this.allSongsService?.isPlayed$?.subscribe((res)=>{
       
       this.globalPlaySong=res;
+  
+      if(res===true){
+        this.showing=true;
+      }
     })
     this.allSongsService?.songImage$?.subscribe((res:any)=>{
       this.songImage=res
@@ -70,5 +74,6 @@ export class MusicBarComponent implements OnInit{
 
   OnCancel(){
     this.showing=!this.showing
+   
   }
 }
