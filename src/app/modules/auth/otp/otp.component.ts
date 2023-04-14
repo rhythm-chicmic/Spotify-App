@@ -74,7 +74,7 @@ export class OtpComponent implements OnInit{
          
         });
       })
-      .catch((error) => {
+      .catch(() => {
    
         this.Toast.fire({
           icon: 'error',

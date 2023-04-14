@@ -54,7 +54,7 @@ export class MyLikedSongsComponent implements OnInit{
 
       
       })
-    },(e)=>{
+    },()=>{
       this.Toast.fire({
         icon:'error',
         title:'Session Expired, Please login Again'
@@ -103,8 +103,7 @@ export class MyLikedSongsComponent implements OnInit{
       this.addSongService?.songName$?.next(song?.songName);
     this.addSongService?.isPlayed$.next(true);
     setTimeout(() => {
-      this.mostPlayedSongService.postMostPlayedSong(songId).subscribe((res)=>{
-      })
+      this.mostPlayedSongService.postMostPlayedSong(songId).subscribe()
     }, 30000);
   }
   else {
@@ -116,8 +115,7 @@ export class MyLikedSongsComponent implements OnInit{
 
     this.songsList[index].isPlayed=false;
     setTimeout(() => {
-      this.mostPlayedSongService?.postMostPlayedSong(songId)?.subscribe((res)=>{
-      })
+      this.mostPlayedSongService?.postMostPlayedSong(songId)?.subscribe()
     }, 30000);
 
 

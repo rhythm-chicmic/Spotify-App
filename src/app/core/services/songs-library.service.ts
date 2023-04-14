@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { APIS, SONG_LIBRARY, STORAGE_KEYS, userData } from 'src/app/common/constants';
+import { APIS, SONG_LIBRARY, STORAGE_KEYS } from 'src/app/common/constants';
 import { songIdModel } from 'src/app/common/interfaces';
 import { UserDetailsService } from './user-details.service';
 @Injectable({

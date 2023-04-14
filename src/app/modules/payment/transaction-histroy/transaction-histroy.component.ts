@@ -37,7 +37,7 @@ export class TransactionHistroyComponent implements OnInit{
     this.spinner?.hide()
 
   
-    },(e)=> {
+    },()=> {
       this.Toast.fire({
         icon:'error',
         title:'Session Expired, Please Login Again'

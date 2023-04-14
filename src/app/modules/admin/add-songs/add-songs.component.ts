@@ -104,7 +104,7 @@ export class AddSongsComponent {
 
         this.addSongForm.value.id = this.addSongForm?.value?.songName.slice(0,2)+this.addSongForm?.value?.songType.slice(0,2)+this.addSongForm?.value?.genre.slice(0,2)+this.addSongForm?.value?.artistName.slice(0,2)
 
-        this.addSongService.postAllSongs(this.addSongForm.value).subscribe((res:any)=>{
+        this.addSongService.postAllSongs(this.addSongForm.value).subscribe(()=>{
       
           this.Toast.fire({
             icon: 'success',

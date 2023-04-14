@@ -1,7 +1,7 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
-import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
+
+import { PATHS } from 'src/app/common/constants';
 import { UserDetailsService } from '../services/user-details.service';
 import Swal from 'sweetalert2'
 @Injectable({
@@ -23,7 +23,7 @@ export class IsprofileCreatedGuard implements CanActivate {
   constructor(private route:Router,private userService:UserDetailsService){
       this.userService.userProfile$.subscribe((res)=>{
         this.userProfile=res;
-      },(e)=>this.Toast.fire({
+      },()=>this.Toast.fire({
         icon: 'info',
         title: 'Not Logged In'
       }))

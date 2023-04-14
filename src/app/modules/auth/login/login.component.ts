@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit{
 
         localStorage.setItem(STORAGE_KEYS.VERIFICATION_ID,JSON.stringify(result.verificationId))
         this.router.navigate([PATHS.AUTH.GET_OTP])
-      }).catch((err)=>{
+      }).catch(()=>{
       
         setTimeout(()=>{
           window.location.reload();

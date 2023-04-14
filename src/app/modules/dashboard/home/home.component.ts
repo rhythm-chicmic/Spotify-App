@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
           }
         }
       }
-      },(e)=>{this.Toast.fire({
+      },()=>{this.Toast.fire({
         icon: 'info',
         title: 'Not Logged In'
       })
@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
     }
       )
       this.spinner.hide()
-    },(e)=>this.Toast.fire({
+    },()=>this.Toast.fire({
       icon: 'info',
       title: 'Not Logged In'
     }))
@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit {
       res = Object.values(res)
       this.mySongList = Object.values(res)
       }
-    },(e)=>{this.Toast.fire({
+    },()=>{this.Toast.fire({
       icon: 'info',
       title: 'Not Logged In'
     })
@@ -110,7 +110,7 @@ export class HomeComponent implements OnInit {
       this.myPlaylistArray = Object.values(res);
       this.myPlaylistIdArray = Object.keys(res);
       }
-    },(e)=>this.Toast.fire({
+    },()=>this.Toast.fire({
       icon: 'info',
       title: 'Not Logged In'
     }))
@@ -156,13 +156,13 @@ export class HomeComponent implements OnInit {
             title: 'Song Added to Liked Songs'
           })
         }
-      ,(e)=>this.Toast.fire({
+      ,()=>this.Toast.fire({
           icon: 'info',
           title: 'Not Logged In'
         }))
         this.playlistFlag = false;
       }
-    },(e)=>this.Toast.fire({
+    },()=>this.Toast.fire({
       icon: 'info',
       title: 'Not Logged In'
     })
@@ -198,7 +198,7 @@ export class HomeComponent implements OnInit {
               title: 'Song Added to Liked Songs'
             })
 
-          },(e)=>this.Toast.fire({
+          },()=>this.Toast.fire({
             icon: 'info',
             title: 'Not Logged In'
           }))
@@ -232,7 +232,7 @@ export class HomeComponent implements OnInit {
               title: 'Song Added to Liked Songs'
             })
         
-          },(e)=>this.Toast.fire({
+          },()=>this.Toast.fire({
             icon: 'info',
             title: 'Not Logged In'
           }))

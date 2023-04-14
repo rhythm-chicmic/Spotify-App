@@ -1,8 +1,8 @@
 import { Component, Inject, Optional, ViewChild } from '@angular/core';
 import { MatDialog,MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 
-import { PATHS, REGEX, userData } from 'src/app/common/constants';
+import {  REGEX } from 'src/app/common/constants';
 import { Router } from '@angular/router';
 import { UserDetailsService } from 'src/app/core/services/user-details.service';
 import Swal from 'sweetalert2'

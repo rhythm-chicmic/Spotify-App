@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { APIS, STORAGE_KEYS, userData } from 'src/app/common/constants';
+import { APIS, STORAGE_KEYS } from 'src/app/common/constants';
 import { signUpModel } from 'src/app/common/interfaces';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2'
@@ -37,7 +37,7 @@ export class UserDetailsService {
 
       this.userProfile$.next(false);
     }
-    },(e)=>this.Toast.fire({
+    },()=>this.Toast.fire({
       icon: 'info',
       title: 'Not Logged In'
     }))

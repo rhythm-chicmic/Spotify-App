@@ -52,15 +52,13 @@ Toast = Swal.mixin({
       this.createPlaylistForm.value.imageUrl=this.imagePath
       this.createPlaylistForm.value.playlistId=this.createPlaylistForm?.value?.title.slice(0,2)+this.createPlaylistForm?.value?.description.slice(0,2)+JSON.stringify(this.createPlaylistForm?.value?.createdAt).slice(8,25)
   
-      this.songLibraryService.postCreatePlaylist(this.createPlaylistForm.value).subscribe((res)=>{
+      this.songLibraryService.postCreatePlaylist(this.createPlaylistForm.value).subscribe(()=>{
  
         this.Toast.fire({
           icon: 'success',
           title: 'Song Added to Liked Songs'
         }).then(()=>{
-          this.eventService.postPlaylistTrack(this.createPlaylistForm.value.playlistId).subscribe((res)=>{
-         
-          })
+          this.eventService.postPlaylistTrack(this.createPlaylistForm.value.playlistId).subscribe()
         })
         this.router.navigate([PATHS.MAIN.YOUR_LIBRARY]);
       })

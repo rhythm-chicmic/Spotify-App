@@ -16,7 +16,7 @@ import { UserDetailsService } from 'src/app/core/services/user-details.service';
 export class MyPlaylistSongsComponent implements OnInit{
   isHovering=false
   globalPlaySong=true
-  playlistPlayed:number=0
+  playlistPlayed=0
   songsList:any=[]
   playlistId!:string
   displayData:any;
@@ -73,7 +73,7 @@ export class MyPlaylistSongsComponent implements OnInit{
   
 
 
-    },(e)=>{
+    },()=>{
       this.Toast.fire({
         icon:'error',
         title:'Session Expired, Please login Again'
@@ -128,7 +128,7 @@ export class MyPlaylistSongsComponent implements OnInit{
     
     
     setTimeout(() => {
-      this.eventService?.postPlaylistTrack(this.playlistId)?.subscribe((res)=>{
+      this.eventService?.postPlaylistTrack(this.playlistId)?.subscribe(()=>{
  
         this.playlistPlayed++;
       })
@@ -147,7 +147,7 @@ export class MyPlaylistSongsComponent implements OnInit{
     this.addSongService?.songImage$?.next(song?.imageUrl);
     this.addSongService?.songName$?.next(song?.songName);
     setTimeout(() => {
-      this.eventService?.postPlaylistTrack(this.playlistId)?.subscribe((res)=>{
+      this.eventService?.postPlaylistTrack(this.playlistId)?.subscribe(()=>{
  
         this.playlistPlayed++;
       })

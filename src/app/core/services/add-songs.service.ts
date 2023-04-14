@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { APIS, STORAGE_KEYS } from 'src/app/common/constants';
@@ -53,7 +53,7 @@ export class AddSongsService {
 
       }
 
-     }, (e)=>this.Toast.fire({
+     }, ()=>this.Toast.fire({
       icon: 'info',
       title: 'Not Logged In'
      }) )

@@ -18,7 +18,7 @@ export class UserProfileComponent implements OnInit {
   userProfleArray: any;
   isAdmin = false;
   documentId!:string
-  totalLikedSongs: number = 0
+  totalLikedSongs = 0
   myFavouriteSong: any = []
   frequentPlayedSongs: any = []
   addProfile = true

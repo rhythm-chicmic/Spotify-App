@@ -60,10 +60,7 @@ addProfile(){
     this.addProfileForm.value.uId=userData?.user?.uid
   
       this.addProfileForm.value.image=this.imagePath
-        this.service.postUserDetails(this.addProfileForm?.value).subscribe((res)=>{
-         
-        })
-    
+        this.service.postUserDetails(this.addProfileForm?.value).subscribe()
        
     this.formDirective.resetForm();
     this.Toast.fire({

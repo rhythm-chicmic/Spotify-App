@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpResponse
 } from '@angular/common/http';
-import { Observable, catchError, tap, throwError } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import  Swal from 'sweetalert2'
 
 @Injectable()
