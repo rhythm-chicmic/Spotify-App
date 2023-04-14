@@ -30,13 +30,13 @@ export class UserDetailsService {
     
   
       this.userProfile$.next(true);
-        localStorage.setItem("userProfile","True")
+        localStorage.setItem(STORAGE_KEYS.USER_PROFILE,"True")
     }
     else {
    
 
       this.userProfile$.next(false);
-      localStorage.setItem("userProfile","False")
+      localStorage.setItem(STORAGE_KEYS.USER_PROFILE,"False")
 
     }
     },()=>this.Toast.fire({

@@ -17,13 +17,13 @@ export class IsprofileCreatedGuard implements CanActivate {
 
   canActivate(){
 
-      if(localStorage.getItem('userProfile')==='True' || !localStorage.getItem(STORAGE_KEYS.TOKEN)){
+      if(localStorage.getItem(STORAGE_KEYS.USER_PROFILE)==='True' || !localStorage.getItem(STORAGE_KEYS.TOKEN)){
         
         this.route.navigate([PATHS.MAIN.DASHBOARD])
      
         return false;
       }
-      else if(localStorage.getItem('userProfile')==='True' && localStorage.getItem(STORAGE_KEYS.TOKEN)){
+      else if(localStorage.getItem(STORAGE_KEYS.USER_PROFILE)==='True' && localStorage.getItem(STORAGE_KEYS.TOKEN)){
         this.route.navigate([PATHS.MAIN.DASHBOARD])
      
         return false;
