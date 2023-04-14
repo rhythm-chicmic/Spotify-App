@@ -11,6 +11,7 @@ import { IMAGES } from 'src/app/common/constants';
 export class MusicBarComponent implements OnInit{
   showing=true;
   volumeOfSong=true;
+
   repeatSong=true
   songName!:string
   songImage!:string
@@ -22,6 +23,7 @@ export class MusicBarComponent implements OnInit{
   }
   globalPlaySong=true
   ngOnInit(): void {
+    
     this.allSongsService?.isPlayed$?.subscribe((res)=>{
       
       this.globalPlaySong=res;
