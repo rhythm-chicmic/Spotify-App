@@ -14,20 +14,7 @@
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.144);
     position: relative;
     padding: 30px 50px;
-
-    canvas {
-        position: absolute;
-        right: -15px;
-        top: 30px;
-        width: 200px;
-        height: 100px;
-    }
-
     
-
-
-
-
 
 
     .song-details {
@@ -41,11 +28,6 @@
         h2 {
             width: 300px;
             max-width: 300px;
-
-            ion-icon {
-                margin-right: 10px;
-            }
-
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -54,19 +36,7 @@
     }
 }
 
-.rotate {
-    animation: rotate 2s linear infinite;
-}
 
-@keyframes rotate {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
 
 
 
@@ -144,19 +114,7 @@ p{
         height: 100vh;
         padding-top: 5rem;
         border-radius: 0;
-
-        canvas {
-            width: auto;
-            height: auto;
-            margin: 0 auto;
-            position: fixed;
-            top: 550px;
-            width: 250px;
-            height: 120px;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 0 !important;
-        }
+        border: 1px;
 
         .audio-btns {
             width: 100%;
@@ -173,6 +131,8 @@ p{
         .song-details {
             display: flex;
             flex-direction: column;
+        border: 1px;
+
 
             h2 {
                 margin-top: 3rem;
@@ -189,11 +149,10 @@ p{
     width: 50px;
 }
 .cancel{
+    float:right; 
+    bottom: 20px;
     position: relative;
-    margin-top:-4px;
-    float:right;
-    right:-1024px;
-    top:-20px;
+
 }
 .eject{
    display: flex;

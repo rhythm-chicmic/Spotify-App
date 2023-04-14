@@ -1,12 +1,12 @@
 
 <div class="container" *ngIf="showing">
- 
+  <div class="cancel">
+    <mat-icon id="exit" matTooltip="Hide Music Bar" (click)="OnCancel()">cancel</mat-icon>
+  </div>
   <div class="song-details">
    
     
-    <div class="cancel">
-      <mat-icon matTooltip="Hide Music Bar" (click)="OnCancel()">cancel</mat-icon>
-    </div>
+   
   
       <label for="file" class="label-file bouncing">
         <mat-icon>radio</mat-icon>
