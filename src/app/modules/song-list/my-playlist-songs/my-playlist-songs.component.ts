@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { EventTrackService } from 'src/app/core/services/event-track.service';
 import { MostPlayedSongsService } from 'src/app/core/services/most-played-songs.service';
+import Swal from 'sweetalert2'
+import { PATHS } from 'src/app/common/constants';
+import { UserDetailsService } from 'src/app/core/services/user-details.service';
 @Component({
   selector: 'app-my-playlist-songs',
   templateUrl: './my-playlist-songs.component.html',
@@ -24,7 +27,18 @@ export class MyPlaylistSongsComponent implements OnInit{
   timesPlaylistPlayed:any;
   audio = new Audio
   songTime:any=''
-  constructor(private mostPlayedSongs:MostPlayedSongsService,private eventService:EventTrackService,private spinner:NgxSpinnerService,private activeRoute:ActivatedRoute,private songLibraryService:SongsLibraryService,private addSongService:AddSongsService){}
+  Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  constructor(private userService:UserDetailsService,private router:Router,private mostPlayedSongs:MostPlayedSongsService,private eventService:EventTrackService,private spinner:NgxSpinnerService,private activeRoute:ActivatedRoute,private songLibraryService:SongsLibraryService,private addSongService:AddSongsService){}
 
   ngOnInit(){
     this.spinner.show();
@@ -59,7 +73,16 @@ export class MyPlaylistSongsComponent implements OnInit{
   
 
 
-    })
+    },(e)=>{
+      this.Toast.fire({
+        icon:'error',
+        title:'Session Expired, Please login Again'
+      })
+    localStorage.clear();
+    this.userService.isLoggedIn$.next(false)
+    this.router.navigate([PATHS.AUTH.LOGIN])
+    }
+    )
     this.addSongService?.getAllSongs()?.subscribe((res:any)=>{
       this.allSongsList=Object.values(res)
     this.spinner.hide();

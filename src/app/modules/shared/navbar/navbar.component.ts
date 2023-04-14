@@ -38,4 +38,7 @@ ngOnInit(): void {
   OnCreatePlaylistClick(){
     this.router.navigate([PATHS.MAIN.CREATE_PLAYLIST])
   }
+  OnPrivacyPolicyClick(){
+      this.router.navigate([PATHS.SHARED.PRIVACY_POLICY])
+  }
 }

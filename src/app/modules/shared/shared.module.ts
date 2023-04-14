@@ -11,12 +11,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import { MusicBarComponent } from './music-bar/music-bar.component';
-import {MatTooltipModule} from '@angular/material/tooltip'; 
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component'; 
 @NgModule({
   declarations: [
     NavbarComponent,
     EditProfileComponent,
-    MusicBarComponent
+    MusicBarComponent,
+    PrivacyPolicyComponent
 
   ],
   imports: [

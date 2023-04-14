@@ -42,7 +42,8 @@ export const PARENT_PATHS = {
       CREATE_PLAYLIST:'create_playlist'
   },
   SHARED:{
-    NAVBAR:'navbar'
+    NAVBAR:'navbar',
+    PRIVACY_POLICY:'privacy-policy'
   },
   ADMIN:{
     ADD_SONGS:'add-songs'

@@ -63,6 +63,7 @@ export class UserProfileComponent implements OnInit {
           title: 'Session Expired'
         })
         localStorage.clear();
+        this.userService?.isLoggedIn$?.next(false)
         this.router.navigate([PATHS.AUTH.LOGIN])
       }
     })

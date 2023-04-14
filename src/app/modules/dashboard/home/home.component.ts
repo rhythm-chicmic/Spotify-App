@@ -60,13 +60,14 @@ export class HomeComponent implements OnInit {
           }
         }
       }
-      },(e)=>this.Toast.fire({
+      },(e)=>{this.Toast.fire({
         icon: 'info',
         title: 'Not Logged In'
-      }).then(()=>{
-        this.userService.isLoggedIn$.next(false);
       })
-      
+      localStorage.clear();
+      this.userService.isLoggedIn$.next(false);
+
+    }
       )
       this.spinner.hide()
     },(e)=>this.Toast.fire({
@@ -97,10 +98,13 @@ export class HomeComponent implements OnInit {
       res = Object.values(res)
       this.mySongList = Object.values(res)
       }
-    },(e)=>this.Toast.fire({
+    },(e)=>{this.Toast.fire({
       icon: 'info',
       title: 'Not Logged In'
-    }))
+    })
+    localStorage.clear()
+  }
+    )
     this.songLibService.getAllPlaylists().subscribe((res) => {
       if(res){
       this.myPlaylistArray = Object.values(res);

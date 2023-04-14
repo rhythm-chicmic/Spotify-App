@@ -11,6 +11,7 @@ export class AddSongsService {
  songImage$ = new BehaviorSubject<string>('');
  songName$ = new BehaviorSubject<string>('');
  audio = new Audio
+
  isPlayed$ = new BehaviorSubject<boolean>(false);
  globalPlaySong$= new BehaviorSubject<boolean>(true);
  frequentPlayedSongs:any

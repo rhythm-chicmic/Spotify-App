@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { IMAGES } from 'src/app/common/constants';
+import { IMAGES, PATHS } from 'src/app/common/constants';
 import Swal from 'sweetalert2'
 import { MostPlayedSongsService } from 'src/app/core/services/most-played-songs.service';
+import { UserDetailsService } from 'src/app/core/services/user-details.service';
 @Component({
   selector: 'app-my-liked-songs',
   templateUrl: './my-liked-songs.component.html',
@@ -30,7 +31,7 @@ export class MyLikedSongsComponent implements OnInit{
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
-  constructor(private mostPlayedSongService:MostPlayedSongsService,private spinner:NgxSpinnerService,private router:Router,private songLibService:SongsLibraryService,private addSongService:AddSongsService){}
+  constructor(private userService:UserDetailsService,private mostPlayedSongService:MostPlayedSongsService,private spinner:NgxSpinnerService,private router:Router,private songLibService:SongsLibraryService,private addSongService:AddSongsService){}
 
   ngOnInit(): void {
     
@@ -53,7 +54,16 @@ export class MyLikedSongsComponent implements OnInit{
 
       
       })
-    })
+    },(e)=>{
+      this.Toast.fire({
+        icon:'error',
+        title:'Session Expired, Please login Again'
+      })
+    localStorage.clear();
+    this.userService.isLoggedIn$.next(false)
+    this.router.navigate([PATHS.AUTH.LOGIN])
+    }
+    )
     setTimeout(()=>{
       this.spinner.hide();
     },5000)
