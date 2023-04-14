@@ -57,7 +57,7 @@ export class MusicBarComponent implements OnInit{
 
     }
   }
-  OnVolumeClick(){
+  OnVolumeClick(){ 
     this.volumeOfSong=!this.volumeOfSong
     if(!this.volumeOfSong){
       this.allSongsService.audio.volume=0;
