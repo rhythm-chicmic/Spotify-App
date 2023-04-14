@@ -39,10 +39,13 @@ export class UserDetailsService {
       localStorage.setItem(STORAGE_KEYS.USER_PROFILE,"False")
 
     }
-    },()=>this.Toast.fire({
+    },()=>{this.Toast.fire({
       icon: 'info',
       title: 'Not Logged In'
-    }))
+    })
+    localStorage.clear();
+    this.isLoggedIn$.next(false)
+  })
   }
   isLoggedIn$ = new BehaviorSubject(localStorage.getItem(STORAGE_KEYS.TOKEN)?true:false);
  

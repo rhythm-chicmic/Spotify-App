@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { STORAGE_KEYS } from 'src/app/common/constants';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { IMAGES } from 'src/app/common/constants';
@@ -11,17 +12,21 @@ import { IMAGES } from 'src/app/common/constants';
 export class MusicBarComponent implements OnInit{
   showing=true;
   volumeOfSong=true;
-
+  songTime:any
   repeatSong=true
   songName!:string
   songImage!:string
   demoImage=IMAGES.LIKED_SONGS_IMAGE
-  constructor(private allSongsService:AddSongsService){
+  constructor(private allSongsService:AddSongsService,private changeDetect:ChangeDetectorRef){
     if(!localStorage.getItem(STORAGE_KEYS.TOKEN)){
       this.showing=false;
     }
+
+
   }
   globalPlaySong=true
+
+
   ngOnInit(): void {
     
     this.allSongsService?.isPlayed$?.subscribe((res)=>{
@@ -48,6 +53,8 @@ export class MusicBarComponent implements OnInit{
     else{
       this.allSongsService?.isPlayed$?.next(true);
       this.allSongsService?.audio?.play()
+       this.songTime = this.allSongsService?.audio.currentTime;
+
     }
   }
   OnVolumeClick(){

@@ -23,9 +23,12 @@
         height: 100px;
     }
 
-    audio {
-        display: none;
-    }
+    
+
+
+
+
+
 
     .song-details {
         display: flex;
@@ -160,7 +163,9 @@ p{
             padding: 0 1rem;
             padding-top: 3rem;
         }
-
+        .songTime{
+                float:right
+        }
         .img-div{
                 margin-right: 10px;
         }

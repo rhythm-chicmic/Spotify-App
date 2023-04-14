@@ -70,10 +70,12 @@ export class HomeComponent implements OnInit {
     }
       )
       this.spinner.hide()
-    },()=>this.Toast.fire({
+    },()=>{this.Toast.fire({
       icon: 'info',
       title: 'Not Logged In'
-    }))
+    })
+    localStorage.clear()
+  })
     if (localStorage.getItem(STORAGE_KEYS.TOKEN)) {
       this.token = false;
     }
