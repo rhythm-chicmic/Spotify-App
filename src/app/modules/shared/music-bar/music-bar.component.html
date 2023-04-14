@@ -23,8 +23,8 @@
       <mat-icon *ngIf="!repeatSong" matTooltip="Remove Repeat">repeat_one</mat-icon>
     </button>
     <button class="play-stop_btn" (click)="onClick()">
-      <mat-icon *ngIf="!globalPlaySong" style="font-size: 40px;width: 70px;height:40px">play_circle_filled</mat-icon>
-      <mat-icon *ngIf="globalPlaySong" style="font-size: 40px;width: 70px;height:40px">pause_circle_filled</mat-icon>
+      <mat-icon *ngIf="!globalPlaySong" style="font-size: 40px;width: 70px;height:40px" matTooltip="Play">play_circle_filled</mat-icon>
+      <mat-icon *ngIf="globalPlaySong" style="font-size: 40px;width: 70px;height:40px" matTooltip="Pause">pause_circle_filled</mat-icon>
 
     </button>
 

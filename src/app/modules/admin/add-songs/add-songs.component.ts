@@ -48,7 +48,7 @@ export class AddSongsComponent {
       id:[''],
       created:[''],
       imageUrl:['',[Validators.required,Validators.pattern(REGEX.IMAGE)]],
-      mp3File:['',[Validators.required]],
+      mp3File:['',[Validators.required,Validators.pattern(REGEX.MP3)]],
       payment:[''],
       amount:['0']
     })
