@@ -12,13 +12,15 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import { MusicBarComponent } from './music-bar/music-bar.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component'; 
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { CookiesComponent } from './cookies/cookies.component'; 
 @NgModule({
   declarations: [
     NavbarComponent,
     EditProfileComponent,
     MusicBarComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    CookiesComponent
 
   ],
   imports: [

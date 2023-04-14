@@ -41,4 +41,7 @@ ngOnInit(): void {
   OnPrivacyPolicyClick(){
       this.router.navigate([PATHS.SHARED.PRIVACY_POLICY])
   }
+  OnCookiesClick(){
+    this.router.navigate([PATHS.SHARED.COOKIES])
+  }
 }

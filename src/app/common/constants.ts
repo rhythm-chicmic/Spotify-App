@@ -43,7 +43,8 @@ export const PARENT_PATHS = {
   },
   SHARED:{
     NAVBAR:'navbar',
-    PRIVACY_POLICY:'privacy-policy'
+    PRIVACY_POLICY:'privacy-policy',
+    COOKIES:'cookies'
   },
   ADMIN:{
     ADD_SONGS:'add-songs'
