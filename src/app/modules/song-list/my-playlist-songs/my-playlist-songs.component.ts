@@ -15,7 +15,7 @@ import { UserDetailsService } from 'src/app/core/services/user-details.service';
 })
 export class MyPlaylistSongsComponent implements OnInit{
   isHovering=false
-  globalPlaySong=true
+  globalPlaySong=false
   playlistPlayed=0
   songsList:any=[]
   playlistId!:string
@@ -43,8 +43,7 @@ export class MyPlaylistSongsComponent implements OnInit{
   ngOnInit(){
     this.spinner.show();
 
-   
-    
+  
 
 
 
@@ -110,6 +109,15 @@ export class MyPlaylistSongsComponent implements OnInit{
   }
   OnClickPlay(){
     this.globalPlaySong = !this.globalPlaySong
+    if(this.globalPlaySong){
+      this.addSongService.audio.play();
+      this.addSongService.isPlayed$.next(true)
+    }
+    else{
+      this.addSongService.audio.pause()
+      this.addSongService.isPlayed$.next(false)
+
+    }
   }
 
   PlaySong(url:string,index:number,songId:string,song:any){

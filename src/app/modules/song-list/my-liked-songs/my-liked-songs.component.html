@@ -12,8 +12,8 @@
        
             <p class="card-text">Total Songs - {{songsList.length}}</p>
             <div class="link d-flex" (click)="OnClickPlay()">
-              <mat-icon class="icon-size" *ngIf="globalPlaySong">play_circle_filled</mat-icon>
-              <mat-icon class="icon-size" *ngIf="!globalPlaySong"> pause_circle_filled</mat-icon>
+              <mat-icon class="icon-size" *ngIf="globalPlaySong"> pause_circle_filled</mat-icon>
+              <mat-icon class="icon-size" *ngIf="!globalPlaySong"> play_circle_filled</mat-icon>
              
             </div>
           </div>

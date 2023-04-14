@@ -17,7 +17,7 @@ export class MyLikedSongsComponent implements OnInit{
   songsList:any=[]
   IdList:any
   isPlayed=true
-  globalPlaySong=true
+  globalPlaySong=false
   // audio = new Audio
   imageUrl=IMAGES.LIKED_SONGS_BANNER_IMAGE
   Toast = Swal.mixin({
@@ -34,7 +34,8 @@ export class MyLikedSongsComponent implements OnInit{
   constructor(private userService:UserDetailsService,private mostPlayedSongService:MostPlayedSongsService,private spinner:NgxSpinnerService,private router:Router,private songLibService:SongsLibraryService,private addSongService:AddSongsService){}
 
   ngOnInit(): void {
-    
+
+   
 
 
     this.spinner.show();
@@ -91,6 +92,16 @@ export class MyLikedSongsComponent implements OnInit{
   }
   OnClickPlay(){
     this.globalPlaySong = !this.globalPlaySong
+    if(this.globalPlaySong){
+      this.addSongService.audio.play();
+      this.addSongService.isPlayed$.next(true)
+
+    }
+    else {
+      this.addSongService.audio.pause();
+      this.addSongService.isPlayed$.next(false)
+
+    }
   }
 
   PlaySong(url:string,index:number,songId:string,song:any){
