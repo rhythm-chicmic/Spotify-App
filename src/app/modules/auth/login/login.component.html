@@ -21,8 +21,11 @@
 
       <input type="text" id="email" class="client-info" formControlName="phoneNo">
       <label for="email">Phone No.</label>
-      <mat-error id="error" *ngIf="controls['phoneNo']?.errors?.['pattern'] && controls['phoneNo'].touched">* Enter
-        Valid Phone Number</mat-error>
+      <mat-error id="error" *ngIf="controls['phoneNo']?.errors?.['required'] && controls['phoneNo'].touched">
+      Phone No. is required
+    </mat-error>
+      <mat-error id="error" *ngIf="controls['phoneNo']?.errors?.['pattern'] ">
+        * first digit must be either 6,7,8,9</mat-error>
       <div id="sign-in-button"></div>
       <label id="captcha" *ngIf="alert">Fill the Captcha</label>
 
