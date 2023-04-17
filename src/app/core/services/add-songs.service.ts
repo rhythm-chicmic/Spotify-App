@@ -72,12 +72,16 @@ export class AddSongsService {
  }
 
  postAlbumDetails(data:any){
-  return this.httpService.post(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),data)
+  return this.httpService.post(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),data)
  }
 
  postAlbumSongs(data:any,albumId:any){
   const targetId={id:data}
-  return this.httpService.post(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+albumId+SONG_LIBRARY.SONG_ID+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),targetId)
+  return this.httpService.post(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'/'+albumId+SONG_LIBRARY.SONG_ID+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),targetId)
+ }
+
+ getAlbumDetails(){
+  return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
  }
 
 

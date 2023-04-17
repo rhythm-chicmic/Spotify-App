@@ -22,6 +22,7 @@ export class AddAlbumsComponent {
   selectedFile:any
   storagePath:string='/mp3'
   mp3Path!:string;
+  albumId!:string
   percentageVal!: Observable<number |null|undefined>;
 
   constructor(private addSongService:AddSongsService,private fb:FormBuilder,private storage:AngularFireStorage){
@@ -58,8 +59,9 @@ export class AddAlbumsComponent {
    songDetails[0].songType=this.addAlbum?.value?.songType
    
       this.openDropBox=true;
-      this.addSongService.postAlbumDetails(this.addAlbum.value).subscribe((res)=>{
+      this.addSongService.postAlbumDetails(this.addAlbum.value).subscribe((res:any)=>{
         console.log(res);
+        this.albumId=res.name
       });
     }
   }
@@ -105,7 +107,7 @@ export class AddAlbumsComponent {
             songDetails[0].id= songDetails[0]?.songName.slice(0,3)+songDetails[0].songType.slice(0,3)+songDetails[0]?.genre.slice(0,2)+songDetails[0]?.artistName.slice(0,4)
             this.addSongService.postAllSongs(songDetails[0]).subscribe((res:any)=>{
               console.log(res.name)
-              this.addSongService.postAlbumSongs(songDetails[0].id,res.name).subscribe((res)=>console.log(res))
+              this.addSongService.postAlbumSongs(songDetails[0].id,this.albumId).subscribe((res)=>console.log(res))
             })
 
           });
