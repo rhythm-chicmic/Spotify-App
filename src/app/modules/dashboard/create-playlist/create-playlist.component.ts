@@ -39,7 +39,7 @@ Toast = Swal.mixin({
     this.createPlaylistForm = this.fb.group({
       title:['',Validators.required],
       description:['',Validators.required],
-      imageUrl:['',[Validators.required,REGEX.IMAGE]],
+      imageUrl:['',[Validators.required,Validators.pattern(REGEX.IMAGE)]],
       createdAt:[''],
       songId:[''],
       playlistId:['']
