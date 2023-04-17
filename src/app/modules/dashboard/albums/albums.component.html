@@ -3,38 +3,19 @@
   </ngx-spinner>
  <div  >
     <div >
-      <div class="card m-2" style="width: 100%">
-          <div class="row g-0" >
-              <div class="col-md-4" >
-                  <img src=''   class="img-fluid rounded-start" />
-              </div>
-              <div class="col-md-8">
-                  <div class="card-body">
-                      <h5 class="card-title">Liked Songs</h5>
-                      <p class="card-text">
-                          Listen your Favorite music here, Add new Songs from our latest Hits.
-                         <span style="color:green"> Eat ,Sleep , Song Repeat</span>
-                      </p>
-                      <p class="card-text">
-                          <small class="text-muted">Last updated 3 mins ago</small>
-                      </p>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="card m-2" style="width:100%;" >
-          <div class="row g-0" >
+      <div class="card m-2" style="width:100%;" *ngFor="let album of albumsArray; let index =index">
+          <div class="row g-0" (click)="OnAlbumClick(index)">
               <div class="col-md-4">
-                  <img src=''   width="200px" class="img-fluid rounded-start" />
+                  <img src='https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'   width="200px" class="img-fluid rounded-start" />
               </div>
               <div class="col-md-8">
                   <div class="card-body">
-                      <h5 class="card-title">title</h5>
+                      <h5 class="card-title">{{album?.albumName}}</h5>
                       <p class="card-text">
-                         Description
+                         {{album?.artistName}}
                       </p>
                       <p class="card-text">
-                          <small class="text-muted">Created on 04/04/2014</small>
+                          <small class="text-muted">Created on {{album?.created|date}}</small>
                       </p>
                   </div>
               </div>

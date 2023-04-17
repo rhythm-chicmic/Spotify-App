@@ -40,7 +40,8 @@ export const PARENT_PATHS = {
       PLAYLISTS:'playlist/:id',
       PLAYLIST:'playlist',
       CREATE_PLAYLIST:'create_playlist',
-      ALBUMS:'albums'
+      ALBUMS:'albums',
+      ALBUMS_ID:'albums/:id'
   },
   SHARED:{
     NAVBAR:'navbar',
