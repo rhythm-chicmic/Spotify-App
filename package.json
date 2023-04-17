@@ -31,6 +31,7 @@
     "font-awesome": "^4.7.0",
     "ng-otp-input": "^1.8.5",
     "ngx-audio-player": "^11.0.4",
+    "ngx-file-drop": "^15.0.0",
     "ngx-spinner": "^15.0.1",
     "rxjs": "~7.8.0",
     "stripe-angular": "^1.9.3",

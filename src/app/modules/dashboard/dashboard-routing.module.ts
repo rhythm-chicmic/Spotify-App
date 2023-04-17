@@ -6,6 +6,7 @@ import { YourLibraryComponent } from './your-library/your-library.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CreatePlaylistComponent } from './create-playlist/create-playlist.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { AlbumsComponent } from './albums/albums.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:PATHS.MAIN.DASHBOARD,component:HomeComponent},
   {path:PATHS.MAIN.YOUR_LIBRARY,canActivate:[AuthGuard],component:YourLibraryComponent},
   {path:PATHS.MAIN.PROFILE,canActivate:[AuthGuard],component:UserProfileComponent},
-  {path:PATHS.MAIN.CREATE_PLAYLIST,canActivate:[AuthGuard],component:CreatePlaylistComponent}
+  {path:PATHS.MAIN.CREATE_PLAYLIST,canActivate:[AuthGuard],component:CreatePlaylistComponent},
+  {path:PATHS.MAIN.ALBUMS,component:AlbumsComponent}
 
 ];
 

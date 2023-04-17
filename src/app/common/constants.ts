@@ -39,7 +39,8 @@ export const PARENT_PATHS = {
       LIKED_SONGS:'liked-songs',
       PLAYLISTS:'playlist/:id',
       PLAYLIST:'playlist',
-      CREATE_PLAYLIST:'create_playlist'
+      CREATE_PLAYLIST:'create_playlist',
+      ALBUMS:'albums'
   },
   SHARED:{
     NAVBAR:'navbar',
@@ -63,7 +64,8 @@ export const APIS ={
   ALL_SONGS:{
     SONGS:'allSongs',
     MY_SONGS:'songsLibrary/',
-    ADD_TO_PLAYLIST:'playlists/'
+    ADD_TO_PLAYLIST:'playlists/',
+    ADD_TO_ALBUM:'albums/'
   },
   USER_PROFILE:{
     MY_PROFILE:'users/'
@@ -112,3 +114,5 @@ export const STRIPE_KEYS ={
   SECRET_KEY:'sk_test_51MvHaBSGq7tprvVChzZUHit3fnKEAiz2GfbFnUrsA3MRlxKy65rVGpXmlMoYps2J4eJGfUqLdZNwiF8fj0fxwM7i00T1M0wAWA',
   PUBLIC_KEY:'pk_test_51MvHaBSGq7tprvVCWj6hmCgOIw8a0O6UZ1iRI0rbzmKMmgAeFZ7FgbjCLHhJoE1QAOFoL4SVg8U19aPiOZVsnwt200efatgtzf'
 }
+
+export const SAD='-NTDcuakxBj6IR--0xUx'

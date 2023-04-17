@@ -58,6 +58,7 @@ export class AddSongsComponent {
 
     selectFile(event:any,path:string){
       this.selectedFile=event.target?.files[0]
+      console.log(this.selectedFile)
         this.storagePath=path
       this.upload();
   }

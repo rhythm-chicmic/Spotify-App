@@ -1,12 +1,11 @@
-<h2>Add Songs</h2>
-<form  >
+<h2>Add Album</h2>
+<form  [formGroup]="addAlbum" (ngSubmit)="OnAlbumCreate()">
 
 
     <!-- Text input -->
     <div class="form-outline mb-4">
       <input type="text" id="form6Example3" class="form-control" formControlName="albumName" />
       <label class="form-label" for="form6Example3">Album name</label>
-
     </div>
 
     <!-- Text input -->
@@ -30,26 +29,38 @@
 
     </div>
 
-      <!-- Mp3 File -->
-    <div class="form-outline mb-4">
-      <input type="file" id="form6Example6"   class="form-control" formControlName="mp3File"/>
-      <label class="form-label" for="form6Example6">Mp3 File</label>
-      
-    </div>
-
-  
-
-
-
-
-      <!-- Image File -->
-    <div class="form-outline mb-4">
-      <input type="file" id="form6Example6" class="form-control" formControlName="imageUrl" />
-      <label class="form-label" for="form6Example6">Cover Image</label>
-     
-
-    </div>
+    
+   
 
     <!-- Submit button -->
-    <button type="submit"  class="btn btn-primary btn-block mb-4">Add Song</button>
+    <button type="submit" [disabled]="addAlbum.invalid"  class="btn btn-primary btn-block mb-4">Add Album</button>
   </form>
+ <!-- Multiple files upload -->
+ <div class="center" *ngIf="openDropBox">
+  <ngx-file-drop [multiple]="true" accept="audio/*" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)"
+  (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+      <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+        Add Audio Files Here.
+        <button type="button" (click)="openFileSelector()">Browse Files</button>
+      </ng-template>
+  </ngx-file-drop>
+  <div class="upload-table">
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>Name</th>
+              </tr>
+          </thead>
+          <tbody class="upload-name-style">
+              <tr *ngFor="let item of musicData; let i=index">
+                  <td><strong>{{ item.name}}</strong></td>
+              </tr>
+              <div *ngIf="percentageVal | async as percentage">
+                  Progress: {{ percentage | number }}%
+                  <mat-progress-bar mode="determinate" value="{{ percentage}}"></mat-progress-bar>
+            
+                </div>
+          </tbody>
+      </table>
+  </div>
+</div>

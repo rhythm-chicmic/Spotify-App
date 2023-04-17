@@ -1,0 +1,17 @@
+
+.col-md-4{
+    width: 300px;
+}
+.img-fluid{
+    object-fit: cover;
+    height: 160px;
+    width: 300px;
+}
+.card{
+    cursor: pointer;
+    transition:transform 0.25s ease;
+}
+.card:hover {
+    background-color:#ebf6f5;
+    transform:scale(1.01);
+}

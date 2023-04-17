@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { APIS, STORAGE_KEYS } from 'src/app/common/constants';
+import { APIS, SONG_LIBRARY, STORAGE_KEYS } from 'src/app/common/constants';
 import { BehaviorSubject } from 'rxjs';
 import { MostPlayedSongsService } from './most-played-songs.service';
 import Swal from 'sweetalert2'
@@ -70,5 +70,15 @@ export class AddSongsService {
  postAllSongs(data:any){
   return this.httpService.post(this.path+APIS.ALL_SONGS.SONGS+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),data)
  }
+
+ postAlbumDetails(data:any){
+  return this.httpService.post(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),data)
+ }
+
+ postAlbumSongs(data:any,albumId:any){
+  const targetId={id:data}
+  return this.httpService.post(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+albumId+SONG_LIBRARY.SONG_ID+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),targetId)
+ }
+
 
 }

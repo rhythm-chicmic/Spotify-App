@@ -13,6 +13,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { SearchPipe } from 'src/app/common/pipes/search.pipe';
 import { SharedModule } from '../shared/shared.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { AlbumsComponent } from './albums/albums.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -20,7 +21,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
     UserProfileComponent,
     CreatePlaylistComponent,
-    SearchPipe
+    SearchPipe,
+    AlbumsComponent
  
   ],
   imports: [

@@ -5,7 +5,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AddAlbumsComponent } from './add-albums/add-albums.component';
-
+import { NgxFileDropModule } from 'ngx-file-drop';
 @NgModule({
   declarations: [
     AddSongsComponent,
@@ -16,6 +16,7 @@ import { AddAlbumsComponent } from './add-albums/add-albums.component';
     MatProgressBarModule,
     AdminRoutingModule,
     ReactiveFormsModule,
+    NgxFileDropModule,
     FormsModule
   ]
 })

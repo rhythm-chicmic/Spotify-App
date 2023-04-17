@@ -6,10 +6,12 @@ import { MyPlaylistSongsComponent } from './my-playlist-songs/my-playlist-songs.
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button'; 
 import { NgxSpinnerModule } from 'ngx-spinner';
+
 @NgModule({
   declarations: [
     MyLikedSongsComponent,
-    MyPlaylistSongsComponent
+    MyPlaylistSongsComponent,
+
   ],
   imports: [
     CommonModule,

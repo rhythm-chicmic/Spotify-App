@@ -44,4 +44,7 @@ ngOnInit(): void {
   OnCookiesClick(){
     this.router.navigate([PATHS.SHARED.COOKIES])
   }
+  OnAlbumClick(){
+    this.router.navigate([PATHS.MAIN.ALBUMS])
+  }
 }
