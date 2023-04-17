@@ -19,6 +19,7 @@ export class PayMoneyComponent implements OnInit{
   buySong:any;
   transactionResult:any;
   songId!:string
+  stripeCard:any
   amount!:string
   Toast = Swal.mixin({
     toast: true,
@@ -101,37 +102,42 @@ export class PayMoneyComponent implements OnInit{
 
 
 
-  onStripeInvalid( error: Error ){
-   
+  onStripeInvalid( error: any ){
+    // console.log(error)
     this.Toast.fire({
       icon: 'error',
-      title: 'Invalid Number'
+      title: error.message
     })
   }
 
-  onStripeError( error: Error ){
-    console.error('Stripe error', error)
+  onStripeError( error: any ){
+    // console.log('Stripe error', error)
     this.Toast.fire({
       icon: 'error',
-      title: 'Transaction Failed'
+      title: error.message
     })
     
   }
-
 
 
   setStripeToken( token: stripe.Token ){
-    
+  
     this.transactionResult=token;
     this.Toast.fire({
         icon:'success',
         title:'Amount paid Successfully'
     })
+    console.log(this.transactionResult)
     this.OnBuying();
 
+  }
+  setPaymentMethod( token: stripe.paymentMethod.PaymentMethod ){
+    console.log('Stripe Payment Method', token)
   }
 
   setStripeSource( source: stripe.Source ){
     console.log('Stripe Source', source)
   }
+
+  
 }
