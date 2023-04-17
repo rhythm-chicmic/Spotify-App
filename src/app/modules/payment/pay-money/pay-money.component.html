@@ -23,7 +23,7 @@
                 <stripe-card class='form-control' size='35' type='text' #stripeCard 
                 (catch) = "onStripeError($event)"
                 [(complete)] = "cardDetailsFilledOut"
-                (invalid) = "onStripeInvalid($event)"
+                (invalid) = "invalidError"
                 (cardMounted) = "cardCaptureReady = true"
                 (tokenChange) = "setStripeToken($event)"
                 (sourceChange) = "setStripeSource($event)"

@@ -6,7 +6,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { SongsLibraryService } from 'src/app/core/services/songs-library.service';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
-import { PATHS } from 'src/app/common/constants';
+import { PATHS, REGEX } from 'src/app/common/constants';
 import { EventTrackService } from 'src/app/core/services/event-track.service';
 @Component({
   selector: 'app-create-playlist',
@@ -39,7 +39,7 @@ Toast = Swal.mixin({
     this.createPlaylistForm = this.fb.group({
       title:['',Validators.required],
       description:['',Validators.required],
-      imageUrl:['',Validators.required],
+      imageUrl:['',[Validators.required,REGEX.IMAGE]],
       createdAt:[''],
       songId:[''],
       playlistId:['']

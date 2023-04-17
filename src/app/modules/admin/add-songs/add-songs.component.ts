@@ -102,7 +102,7 @@ export class AddSongsComponent {
         this.addSongForm.value.mp3File=this.mp3Path
   
 
-        this.addSongForm.value.id = this.addSongForm?.value?.songName.slice(0,2)+this.addSongForm?.value?.songType.slice(0,2)+this.addSongForm?.value?.genre.slice(0,2)+this.addSongForm?.value?.artistName.slice(0,2)
+        this.addSongForm.value.id = this.addSongForm?.value?.songName.slice(0,3)+this.addSongForm?.value?.songType.slice(0,3)+this.addSongForm?.value?.genre.slice(0,2)+this.addSongForm?.value?.artistName.slice(0,4)
 
         this.addSongService.postAllSongs(this.addSongForm.value).subscribe(()=>{
       

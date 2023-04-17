@@ -106,7 +106,7 @@ export class PayMoneyComponent implements OnInit{
     // console.log(error)
     this.Toast.fire({
       icon: 'error',
-      title: error.message
+      title: 'Invalid card'
     })
   }
 

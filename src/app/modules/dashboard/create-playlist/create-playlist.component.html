@@ -25,6 +25,8 @@
       </ng-container>
   
         </div>
+    <label class="error"  *ngIf="controls['imageUrl']?.errors?.['pattern']">File must be .png,jpg,jpeg</label>
+
     </div>
 
 

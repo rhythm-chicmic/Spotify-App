@@ -47,7 +47,8 @@ export const PARENT_PATHS = {
     COOKIES:'cookies'
   },
   ADMIN:{
-    ADD_SONGS:'add-songs'
+    ADD_SONGS:'add-songs',
+    ADD_ALBUMS:'add-albums'
   },
   PAYMENT:{
     PAY_MONEY:'pay-money',
