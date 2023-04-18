@@ -49,18 +49,26 @@ export class UserDetailsService {
   }
   isLoggedIn$ = new BehaviorSubject(localStorage.getItem(STORAGE_KEYS.TOKEN)?true:false);
  
+  // post user details
+
   postUserDetails(data:signUpModel){
     return this.httpService.post(this.path+APIS.AUTH.SIGNUP+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),data)
   }
+
+// get user details
   getUserDetails(){
     this.isLoggedIn$.next(true);
     return this.httpService.get(this.path+APIS.AUTH.SIGNUP+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
   }
 
+
+// get my profile details
   getMyProfile(){
     this.isLoggedIn$.next(true);
     return this.httpService.get(this.path+APIS.USER_PROFILE.MY_PROFILE+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
   }
+
+// update my profile 
 
   putUserDetails(data:any,documentId:any){
 

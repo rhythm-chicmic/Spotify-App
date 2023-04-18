@@ -31,8 +31,8 @@ export class AddSongsService {
 })
   constructor(private httpService:HttpClient, private mostPlayedSongService: MostPlayedSongsService) {
    this.mostPlayedSongService.getMostPlayedSong().subscribe((res:any)=>{
-      if(res){
-         res = Object.values(res);
+      if(res){                      /// method is called to set the default song when the user login again 
+         res = Object.values(res);  // based upon the most played song before log out 
          this.frequentPlayedSongs = res;
          const song = this.frequentPlayedSongs.sort((a: any, b: any) =>
            this.frequentPlayedSongs.filter((v: any) => v === a).length
@@ -44,8 +44,8 @@ export class AddSongsService {
               if (value.id === song?.songId) {
                 this.myFavouriteSong = value?.mp3File
                this.audio.src=this.myFavouriteSong
-                this.songImage$.next(value?.imageUrl);
-                this.songName$.next(value?.songName);
+                this.songImage$.next(value?.imageUrl);  // setting the songImg
+                this.songName$.next(value?.songName);   // setting the songName
              
               }
             })
@@ -63,26 +63,41 @@ export class AddSongsService {
 
  
 
+
+    // geting all songs
  getAllSongs(){
      
     return this.httpService.get(this.path+APIS.ALL_SONGS.SONGS+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
  }
+
+
+// posting all songs to the songList folder
+
  postAllSongs(data:any){
   return this.httpService.post(this.path+APIS.ALL_SONGS.SONGS+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),data)
  }
 
+
+// posting basic album details 
  postAlbumDetails(data:any){
   return this.httpService.post(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),data)
  }
+
+// posting songs in the album in songs subObject
+
 
  postAlbumSongs(data:any,albumId:any){
   const targetId={id:data}
   return this.httpService.post(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'/'+albumId+SONG_LIBRARY.SONG_ID+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN),targetId)
  }
 
+// get album details
+
  getAlbumDetails(){
   return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
  }
+
+// Get Particular album by Id, mainly used in activated route
 
  getAlbumById(documentId:string){
   return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'/'+documentId+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN));

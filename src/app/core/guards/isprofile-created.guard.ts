@@ -15,7 +15,7 @@ export class IsprofileCreatedGuard implements CanActivate {
 
 
 
-  canActivate(){
+  canActivate(){  // checking if the data is present in localStorage 
 
       if(localStorage.getItem(STORAGE_KEYS.USER_PROFILE)==='True' || !localStorage.getItem(STORAGE_KEYS.TOKEN)){
         
