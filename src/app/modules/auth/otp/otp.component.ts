@@ -14,6 +14,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class OtpComponent implements OnInit{
   otp!:string;
   auth :any
+  isDisable=true
   Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -44,8 +45,12 @@ export class OtpComponent implements OnInit{
       this.verify = JSON.parse(localStorage.getItem(STORAGE_KEYS.VERIFICATION_ID) || '{}');
   }
   onOtpChange(otp: string) {
+
+if(otp.length===6){
+  this.isDisable=false;
     this.otp = otp;
   }
+}
 
   handleClick() {
   

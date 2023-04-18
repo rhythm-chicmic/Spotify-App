@@ -27,7 +27,7 @@ export class AlbumSongsComponent implements OnInit {
 
     })
     this.addSongService.getAlbumById(this.routeId).subscribe((res) => { // get specific album by id
-                                                                        // getting from activated route
+      // getting from activated route
       this.displayData = res;
 
       this.idList = Object.values(res)[5]
@@ -38,8 +38,8 @@ export class AlbumSongsComponent implements OnInit {
 
     this.addSongService?.getAllSongs()?.subscribe((res: any) => { // we got songId from album list
       this.allSongsList = Object.values(res)                      // now traversing the allSongsList to
-                                                                  // filter out the songs that are present
-                                                                  // in the album
+      // filter out the songs that are present
+      // in the album
       this.song()
     })
   }
@@ -58,7 +58,7 @@ export class AlbumSongsComponent implements OnInit {
     this.songsList[index].isHovering = false;
   }
   onMouseOver(index: number) {                   // highLighting the song on hover
-    this.songsList[index].isHovering = true;  
+    this.songsList[index].isHovering = true;
   }
   OnClickPlay() {                               // Play music on clicking the play button and toggle play 
     this.globalPlaySong = !this.globalPlaySong  // and pause button
@@ -75,7 +75,7 @@ export class AlbumSongsComponent implements OnInit {
 
 
   PlaySong(url: string, index: number, songId: string, song: any) { // this passes songId and mp3 url
-                                                              // to set audio player to play the song 
+    // to set audio player to play the song 
     if (!this.addSongService.isPlayed$.getValue()) {          // and rest are similar functionality as that of
       this.songsList[index].isPlayed = true;                  // onClickPlay() function
       this.addSongService?.isPlayed$?.next(true);
