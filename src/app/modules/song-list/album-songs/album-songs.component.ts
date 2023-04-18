@@ -96,7 +96,7 @@ export class AlbumSongsComponent implements OnInit {
     else {
 
       this.songsList[index].isPlayed = false;
-
+      this.addSongService.isPlayed$.next(true)
       this.addSongService.audio.src = url;
       this.addSongService?.audio?.load()
       this.addSongService?.audio?.play();

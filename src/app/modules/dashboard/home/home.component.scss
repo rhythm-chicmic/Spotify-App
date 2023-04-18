@@ -42,11 +42,20 @@
  .search-div{
   justify-content: end;
   display: flex;
+ 
  }
 
  #search-icon{
   width: 20px;
+
  }
  .group-item:hover{
   background-color: #acffac;
+ }
+
+ #song-type{
+  width: 10%;
+ }
+ #search-input{
+  border-color: purple;
  }

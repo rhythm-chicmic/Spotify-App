@@ -153,6 +153,7 @@ export class MyPlaylistSongsComponent implements OnInit{
     this.addSongService?.audio?.play();
     this.addSongService?.songImage$?.next(song?.imageUrl);
     this.addSongService?.songName$?.next(song?.songName);
+    this.addSongService.isPlayed$.next(true)
     setTimeout(() => {
       this.eventService?.postPlaylistTrack(this.playlistId)?.subscribe(()=>{
  

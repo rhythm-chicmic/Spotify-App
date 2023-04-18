@@ -12,10 +12,10 @@
         <th scope="col">Artist Name</th>
         <th scope="col">Song Name</th>
         <th scope="col">Genre</th>
-        <th scope="col">Song Type</th>
+        <th scope="col" id="song-type">Song Type</th>
         <th cope="col">
           <div class="search-div">
-            <mat-icon  matTooltip="Search"> search</mat-icon><input placeholder="Search Song Name"  [(ngModel)]="searchTerm" (input)="search(searchTerm)" type="text">
+            <mat-icon  matTooltip="Search">search</mat-icon><input id="search-input" placeholder="Search Song Name"  [(ngModel)]="searchTerm" (input)="search(searchTerm)" type="text">
           </div>
         </th>
         <th cope="col"></th>

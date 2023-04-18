@@ -30,8 +30,8 @@ export class MusicBarComponent implements OnInit {
   ngOnInit(): void {
 
     this.allSongsService?.isPlayed$?.subscribe((res) => {   // this isPlayed$ is an Observable which 
-                                  // checks if the song is Playing or not then it set the local variable to
-      this.globalPlaySong = res; // True/False
+                                              // checks if the song is Playing or not then it set the local variable to
+      this.globalPlaySong = res;              // True/False
 
       if (res === true) {
         this.showing = true;

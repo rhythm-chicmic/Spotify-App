@@ -272,6 +272,7 @@ export class HomeComponent implements OnInit {
 
     }
     else {
+      this.allSongService.isPlayed$.next(true)
     this.allSongService.audio.src=url
     this.allSongService?.audio.play();
     this.allSongService?.songImage$.next(playsong?.imageUrl);
