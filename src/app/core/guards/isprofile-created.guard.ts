@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {  CanActivate, Router } from '@angular/router';
 
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
 import { UserDetailsService } from '../services/user-details.service';
-import Swal from 'sweetalert2'
+
 @Injectable({
   providedIn: 'root'
 })

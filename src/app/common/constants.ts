@@ -7,7 +7,7 @@ export const REGEX = {
     NUMBER_GREATER_THAN_0_OR_EQUAL_TO_ZERO: /^[0-9]*$/,
     ALPHA_NUMERIC: /^(?=.*[a-zA-Z])(?=.*[0-9])[A-Za-z0-9]+$/,
     ADDRESS: /^[a-zA-Z0-9\s,.'-]{3,}$/,
-    NAME: /^[A-Za-z\s]{1,}[\.]{0,1}[A-Za-z\s]{0,}$/,
+    NAME: /^[A-Za-z]{1,}[\.]{0,1}[A-Za-z]{0,}$/, // whiteSpaces
     DOB: /[A-Z][a-z]{2}\s[A-Z][a-z]{2}\s\d{2}\s\d{4}\s\d{2}:\d{2}:\d{2}\sGMT[+-]\d{4}\s\(\w+\s\w+\s\w+\)/,
     IMAGE:/([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif|.jpeg|.webp)$/,
     MP3:/(.*\.mp3)/

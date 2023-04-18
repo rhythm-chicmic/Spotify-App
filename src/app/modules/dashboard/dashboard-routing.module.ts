@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import {  NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PATHS } from 'src/app/common/constants';
 import { HomeComponent } from './home/home.component';
@@ -7,7 +7,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { CreatePlaylistComponent } from './create-playlist/create-playlist.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
 import { AlbumsComponent } from './albums/albums.component';
-import { AlbumSongsComponent } from '../song-list/album-songs/album-songs.component';
+
 
 
 const routes: Routes = [

@@ -7,7 +7,7 @@ import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { Router } from '@angular/router';
 import { PATHS } from 'src/app/common/constants';
 
-var songDetails=[
+ const songDetails=[
   {artistName:'11',created:'',genre:'',id:'',mp3File:'',payment:'No',songName:'',songType:'',imageUrl:''}
 ]
 
@@ -20,9 +20,9 @@ export class AddAlbumsComponent {
   addAlbum!:FormGroup
   public files: any[] = [];
   musicData:any=[];
-  openDropBox:boolean=false;
+  openDropBox=false;
   selectedFile:any
-  storagePath:string='/mp3'
+  storagePath='/mp3'
   mp3Path!:string;
   albumId!:string
   percentageVal!: Observable<number |null|undefined>;
@@ -108,7 +108,7 @@ export class AddAlbumsComponent {
             songDetails[0].mp3File=this.mp3Path
             songDetails[0].songName=file.name
             songDetails[0].id= songDetails[0]?.songName.slice(0,3)+songDetails[0].songType.slice(0,3)+songDetails[0]?.genre.slice(0,2)+songDetails[0]?.artistName.slice(0,4)
-            this.addSongService.postAllSongs(songDetails[0]).subscribe((res:any)=>{
+            this.addSongService.postAllSongs(songDetails[0]).subscribe(()=>{
               // console.log(res.name)
               this.addSongService.postAlbumSongs(songDetails[0].id,this.albumId).subscribe((res)=>console.log(res))
             })

@@ -1,4 +1,4 @@
-import { Component, OnInit,OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { STORAGE_KEYS } from 'src/app/common/constants';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';

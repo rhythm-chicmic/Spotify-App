@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import 'firebase/database'
-import { UserDetailsService } from './core/services/user-details.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,8 +9,7 @@ import { UserDetailsService } from './core/services/user-details.service';
 })
 export class AppComponent {
   title = 'spotifyClone';
-  // isLogin:boolean=false;
-  constructor(private userService:UserDetailsService){}
+
  
  
 }

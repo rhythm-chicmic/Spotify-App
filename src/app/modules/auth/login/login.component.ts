@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit{
   ngOnInit(){
   this.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
     'size': 'normal',
-    'callback': (response:any) => {
+    'callback': () => {
   
       this.flag=true;
     }

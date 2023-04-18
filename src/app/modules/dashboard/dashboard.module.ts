@@ -15,11 +15,12 @@ import { SharedModule } from '../shared/shared.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AlbumsComponent } from './albums/albums.component';
+
 @NgModule({
   declarations: [
     HomeComponent,
     YourLibraryComponent,
-
+    
     UserProfileComponent,
     CreatePlaylistComponent,
     SearchPipe,

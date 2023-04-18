@@ -103,7 +103,7 @@ export class PayMoneyComponent implements OnInit{
 
 
   onStripeInvalid( error: any ){
-    // console.log(error)
+    console.log(error)
     this.Toast.fire({
       icon: 'error',
       title: 'Invalid card'

@@ -5,7 +5,7 @@ import { APIS, SONG_LIBRARY, STORAGE_KEYS } from 'src/app/common/constants';
 import { BehaviorSubject } from 'rxjs';
 import { MostPlayedSongsService } from './most-played-songs.service';
 import Swal from 'sweetalert2'
-import { UserDetailsService } from './user-details.service';
+
 @Injectable({providedIn:'root'})
 export class AddSongsService {
  private path= environment.url

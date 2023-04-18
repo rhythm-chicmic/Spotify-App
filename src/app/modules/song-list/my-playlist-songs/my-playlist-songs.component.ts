@@ -50,7 +50,7 @@ export class MyPlaylistSongsComponent implements OnInit{
     this.activeRoute?.params?.subscribe((res)=>{
       this.routeId=res['id']      //Route Id is sent to Firebase Api
     })
-    this.songLibraryService?.getPlaylistById(this.routeId).subscribe((res:any)=>{
+    this.songLibraryService?.getPlaylistById(this.routeId).subscribe((res:any)=>{ // GET method for getting playlists
      this.displayData=res
      this.playlistId= res.playlistId
       this.IdList=Object.values(res)[4]
@@ -82,7 +82,7 @@ export class MyPlaylistSongsComponent implements OnInit{
     this.router.navigate([PATHS.AUTH.LOGIN])
     }
     )
-    this.addSongService?.getAllSongs()?.subscribe((res:any)=>{
+    this.addSongService?.getAllSongs()?.subscribe((res:any)=>{  //GET method for fetching all songs
       this.allSongsList=Object.values(res)
     this.spinner.hide();
 
@@ -90,8 +90,8 @@ export class MyPlaylistSongsComponent implements OnInit{
     })
   }
 
-  song(){
-    for(const idlist of this.IdList){
+  song(){                                              // filtering songs, to get the specific songs 
+    for(const idlist of this.IdList){                 // present in the playlist
       for(const allsongs of this.allSongsList){
         if(idlist.id===allsongs.id){
           this.songsList.push(allsongs);
@@ -101,14 +101,14 @@ export class MyPlaylistSongsComponent implements OnInit{
     
   }
 
-  onMouseLeave(index:number){
+  onMouseLeave(index:number){                      // De-highLighting the hovered song
     this.songsList[index].isHovering=false;
   }
-  onMouseOver(index:number){ 
+  onMouseOver(index:number){                       // highLighting the hovered song
     this.songsList[index].isHovering=true;
   }
-  OnClickPlay(){
-    this.globalPlaySong = !this.globalPlaySong
+  OnClickPlay(){                                    // Play button is clicked which will play the active song     
+    this.globalPlaySong = !this.globalPlaySong      // url present in 'audio.src'
     if(this.globalPlaySong){
       this.addSongService.audio.play();
       this.addSongService.isPlayed$.next(true)
@@ -120,10 +120,10 @@ export class MyPlaylistSongsComponent implements OnInit{
     }
   }
 
-  PlaySong(url:string,index:number,songId:string,song:any){
-
-    if(!this.addSongService.isPlayed$.getValue()){
-    this.songsList[index].isPlayed=true;
+  PlaySong(url:string,index:number,songId:string,song:any){    // This will play the song on which
+                                                               // we click, which takes mp3 url and songID  
+    if(!this.addSongService.isPlayed$.getValue()){            // to store it in the global this.audio file
+    this.songsList[index].isPlayed=true;                      // to play/pause song
       this.addSongService?.isPlayed$?.next(true);
 
     this.addSongService.audio.src =url;

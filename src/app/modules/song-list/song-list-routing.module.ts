@@ -5,7 +5,6 @@ import { MyLikedSongsComponent } from './my-liked-songs/my-liked-songs.component
 import { MyPlaylistSongsComponent } from './my-playlist-songs/my-playlist-songs.component';
 import { YourLibraryComponent } from '../dashboard/your-library/your-library.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
-import { AlbumsComponent } from '../dashboard/albums/albums.component';
 import { AlbumSongsComponent } from './album-songs/album-songs.component';
 
 

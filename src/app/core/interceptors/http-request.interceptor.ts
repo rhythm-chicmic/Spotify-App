@@ -4,10 +4,9 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
-  HttpResponse,
-  HttpErrorResponse
+
 } from '@angular/common/http';
-import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import  Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { PATHS } from 'src/app/common/constants';
@@ -42,8 +41,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
             title: 'Session Expired'
           })
           this.router.navigate([PATHS.AUTH.LOGIN])
-        } else {
-        }
+        } 
         return of(error)
       }),
     )

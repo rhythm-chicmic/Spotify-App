@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class WordTruncatePipe implements PipeTransform {
 
-  transform(value: any, ...args: any[]): any {
+  transform(value: string): any {
 
     if(value.length>28){
       value = value.slice(0,28)
