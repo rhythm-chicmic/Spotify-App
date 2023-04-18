@@ -79,6 +79,9 @@ export class HomeComponent implements OnInit {
     if (localStorage.getItem(STORAGE_KEYS.TOKEN)) {
       this.token = false;
     }
+    setTimeout(() => {
+      this.spinner.hide()
+    }, 3000);
 
   }
   search(value: string): void {

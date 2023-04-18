@@ -4,9 +4,10 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpResponse,
 
 } from '@angular/common/http';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, of, tap, throwError } from 'rxjs';
 import  Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { PATHS } from 'src/app/common/constants';
@@ -33,17 +34,14 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     
 
     return next.handle(request).pipe(
-      catchError((error: any) => {
-        
-        if (error.status === 401 || error.status === 0) {
-          this.Toast.fire({
-            icon: 'error',
-            title: 'Session Expired'
-          })
-          this.router.navigate([PATHS.AUTH.LOGIN])
-        } 
-        return of(error)
-      }),
+      tap((event:HttpEvent<any>)=>{
+        if(event instanceof HttpResponse && event.status===401){
+            Swal.fire({
+              icon:'error',
+              title:'Session Expired'
+            })
+        }
+      })
     )
   }
 }

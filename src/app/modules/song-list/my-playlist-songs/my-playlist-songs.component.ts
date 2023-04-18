@@ -146,9 +146,8 @@ export class MyPlaylistSongsComponent implements OnInit{
     }, 30000);
   }
   else {
-    // this.addSongService.isPlayed$.next(false);
+
     this.songsList[index].isPlayed=false;
-    // this.addSongService.audio.pause()
     this.addSongService.audio.src =url;
     this.addSongService?.audio?.load()
     this.addSongService?.audio?.play();
@@ -164,9 +163,9 @@ export class MyPlaylistSongsComponent implements OnInit{
       this.mostPlayedSongs?.postMostPlayedSong(songId)?.subscribe()
     }, 30000);
   }
-  }
-  StopSong(index:number){
-    if(this.addSongService?.isPlayed$?.getValue()){
+  } 
+  StopSong(index:number){                             // stop on playing song
+    if(this.addSongService?.isPlayed$?.getValue()){   // function is not used 
     this.songsList[index].isPlayed=false;
     this.audio.pause();
     this.addSongService?.isPlayed$?.next(false);

@@ -44,7 +44,7 @@ export class EditProfileComponent {
     this.initaddProfileFormForm();
   }
 
-  initaddProfileFormForm(){
+  initaddProfileFormForm(){                 // Form is declared in this component 
     this.addProfileForm=this.fb.group({
       firstName:[this.myProfile[0]?.firstName,[Validators.required,Validators.pattern(REGEX.NAME)]],
       lastName:[this.myProfile[0]?.lastName,[Validators.required,Validators.pattern(REGEX.NAME)]],
