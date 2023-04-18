@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { APIS, SONG_LIBRARY, STORAGE_KEYS } from 'src/app/common/constants';
+import { ADMIN_TOKEN_ID, APIS, SONG_LIBRARY, STORAGE_KEYS } from 'src/app/common/constants';
 import { BehaviorSubject } from 'rxjs';
 import { MostPlayedSongsService } from './most-played-songs.service';
 import Swal from 'sweetalert2'
@@ -94,13 +94,13 @@ export class AddSongsService {
 // get album details
 
  getAlbumDetails(){
-  return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
+  return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+ADMIN_TOKEN_ID+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
  }
 
 // Get Particular album by Id, mainly used in activated route
 
  getAlbumById(documentId:string){
-  return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'/'+documentId+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN));
+  return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+ADMIN_TOKEN_ID+'/'+documentId+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN));
  }
 
 }

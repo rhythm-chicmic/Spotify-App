@@ -118,3 +118,5 @@ export const STRIPE_KEYS ={
 }
 
 export const SAD='-NTDcuakxBj6IR--0xUx'
+
+export const ADMIN_TOKEN_ID='ooemnYMf6vXSlkSuFhH9bc95QnD3'

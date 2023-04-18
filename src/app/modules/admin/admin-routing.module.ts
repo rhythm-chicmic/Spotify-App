@@ -10,7 +10,7 @@ import { AddAlbumsComponent } from './add-albums/add-albums.component';
 
 const routes: Routes = [
     {path:PATHS.ADMIN.ADD_SONGS,canActivate:[IsAdminGuard],component:AddSongsComponent},
-    {path:PATHS.ADMIN.ADD_ALBUMS,component:AddAlbumsComponent}
+    {path:PATHS.ADMIN.ADD_ALBUMS,canActivate:[IsAdminGuard],component:AddAlbumsComponent}
 ];
 
 @NgModule({
