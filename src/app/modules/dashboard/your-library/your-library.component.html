@@ -25,7 +25,7 @@
       <div class="card m-2" style="width:100%;" *ngFor="let playlist of myPlaylists; let index =index">
           <div class="row g-0" (click)="OnMyPlaylistClick(index)">
               <div class="col-md-4">
-                  <img [src]="playlist.imageUrl"   width="200px" class="img-fluid rounded-start" />
+                  <img [src]="playlist?.imageUrl"   width="200px" class="img-fluid rounded-start" />
               </div>
               <div class="col-md-8">
                   <div class="card-body">
@@ -34,7 +34,7 @@
                           {{playlist?.description}}
                       </p>
                       <p class="card-text">
-                          <small class="text-muted">Created on {{playlist.createdAt|date}}</small>
+                          <small class="text-muted">Created on {{playlist?.createdAt|date}}</small>
                       </p>
                   </div>
               </div>

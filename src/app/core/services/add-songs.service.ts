@@ -64,7 +64,7 @@ export class AddSongsService {
  
 
 
-    // geting all songs
+    // getting all songs
  getAllSongs(){
      
     return this.httpService.get(this.path+APIS.ALL_SONGS.SONGS+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))

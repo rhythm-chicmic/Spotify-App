@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PATHS } from 'src/app/common/constants';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
-
+import { IMAGES } from 'src/app/common/constants';
 @Component({
   selector: 'app-albums',
   templateUrl: './albums.component.html',
@@ -11,6 +11,7 @@ import { AddSongsService } from 'src/app/core/services/add-songs.service';
 export class AlbumsComponent implements OnInit{
   albumsArray:any[]=[]
   albumsRouteId:any[]=[]
+  defaultImage=IMAGES.ALBUM_IMAGE
   constructor(private addSongService:AddSongsService,private router:Router){}
 
   ngOnInit(): void {

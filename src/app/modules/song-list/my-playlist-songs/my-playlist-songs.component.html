@@ -1,46 +1,45 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true">
-  <p style="color: white" > Loading... </p>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
 </ngx-spinner>
 <div class="container">
-    <div class="row">
-      <div class="col-12 col-sm-8 col-md-6 col-lg-4">
-        <div class="card" >
-           <img class="card-img" [src]="displayData?.imageUrl"  alt="Bologna">
-          <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
-            <h4 class="card-title">{{displayData?.title}}</h4>
-            <h6 class="card-subtitle mb-2">Played {{playlistPlayed}} Times </h6>
-            <p class="card-text">Total Songs - {{songsList?.length}}</p>
-            <div class="link d-flex" (click)="OnClickPlay()">
-              <mat-icon class="icon-size" *ngIf="globalPlaySong">pause_circle_filled</mat-icon>
-              <mat-icon class="icon-size" *ngIf="!globalPlaySong"> play_circle_filled</mat-icon>
-            </div>
+  <div class="row">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+      <div class="card">
+        <img class="card-img" [src]="displayData?.imageUrl" alt="Bologna">
+        <div class="card-img-overlay text-white d-flex flex-column justify-content-center">
+          <h4 class="card-title">{{displayData?.title}}</h4>
+          <h6 class="card-subtitle mb-2">Played {{playlistPlayed}} Times </h6>
+          <p class="card-text">Total Songs - {{songsList?.length}}</p>
+          <div class="link d-flex" (click)="OnClickPlay()">
+            <mat-icon class="icon-size" *ngIf="globalPlaySong">pause_circle_filled</mat-icon>
+            <mat-icon class="icon-size" *ngIf="!globalPlaySong"> play_circle_filled</mat-icon>
           </div>
-
         </div>
+
       </div>
     </div>
   </div>
+</div>
 
-  <table class="table ">
-    <thead>
-      <tr >
-        <th scope="col">Song Name</th>
-        <th scope="col">Artist Name</th>
-        <th scope="col">Genre</th>
-        <th>&nbsp;&nbsp;&nbsp;</th>
-        <th>&nbsp;&nbsp;&nbsp;</th>
-        
-      </tr>
-    </thead>
-    <tbody  >
-      <tr class="group-item"  *ngFor="let song of songsList; let i =index" (mouseover)="onMouseOver(i)" (mouseleave)="onMouseLeave(i)"  (click)="PlaySong(song?.mp3File,i,song?.id,song)">
-       
-        <td style="width:39%">{{song?.songName}}</td>
-        <td  style="width:25%">{{song?.artistName}}</td>
-        <td  style="width:20%">{{song?.genre}}</td>
-        <td style="width:15%"></td>
-      </tr>
-    </tbody>
-  </table> 
+<table class="table ">
+  <thead>
+    <tr>
+      <th scope="col">Song Name</th>
+      <th scope="col">Artist Name</th>
+      <th scope="col">Genre</th>
+      <th>&nbsp;&nbsp;&nbsp;</th>
+      <th>&nbsp;&nbsp;&nbsp;</th>
 
-  
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="group-item" *ngFor="let song of songsList; let i =index" (mouseover)="onMouseOver(i)"
+      (mouseleave)="onMouseLeave(i)" (click)="PlaySong(song?.mp3File,i,song?.id,song)">
+
+      <td style="width:39%">{{song?.songName}}</td>
+      <td style="width:25%">{{song?.artistName}}</td>
+      <td style="width:20%">{{song?.genre}}</td>
+      <td style="width:15%"></td>
+    </tr>
+  </tbody>
+</table>
