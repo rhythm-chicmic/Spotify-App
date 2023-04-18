@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { Observable, finalize } from 'rxjs';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './add-songs.component.html',
   styleUrls: ['./add-songs.component.scss']
 })
-export class AddSongsComponent {
+export class AddSongsComponent implements OnInit{
   addSongForm!:FormGroup
   selectedFile:any
   storagePath!:string
@@ -54,6 +54,23 @@ export class AddSongsComponent {
     })
   }
 
+  ngOnInit(): void {
+    Swal.fire({
+      icon: 'info',
+      title: 'Want to Create Album',
+      text: 'Click here',
+        showDenyButton: true,
+      
+      confirmButtonText: 'Yes',
+      denyButtonText: `No`,
+    }).then((result)=>{
+      if (result.isConfirmed) {
+        this.router.navigate([PATHS.ADMIN.ADD_ALBUMS])
+      } else if (result.isDenied) {
+        Swal.close()
+      }
+    })
+  }
 
 
     selectFile(event:any,path:string){

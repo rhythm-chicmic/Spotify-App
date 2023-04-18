@@ -26,8 +26,6 @@ const firebaseApp = AngularFireModule.initializeApp(environment.firebase);
   declarations: [
     AppComponent,
     SpinnerComponent,
-
-  
   ],
   imports: [
     BrowserModule,

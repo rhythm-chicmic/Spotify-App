@@ -17,12 +17,11 @@ export class AlbumsComponent implements OnInit{
     this.addSongService.getAlbumDetails().subscribe((res:any)=>{
       this.albumsArray=Object.values(res)
       this.albumsRouteId=Object.keys(res)
-      console.log(this.albumsRouteId)
+ 
     })
   }
   OnAlbumClick(index:any){
     this.router.navigate([PATHS.MAIN.ALBUMS,this.albumsRouteId[index]])
   }
-  // this.router.navigate([PATHS.MAIN.YOUR_LIBRARY,PATHS.MAIN.PLAYLIST,this.myPlaylistRouteId[index]])
 
 }

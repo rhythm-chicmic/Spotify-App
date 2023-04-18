@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Observable, finalize } from 'rxjs';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
+import { Router } from '@angular/router';
+import { PATHS } from 'src/app/common/constants';
 
 var songDetails=[
   {artistName:'11',created:'',genre:'',id:'',mp3File:'',payment:'No',songName:'',songType:'',imageUrl:''}
@@ -25,7 +27,7 @@ export class AddAlbumsComponent {
   albumId!:string
   percentageVal!: Observable<number |null|undefined>;
 
-  constructor(private addSongService:AddSongsService,private fb:FormBuilder,private storage:AngularFireStorage){
+  constructor(private router:Router,private addSongService:AddSongsService,private fb:FormBuilder,private storage:AngularFireStorage){
     this.initAddAlbum();
   }
   initAddAlbum(){
@@ -62,6 +64,7 @@ export class AddAlbumsComponent {
       this.addSongService.postAlbumDetails(this.addAlbum.value).subscribe((res:any)=>{
         // console.log(res);
         this.albumId=res.name
+        this.addAlbum.disable;
       });
     }
   }
@@ -116,6 +119,9 @@ export class AddAlbumsComponent {
 
    }
 
+   OnAddSongs(){
+    this.router.navigate([PATHS.MAIN.ALBUMS]);
+   }
 
 
  

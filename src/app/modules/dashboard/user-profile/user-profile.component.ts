@@ -51,7 +51,7 @@ export class UserProfileComponent implements OnInit {
       this.userProfleArray = res;
       
       this.addProfile = false;
-      if (this.userProfleArray[0].email === 'rhythm.sharma@chicmic.co.in') {
+      if (this.phoneNo === '+916239312044') {
         this.isAdmin = true;
       }
     }
@@ -108,6 +108,7 @@ export class UserProfileComponent implements OnInit {
     this.router.navigate([PATHS.MAIN.DASHBOARD])
   }
   OnAddSongs() {
+   
     this.router.navigate([PATHS.ADMIN.ADD_SONGS])
   }
   OnAddProfile() {

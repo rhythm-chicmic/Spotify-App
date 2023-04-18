@@ -5,7 +5,6 @@ import  {SharedRoutingModule} from './shared-routing.module';
 import { EditProfileComponent } from './edit-profile/edit-profile.component'
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatRadioModule} from '@angular/material/radio'; 
-
 import {MatFormFieldModule} from '@angular/material/form-field'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -14,18 +13,20 @@ import { MusicBarComponent } from './music-bar/music-bar.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { CookiesComponent } from './cookies/cookies.component'; 
+import { WordTruncatePipe } from 'src/app/common/pipes/word-truncate.pipe';
 @NgModule({
   declarations: [
     NavbarComponent,
     EditProfileComponent,
     MusicBarComponent,
     PrivacyPolicyComponent,
-    CookiesComponent
+    CookiesComponent,
+    WordTruncatePipe
 
   ],
   imports: [
     CommonModule,
-    
+   
     SharedRoutingModule,
     MatTooltipModule,
     MatDialogModule,

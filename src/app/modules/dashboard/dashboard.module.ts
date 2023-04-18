@@ -13,6 +13,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { SearchPipe } from 'src/app/common/pipes/search.pipe';
 import { SharedModule } from '../shared/shared.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDialogModule} from '@angular/material/dialog';
 import { AlbumsComponent } from './albums/albums.component';
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AlbumsComponent } from './albums/albums.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    MatDialogModule,
     MatMenuModule,
     ReactiveFormsModule,
     MatTooltipModule,

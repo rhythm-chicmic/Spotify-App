@@ -12,7 +12,7 @@ import { IMAGES } from 'src/app/common/constants';
 export class AlbumSongsComponent implements OnInit{
   displayData:any;
   routeId!:string
-  idList:any
+  idList:any[]=[]
   allSongsList:any
   songsList:any[]=[]
   globalPlaySong=false
