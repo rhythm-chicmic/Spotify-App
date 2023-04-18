@@ -50,7 +50,7 @@ export class MyPlaylistSongsComponent implements OnInit{
     this.activeRoute?.params?.subscribe((res)=>{
       this.routeId=res['id']      //Route Id is sent to Firebase Api
     })
-    this.songLibraryService?.getPlaylistById(this.routeId)?.subscribe((res:any)=>{
+    this.songLibraryService?.getPlaylistById(this.routeId).subscribe((res:any)=>{
      this.displayData=res
      this.playlistId= res.playlistId
       this.IdList=Object.values(res)[4]

@@ -84,5 +84,8 @@ export class AddSongsService {
   return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN))
  }
 
+ getAlbumById(documentId:string){
+  return this.httpService.get(this.path+APIS.ALL_SONGS.ADD_TO_ALBUM+localStorage.getItem(STORAGE_KEYS.FIREBASE_ID)+'/'+documentId+'.json?auth='+localStorage.getItem(STORAGE_KEYS.TOKEN));
+ }
 
 }

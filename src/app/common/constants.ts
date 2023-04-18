@@ -106,8 +106,9 @@ export const APIS ={
  export const IMAGES={
   ADD_PROFILE_IMAGE:'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp',
   LIKED_SONGS_IMAGE:'https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp',
-  LIKED_SONGS_BANNER_IMAGE:'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/bologna-3.jpg'
- } 
+  LIKED_SONGS_BANNER_IMAGE:'https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/bologna-3.jpg',
+  ALBUM_IMAGE:'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
+} 
 
 export const IS_SONG_PAID=['Yes','No']
 
