@@ -16,7 +16,7 @@ export class TransactionHistroyComponent implements OnInit{
 
   constructor(private userService:UserDetailsService,private spinner:NgxSpinnerService,private transactionService:TransactionService,private router:Router){}
 
-  Toast = Swal.mixin({
+  Toast = Swal.mixin({                          // alert method declaration
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
@@ -29,17 +29,17 @@ export class TransactionHistroyComponent implements OnInit{
   })
 
   ngOnInit(): void {
-    this.spinner?.show()
-    this.transactionService?.getPurchasedSong()?.subscribe((res)=>{
+    this.spinner?.show()  
+    this.transactionService?.getPurchasedSong()?.subscribe((res)=>{   // fetching all the purchased song List
       if(res){
       this.purchasedSongList=Object.values(res)
       }
     this.spinner?.hide()
 
   
-    },()=> {
+    },()=> {                              // If session expired alert fires
       this.Toast.fire({
-        icon:'error',
+        icon:'error', 
         title:'Session Expired, Please Login Again'
       })
       localStorage.clear();

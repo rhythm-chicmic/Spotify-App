@@ -39,7 +39,7 @@ export class AddSongsComponent implements OnInit{
     this.initAddSongForm();
     this.addSongService.getAllSongs().subscribe()
   }
-  initAddSongForm(){
+  initAddSongForm(){          // form structure is declared
     this.addSongForm = this.fb.group({
       songName:['',Validators.required],
       songType:['',Validators.required],
@@ -80,11 +80,11 @@ export class AddSongsComponent implements OnInit{
       this.upload();
   }
 
-  get controls(){
+  get controls(){             // form controls
     return this.addSongForm.controls;
   }
 
-   upload(){
+   upload(){                    // upload files in firebase storage
     const filePath = `${this.storagePath}/${this.selectedFile.name}`;
     const storageRef= this.storage?.ref(filePath);
     const uploadTask = this.storage?.upload(filePath,this.selectedFile);
@@ -111,7 +111,7 @@ export class AddSongsComponent implements OnInit{
 
    }
 
-  addSong(){
+  addSong(){          // Post request to store songs in the DB
     
       if(this.addSongForm.valid){
 
@@ -137,7 +137,7 @@ export class AddSongsComponent implements OnInit{
       }
   }
 
-  onChange(event:any){
+  onChange(event:any){              // opening the enter amount input field
    
     this.paidValue=event
   }

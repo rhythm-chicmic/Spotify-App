@@ -35,7 +35,7 @@ Toast = Swal.mixin({
   constructor(private eventService:EventTrackService,private router:Router,private fb:FormBuilder,private db:AngularFireDatabase,private storage:AngularFireStorage,private songLibraryService:SongsLibraryService) {
     this.initCreatePlaylistForm();
   }
-  initCreatePlaylistForm(){
+  initCreatePlaylistForm(){                     //defining form structure
     this.createPlaylistForm = this.fb.group({
       title:['',Validators.required],
       description:['',Validators.required],
@@ -46,7 +46,7 @@ Toast = Swal.mixin({
     })
   }
 
-  submitCreatePlaylist(){
+  submitCreatePlaylist(){               //Post request called for submitting form
     if(this.createPlaylistForm.valid){
       this.createPlaylistForm.value.createdAt=new Date();
       this.createPlaylistForm.value.imageUrl=this.imagePath
@@ -65,18 +65,18 @@ Toast = Swal.mixin({
     }
   }
 
-  selectFile(event:any,path:string){
+  selectFile(event:any,path:string){        // getting file details uploaded by the user
     this.selectedFile=event.target?.files[0]
       this.storagePath=path
       
     this.upload();
 }
-get controls(){
+get controls(){               // form control setup
   return this.createPlaylistForm.controls;
 }
 
 
-upload(){
+upload(){                     // uploading files to firebase storage
   const filePath = `${this.storagePath}/${this.selectedFile?.name}`;
   const storageRef= this.storage?.ref(filePath);
   const uploadTask = this.storage?.upload(filePath,this.selectedFile);

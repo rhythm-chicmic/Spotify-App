@@ -30,7 +30,7 @@ export class YourLibraryComponent implements OnInit{
 
   ngOnInit(){
     this.spinner.show();
-    this.songLibraryService?.getAllPlaylists()?.subscribe((res)=>{
+    this.songLibraryService?.getAllPlaylists()?.subscribe((res)=>{    //GET method to fetch all playlists
       if(res){
       this.myPlaylists= Object.values(res);
       this.myPlaylistRouteId= Object.keys(res);
@@ -56,10 +56,10 @@ export class YourLibraryComponent implements OnInit{
 
 
 
-  OnLikedSongsClick(){
+  OnLikedSongsClick(){        // route navigate to liked songs component
     this.router.navigate([PATHS.MAIN.YOUR_LIBRARY,PATHS.MAIN.LIKED_SONGS])
   }
-  OnMyPlaylistClick(index:number){
+  OnMyPlaylistClick(index:number){       // route to particular playlist with documentId of particular song
     this.router.navigate([PATHS.MAIN.YOUR_LIBRARY,PATHS.MAIN.PLAYLIST,this.myPlaylistRouteId[index]])
   }
 }

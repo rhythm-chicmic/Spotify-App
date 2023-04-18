@@ -43,7 +43,7 @@ export class UserProfileComponent implements OnInit {
   }
   ngOnInit(): void {
     this.spinner.show();
-    this.userService.getMyProfile().subscribe((res:any) => {
+    this.userService.getMyProfile().subscribe((res:any) => { // Get user profile 
       if(res){
       this.documentId= Object.keys(res)[0];
    
@@ -69,24 +69,24 @@ export class UserProfileComponent implements OnInit {
     })
 
     this.songLibraryService?.getMySongsList()?.subscribe((res: any) => {
-      if(res){
-      res = Object.values(res)
+      if(res){                                    // showing  the total liked songs 
+      res = Object.values(res)    
       this.totalLikedSongs = res.length
       }
     })
 
     this.mostPlayedSongService?.getMostPlayedSong()?.subscribe((res: any) => {
-      if(res){
+      if(res){                           //function is checking the most played song 
       res = Object.values(res);
       this.frequentPlayedSongs = res;
 
       const song = this.frequentPlayedSongs.sort((a: any, b: any) =>
-        this.frequentPlayedSongs.filter((v: any) => v === a).length
+        this.frequentPlayedSongs.filter((v: any) => v === a).length   // filter method to check which song is played the most 
         - this.frequentPlayedSongs.filter((v: any) => v === b).length).pop()
 
       this.AllSongsService?.getAllSongs()?.subscribe((res: any) => {
-        res = Object.values(res);
-        res.find((value: any) => {
+        res = Object.values(res);                 // then we get the songId to  fetch the songName to 
+        res.find((value: any) => {               // display on the screen
           if (value.id === song?.songId) {
             this.myFavouriteSong = value;
 

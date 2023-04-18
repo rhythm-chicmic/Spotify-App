@@ -50,7 +50,7 @@ export class AddAlbumsComponent {
 
 
 
-  OnAlbumCreate(){
+  OnAlbumCreate(){          // post request to create the album
     if(this.addAlbum.valid){
       this.addAlbum.value.created = new Date();
       this.addAlbum.value.albumId=this.addAlbum?.value?.albumName.slice(0,2)+this.addAlbum?.value?.songType.slice(0,2)+JSON.stringify(this.addAlbum?.value?.created).slice(8,25)
@@ -62,7 +62,7 @@ export class AddAlbumsComponent {
    
       this.openDropBox=true;
       this.addSongService.postAlbumDetails(this.addAlbum.value).subscribe((res:any)=>{
-        // console.log(res);
+     
         this.albumId=res.name
         this.addAlbum.disable;
       });
@@ -72,11 +72,11 @@ export class AddAlbumsComponent {
 
  
   public dropped(files: NgxFileDropEntry[]) {
-    this.files = files;
+    this.files = files;         // dropping multiple audio files to the album 
     
 
     for (const droppedFile of files) {
-      console.log(1)
+    
       // Is it a file?
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
@@ -95,7 +95,7 @@ export class AddAlbumsComponent {
     }
   }
 
-  upload(file:any){
+  upload(file:any){         // storing files in the firebase storage
     const filePath = `${this.storagePath}/${file.name}`;
     const storageRef= this.storage?.ref(filePath);
     const uploadTask = this.storage?.upload(filePath,file);
@@ -104,12 +104,12 @@ export class AddAlbumsComponent {
       finalize(() => {
         storageRef.getDownloadURL().subscribe(downloadURL => {
             this.mp3Path=downloadURL;
-            // console.log(this.mp3Path)
+           
             songDetails[0].mp3File=this.mp3Path
             songDetails[0].songName=file.name
             songDetails[0].id= songDetails[0]?.songName.slice(0,3)+songDetails[0].songType.slice(0,3)+songDetails[0]?.genre.slice(0,2)+songDetails[0]?.artistName.slice(0,4)
             this.addSongService.postAllSongs(songDetails[0]).subscribe(()=>{
-              // console.log(res.name)
+              
               this.addSongService.postAlbumSongs(songDetails[0].id,this.albumId).subscribe((res)=>console.log(res))
             })
 

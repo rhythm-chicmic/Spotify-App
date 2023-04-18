@@ -14,10 +14,11 @@ export class AlbumsComponent implements OnInit{
   constructor(private addSongService:AddSongsService,private router:Router){}
 
   ngOnInit(): void {
-    this.addSongService.getAlbumDetails().subscribe((res:any)=>{
+    this.addSongService.getAlbumDetails().subscribe((res:any)=>{    // getting all  the albums list
+      if(res){
       this.albumsArray=Object.values(res)
       this.albumsRouteId=Object.keys(res)
- 
+      }
     })
   }
   OnAlbumClick(index:any){

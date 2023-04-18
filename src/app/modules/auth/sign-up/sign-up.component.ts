@@ -43,7 +43,7 @@ export class SignUpComponent {
     this.initaddProfileFormForm();
    
   }
-  initaddProfileFormForm(){
+  initaddProfileFormForm(){                 //form structure 
     this.addProfileForm=this.fb.group({
       firstName:['',[Validators.required,Validators.pattern(REGEX.NAME)]],
       lastName:['',[Validators.required,Validators.pattern(REGEX.NAME)]],
@@ -52,10 +52,10 @@ export class SignUpComponent {
       uId:['']
     })
 }
-get controls(){
+get controls(){               // form controls
   return this.addProfileForm.controls;
 }
-addProfile(){
+addProfile(){           // post request to set user details
   if((this.addProfileForm as FormGroup).valid){
     this.addProfileForm.value.uId=userData?.user?.uid
   
@@ -82,7 +82,7 @@ selectFile(event:any,path:string){
     this.storagePath=path
   this.upload();
 }
-upload(){
+upload(){               //storing image in the firebase storage
   const filePath = `${this.storagePath}/${this.selectedFile.name}`;
   const storageRef= this.storage.ref(filePath);
   const uploadTask = this.storage.upload(filePath,this.selectedFile);

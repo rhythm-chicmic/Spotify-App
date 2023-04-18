@@ -37,13 +37,13 @@ export class PayMoneyComponent implements OnInit{
   transactionForm!:FormGroup
 
   constructor(private spinner :NgxSpinnerService,private fb:FormBuilder,private songService:AddSongsService,private route:Router,private stripeScriptTag: StripeScriptTag,private transactionService:TransactionService) {
-    if (!this.stripeScriptTag.StripeInstance) {
+    if (!this.stripeScriptTag.StripeInstance) {               // Checking if Stripe token is present or not
       this.stripeScriptTag.setPublishableKey(STRIPE_KEYS.PUBLIC_KEY);
     }
     this.initTransactionForm();
   }
 
-  initTransactionForm(){
+  initTransactionForm(){                    // this function defines the form structure
     this.transactionForm= this.fb.group({
         name:['',Validators.required],
         songId:[this.songId],
@@ -57,8 +57,8 @@ export class PayMoneyComponent implements OnInit{
     })
   }
 
-  OnBuying(){
-    if(this.transactionForm.valid){
+  OnBuying(){                                       // this function will store the user details when the 
+    if(this.transactionForm.valid){                 // user buys the song
       this.transactionForm.value.songId=this.songId;
       this.transactionForm.value.transcationDate= new Date()
       this.transactionForm.value.tokenId=this.transactionResult?.id
@@ -79,10 +79,10 @@ export class PayMoneyComponent implements OnInit{
     this.spinner.show();
      this.amount= this.transactionService?.amount
      this.songId=this.transactionService?.songId
-      this.songService?.getAllSongs()?.subscribe((res:any)=>{
-          this.songsArray= Object.values(res);
-          this.spinner.hide();
-          this.songsArray.find((res:any)=>{
+      this.songService?.getAllSongs()?.subscribe((res:any)=>{   // getting all songs details to get 
+          this.songsArray= Object.values(res);            //  songId which we are purchasing 
+          this.spinner.hide();                                              
+          this.songsArray.find((res:any)=>{                 
             if(res.id===this.songId){
               this.buySong=res;
            
@@ -90,7 +90,7 @@ export class PayMoneyComponent implements OnInit{
           })
       })
 
-     if(!this.amount || !this.songId){
+     if(!this.amount || !this.songId){ 
       Swal.fire({
         icon:'error',
         title:' Song Not Selected'  
@@ -102,7 +102,7 @@ export class PayMoneyComponent implements OnInit{
 
 
 
-  onStripeInvalid( error: any ){
+  onStripeInvalid( error: any ){          // If the card No. is invalid the this function will invoke
     console.log(error)
     this.Toast.fire({
       icon: 'error',
@@ -110,8 +110,8 @@ export class PayMoneyComponent implements OnInit{
     })
   }
 
-  onStripeError( error: any ){
-    // console.log('Stripe error', error)
+  onStripeError( error: any ){                // If your card is expired or any service provider error 
+    // console.log('Stripe error', error)      // will show case in this function
     this.Toast.fire({
       icon: 'error',
       title: error.message
@@ -120,8 +120,8 @@ export class PayMoneyComponent implements OnInit{
   }
 
 
-  setStripeToken( token: stripe.Token ){
-  
+  setStripeToken( token: stripe.Token ){      // this method will generate the unique token_id from which the
+                                              // person buys the song
     this.transactionResult=token;
     this.Toast.fire({
         icon:'success',
@@ -131,11 +131,11 @@ export class PayMoneyComponent implements OnInit{
     this.OnBuying();
 
   }
-  setPaymentMethod( token: stripe.paymentMethod.PaymentMethod ){
+  setPaymentMethod( token: stripe.paymentMethod.PaymentMethod ){  // misslanious method
     console.log('Stripe Payment Method', token)
   }
 
-  setStripeSource( source: stripe.Source ){
+  setStripeSource( source: stripe.Source ){                     // misslanious method
     console.log('Stripe Source', source)
   }
 

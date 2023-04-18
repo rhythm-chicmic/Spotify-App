@@ -45,13 +45,13 @@ export class LoginComponent implements OnInit{
   this.recaptchaVerifier.render()
 
 }
-  initLoginForm(){
+  initLoginForm(){                      // form structure is defined
     this.LoginForm=this.fb.group({
       phoneNo:['',[Validators.required,Validators.pattern(REGEX.PHONE_NUMBER)]]
     })
   }
-  login(){
-        if(this.LoginForm.valid){
+  login(){                  // post request is called to authenticate the phone no and storing the 
+        if(this.LoginForm.valid){ // user credentials in the local Storage
           if(this.flag!==true){
             this.alert=true
           }

@@ -59,8 +59,8 @@ export class OtpComponent implements OnInit{
     signInWithCredential(this.auth,credential)
       .then((response:any) => {
         
-        this.spinner.show();
-        localStorage.setItem('user_data', JSON.stringify(response));
+        this.spinner.show();              
+        localStorage.setItem('user_data', JSON.stringify(response));  //setting user details in the localStorage
         localStorage.setItem(STORAGE_KEYS.FIREBASE_ID, response.user.uid);
 
         localStorage.setItem(STORAGE_KEYS.TOKEN,response._tokenResponse?.idToken)

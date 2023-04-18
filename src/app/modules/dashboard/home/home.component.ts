@@ -46,25 +46,25 @@ export class HomeComponent implements OnInit {
   })
   constructor(private transactionService:TransactionService,private spinner: NgxSpinnerService, private router: Router, private service: AngularFirestore, private userService: UserDetailsService, private allSongService: AddSongsService, private songLibService: SongsLibraryService) {
 
-    this.allSongService.getAllSongs().subscribe((res: any) => {
+    this.allSongService.getAllSongs().subscribe((res: any) => {     //All songs List will be displayed here
       this.playSongs = Object.values(res)
       this.transactionService.getPurchasedSong().subscribe((res)=>{
         if(res){
         this.purchasedSongArray=Object.values(res);
         
         for(const song of this.playSongs){
-          for(const purchase of this.purchasedSongArray){
-            if(song.id===purchase.songId){
+          for(const purchase of this.purchasedSongArray){ // locally handling if the user has already purchased
+            if(song.id===purchase.songId){    // the song then set the song.payment to 'NO'
               song.payment='No'
             }
           }
         }
       }
-      },()=>{this.Toast.fire({
+      },()=>{this.Toast.fire({            //session expiry then clear user credentials 
         icon: 'info',
         title: 'Not Logged In'
       })
-      localStorage.clear();
+      localStorage.clear();       
       this.userService.isLoggedIn$.next(false);
 
     }
@@ -84,9 +84,9 @@ export class HomeComponent implements OnInit {
     }, 3000);
 
   }
-  search(value: string): void {
-    this.playSongs = this.playSongs.filter((val:any) =>{
-     if(val.songName.toLowerCase().includes(value)){
+  search(value: string): void {             // search functionality is called
+    this.playSongs = this.playSongs.filter((val:any) =>{    // filtering the songs based 
+     if(val.songName.toLowerCase().includes(value)){    // on string of words included in the playSong Array
       return val;
      }
      else{
@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.spinner.show()
 
-    this.songLibService.getMySongsList().subscribe((res: any) => {
+    this.songLibService.getMySongsList().subscribe((res: any) => {  // Method called to post songs to Liked List
       if(res){
       res = Object.values(res)
       this.mySongList = Object.values(res)
@@ -110,8 +110,8 @@ export class HomeComponent implements OnInit {
     localStorage.clear()
   }
     )
-    this.songLibService.getAllPlaylists().subscribe((res) => {
-      if(res){
+    this.songLibService.getAllPlaylists().subscribe((res) => {    // Method called to store songId to
+      if(res){                                                    // specific playlist
       this.myPlaylistArray = Object.values(res);
       this.myPlaylistIdArray = Object.keys(res);
       }
@@ -124,8 +124,8 @@ export class HomeComponent implements OnInit {
 
   }
 
-  SelectedSongToSend(index: number, songId: any,paid:any) {
-    if(paid==='Yes'){
+  SelectedSongToSend(index: number, songId: any,paid:any) { // On Playing  Paid song
+    if(paid==='Yes'){                           //this method is called
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -138,8 +138,8 @@ export class HomeComponent implements OnInit {
 
       this.songIdPresentInPlaylist = Object.values(res)
      
-      this.songIdPresentInPlaylist.find((res: any) => {
-        if (res.id === songId) {
+      this.songIdPresentInPlaylist.find((res: any) => {   // Method is checking if the user has already
+        if (res.id === songId) {                         // added the song to the Playlist or not 
           this.Toast.fire({
             icon: 'info',
             title: 'Song Already Added'
@@ -150,8 +150,8 @@ export class HomeComponent implements OnInit {
       })
 
       if (this.playlistFlag !== true) {
- 
-
+                                            // RxJs mergeMap function is used to wait  for all the http
+        // requests to complete then execute the next line 
         this.songLibService.postSongToPlaylist(this.myPlaylistIdArray[index], songId).pipe(
           mergeMap(() => this.songLibService?.getSongToPlaylist(this.myPlaylistIdArray[index]))
         ).subscribe((res) => {
@@ -177,7 +177,7 @@ export class HomeComponent implements OnInit {
   }
   }
 
-  onClick(song: any) {
+  onClick(song: any) {              // checking if money is paid or not before playing the song
       if(song?.payment==='Yes'){
         Swal.fire({
           icon: 'error',
@@ -247,16 +247,16 @@ export class HomeComponent implements OnInit {
     this.flag = false;
   }
 }
-  OnSignUp() {
+  OnSignUp() {                                // signUp is called 
     this.router.navigate([PATHS.AUTH.LOGIN])
   }
-  buySong(songId:any,amount:string){
-    this.transactionService.getSongData(songId,amount);
+  buySong(songId:any,amount:string){                      // route to the buy song page if you want to 
+    this.transactionService.getSongData(songId,amount);  // purchase the song
     this.router.navigate([PATHS.PAYMENT.PAY_MONEY])
   }
 
   playSong(url:any,songId:string,index:number,payment:string,playsong:any){
-    if(payment==='No'){
+    if(payment==='No'){                     // song will be played if we click on playSong function
     this.playSongs[index].isPlayed=true;
     this.allSongService.audio.src=url
     this.allSongService?.audio?.load();
