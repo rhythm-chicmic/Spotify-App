@@ -24,6 +24,7 @@ export class AddAlbumsComponent {
   selectedFile:any
   storagePath='/mp3'
   mp3Path!:string;
+  index=0
   albumId!:string
   percentageVal!: Observable<number |null|undefined>;
 
@@ -107,7 +108,7 @@ export class AddAlbumsComponent {
            
             songDetails[0].mp3File=this.mp3Path
             songDetails[0].songName=file.name
-            songDetails[0].id= songDetails[0]?.songName.slice(0,3)+songDetails[0].songType.slice(0,3)+songDetails[0]?.genre.slice(0,2)+songDetails[0]?.artistName.slice(0,4)
+            songDetails[0].id= songDetails[0]?.songName.slice(0,3)+songDetails[0].songType.slice(0,3)+songDetails[0]?.genre.slice(0,2)+songDetails[0]?.artistName.slice(0,4)+ Date
             this.addSongService.postAllSongs(songDetails[0]).subscribe(()=>{
               
               this.addSongService.postAlbumSongs(songDetails[0].id,this.albumId).subscribe((res)=>console.log(res))

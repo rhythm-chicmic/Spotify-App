@@ -72,7 +72,7 @@ Toast = Swal.mixin({
     }
   }
 
-  selectFile(event:any,path:string){        // getting file details uploaded by the user
+  selectFile(event:any,path:string){          // getting file details uploaded by the user
     this.selectedFile=event.target?.files[0]
       this.storagePath=path
       
