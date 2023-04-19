@@ -56,10 +56,7 @@ export class AddSongsService {
 
       }
 
-     }, ()=>{this.Toast.fire({
-      icon: 'info',
-      title: 'Not Logged In'
-     })
+     }, ()=>{
      })
   }
 

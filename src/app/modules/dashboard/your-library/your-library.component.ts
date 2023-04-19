@@ -35,7 +35,7 @@ export class YourLibraryComponent implements OnInit{
       this.myPlaylists= Object.values(res);
       this.myPlaylistRouteId= Object.keys(res);
       
-    this.spinner.hide();
+   
       }
     }, (e) => {
       if (e.status === 401) {
@@ -50,7 +50,7 @@ export class YourLibraryComponent implements OnInit{
     })
     setTimeout(()=>{
       this.spinner.hide();
-        },3000)
+        },700)
   }
 
 

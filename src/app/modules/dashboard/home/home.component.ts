@@ -56,20 +56,14 @@ export class HomeComponent implements OnInit {
           }
         }
       }
-      },()=>{this.Toast.fire({            //session expiry then clear user credentials 
-        icon: 'info',
-        title: 'Not Logged In'
-      })
+      },()=>{
       localStorage.clear();       
       this.userService.isLoggedIn$.next(false);
 
     }
       )
       this.spinner.hide()
-    },()=>{this.Toast.fire({
-      icon: 'info',
-      title: 'Not Logged In'
-    })
+    },()=>{
     localStorage.clear()
   })
     if (localStorage.getItem(STORAGE_KEYS.TOKEN)) {
@@ -99,10 +93,7 @@ export class HomeComponent implements OnInit {
       res = Object.values(res)
       this.mySongList = Object.values(res)
       }
-    },()=>{this.Toast.fire({
-      icon: 'info',
-      title: 'Not Logged In'
-    })
+    },()=>{
     localStorage.clear()
   }
     )
@@ -111,10 +102,7 @@ export class HomeComponent implements OnInit {
       this.myPlaylistArray = Object.values(res);
       this.myPlaylistIdArray = Object.keys(res);
       }
-    },()=>this.Toast.fire({
-      icon: 'info',
-      title: 'Not Logged In'
-    }))
+    },()=>{})
   }
 
   SelectedSongToSend(index: number, songId: any,paid:any) { // On Playing  Paid song
@@ -151,19 +139,13 @@ export class HomeComponent implements OnInit {
           this.songIdPresentInPlaylist = Object.values(res)
           this.Toast.fire({
             icon: 'success',
-            title: 'Song Added to Liked Songs'
+            title: 'Song Added to Playlist'
           })
         }
-      ,()=>this.Toast.fire({
-          icon: 'info',
-          title: 'Not Logged In'
-        }))
+      ,()=>{})
         this.playlistFlag = false;
       }
-    },()=>this.Toast.fire({
-      icon: 'info',
-      title: 'Not Logged In'
-    })
+    },()=>{}
     )
 
     this.playlistFlag = false;
@@ -196,10 +178,7 @@ export class HomeComponent implements OnInit {
               title: 'Song Added '
             })
 
-          },()=>this.Toast.fire({
-            icon: 'info',
-            title: 'Not Logged In'
-          }))
+          },()=>{})
       }
       else {
         this.Toast.fire({
@@ -230,10 +209,7 @@ export class HomeComponent implements OnInit {
               title: 'Song Added '
             })
         
-          },()=>this.Toast.fire({
-            icon: 'info',
-            title: 'Not Logged In'
-          }))
+          },()=>{})
 
       }
     }
