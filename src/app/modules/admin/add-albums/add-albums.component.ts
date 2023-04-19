@@ -55,7 +55,6 @@ export class AddAlbumsComponent {
     if(this.addAlbum.valid){
       this.addAlbum.value.created = new Date();
       this.addAlbum.value.albumId=this.addAlbum?.value?.albumName.slice(0,2)+this.addAlbum?.value?.songType.slice(0,2)+JSON.stringify(this.addAlbum?.value?.created).slice(8,25)
-      console.log(this.addAlbum.value)
    songDetails[0].artistName=this.addAlbum?.value?.artistName;
    songDetails[0].genre=this.addAlbum?.value?.genre;
    songDetails[0].created=this.addAlbum?.value?.created
@@ -65,8 +64,9 @@ export class AddAlbumsComponent {
       this.addSongService.postAlbumDetails(this.addAlbum.value).subscribe((res:any)=>{
      
         this.albumId=res.name
-        this.addAlbum.disable;
       });
+      this.addAlbum.disable();
+
     }
   }
 
@@ -91,7 +91,7 @@ export class AddAlbumsComponent {
       } else {
         // It was a directory (empty directories are added, otherwise only files)
         const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
-        console.log(droppedFile.relativePath, fileEntry);
+        // console.log(droppedFile.relativePath, fileEntry);
       }
     }
   }
@@ -108,10 +108,10 @@ export class AddAlbumsComponent {
            
             songDetails[0].mp3File=this.mp3Path
             songDetails[0].songName=file.name
-            songDetails[0].id= songDetails[0]?.songName.slice(0,3)+songDetails[0].songType.slice(0,3)+songDetails[0]?.genre.slice(0,2)+songDetails[0]?.artistName.slice(0,4)+ Date
+            songDetails[0].id= songDetails[0]?.songName.slice(0,3)+songDetails[0].songType.slice(0,3)+songDetails[0]?.genre.slice(0,2)+songDetails[0]?.artistName.slice(0,4)+ JSON.stringify(new Date())
             this.addSongService.postAllSongs(songDetails[0]).subscribe(()=>{
               
-              this.addSongService.postAlbumSongs(songDetails[0].id,this.albumId).subscribe((res)=>console.log(res))
+              this.addSongService.postAlbumSongs(songDetails[0].id,this.albumId).subscribe()
             })
 
           });

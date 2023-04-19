@@ -33,7 +33,7 @@
    
 
     <!-- Submit button -->
-    <button type="submit" [disabled]="addAlbum.invalid"  class="btn btn-primary btn-block mb-4">Add Album</button>
+    <button type="submit" [disabled]="addAlbum.invalid && !addAlbum.disabled"  class="btn btn-primary btn-block mb-4">Add Album</button>
   </form>
  <!-- Multiple files upload -->
  <div class="center" *ngIf="openDropBox">
