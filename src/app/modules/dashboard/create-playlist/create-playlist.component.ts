@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, finalize } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
@@ -8,12 +8,13 @@ import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { PATHS, REGEX } from 'src/app/common/constants';
 import { EventTrackService } from 'src/app/core/services/event-track.service';
+import { AddSongsService } from 'src/app/core/services/add-songs.service';
 @Component({
   selector: 'app-create-playlist',
   templateUrl: './create-playlist.component.html',
   styleUrls: ['./create-playlist.component.scss']
 })
-export class CreatePlaylistComponent {
+export class CreatePlaylistComponent implements OnInit,OnDestroy{
   createPlaylistForm!:FormGroup
   selectedFile:any
   storagePath!:string
@@ -32,9 +33,15 @@ Toast = Swal.mixin({
   }
 })
 
-  constructor(private eventService:EventTrackService,private router:Router,private fb:FormBuilder,private db:AngularFireDatabase,private storage:AngularFireStorage,private songLibraryService:SongsLibraryService) {
+  constructor(private addSongService:AddSongsService,private eventService:EventTrackService,private router:Router,private fb:FormBuilder,private db:AngularFireDatabase,private storage:AngularFireStorage,private songLibraryService:SongsLibraryService) {
     this.initCreatePlaylistForm();
   }
+
+  ngOnInit(): void {
+    this.addSongService.hideBottomIcon.next(false)
+  }
+
+
   initCreatePlaylistForm(){                     //defining form structure
     this.createPlaylistForm = this.fb.group({
       title:['',Validators.required],
@@ -96,5 +103,8 @@ upload(){                     // uploading files to firebase storage
 
 
 }
-
+ngOnDestroy(): void {
+  this.addSongService.hideBottomIcon.next(true)
+  
+}
 }

@@ -18,6 +18,7 @@ export class AddSongsService {
  isPlayed$ = new BehaviorSubject<boolean>(false);
  globalPlaySong$= new BehaviorSubject<boolean>(true);
  frequentPlayedSongs:any
+ hideBottomIcon= new BehaviorSubject<boolean>(true);
  token!:string;
  myFavouriteSong:any
  Toast = Swal.mixin({

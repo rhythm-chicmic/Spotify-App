@@ -49,9 +49,7 @@
 </div>
 
 
-<div #musicBar class="eject" *ngIf="!showing" >
-
+<div #musicBar class="eject" *ngIf="!showing && hideAtRoutes" >
   <mat-icon matTooltip="Show Music Bar" class="label-file bouncing" 
     style="margin-top: 90px; font-size: 40px;width: 70px;height:40px" (click)="OnCancel()">eject</mat-icon>
-
 </div>

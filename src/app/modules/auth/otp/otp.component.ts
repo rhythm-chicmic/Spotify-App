@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
 import 'firebase/firestore';
 import { Router } from '@angular/router';
 import { PATHS, STORAGE_KEYS } from 'src/app/common/constants';
@@ -6,12 +6,13 @@ import { PhoneAuthProvider, getAuth, signInWithCredential } from 'firebase/auth'
 import { Firebase } from 'src/app/core/services/firebase.service';
 import Swal from 'sweetalert2'
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AddSongsService } from 'src/app/core/services/add-songs.service';
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
   styleUrls: ['./otp.component.scss']
 })
-export class OtpComponent implements OnInit{
+export class OtpComponent implements OnInit,OnDestroy{
   otp!:string;
   auth :any
   isDisable=true
@@ -38,10 +39,11 @@ export class OtpComponent implements OnInit{
     },
   }
   verify!:any;
-  constructor(private spinner:NgxSpinnerService,private router:Router,private ngZone:NgZone,private firebase:Firebase){
+  constructor(private addSongService:AddSongsService,private spinner:NgxSpinnerService,private router:Router,private ngZone:NgZone,private firebase:Firebase){
      this.auth = getAuth(firebase.firebaseApp);
   }
   ngOnInit(): void {
+    this.addSongService.hideBottomIcon.next(false)
       this.verify = JSON.parse(localStorage.getItem(STORAGE_KEYS.VERIFICATION_ID) || '');
   }
   onOtpChange(otp: string) {
@@ -89,6 +91,9 @@ if(otp.length===6){
           title: 'Wrong OTP/OTP Expired'
         })
       });
+  }
+  ngOnDestroy(): void {
+    this.addSongService.hideBottomIcon.next(true)
   }
 
 }

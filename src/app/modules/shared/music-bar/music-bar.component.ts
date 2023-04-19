@@ -12,6 +12,8 @@ import { IMAGES } from 'src/app/common/constants';
 export class MusicBarComponent implements OnInit {
   showing = true;
   volumeOfSong = true;
+ 
+  hideAtRoutes=true;
   songTime: any
   repeatSong = true
   songName!: string
@@ -29,7 +31,13 @@ export class MusicBarComponent implements OnInit {
 
 
   ngOnInit(): void {
-  
+    
+
+   this.allSongsService?.hideBottomIcon?.subscribe((res)=>{
+    this.hideAtRoutes=res;
+   }) 
+
+
     
     this.allSongsService?.isPlayed$?.subscribe((res) => {   // this isPlayed$ is an Observable which 
                                               // checks if the song is Playing or not then it set the local variable to

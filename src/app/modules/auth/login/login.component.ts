@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PATHS, REGEX, STORAGE_KEYS } from 'src/app/common/constants';
 import { getAuth,RecaptchaVerifier,signInWithPhoneNumber } from "firebase/auth";
@@ -6,13 +6,14 @@ import "firebase/firestore"
 import { Router } from '@angular/router';
 import { Firebase } from 'src/app/core/services/firebase.service';
 import Swal from "sweetalert2"
+import { AddSongsService } from 'src/app/core/services/add-songs.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit,OnDestroy{
 
   auth:any
   flag=false;
@@ -30,11 +31,14 @@ export class LoginComponent implements OnInit{
   })
   recaptchaVerifier:any
   LoginForm!: FormGroup
-  constructor(private fb:FormBuilder,private router :Router,private firebase:Firebase){
+  constructor(private fb:FormBuilder,private router :Router,private firebase:Firebase,private addSongService:AddSongsService){
     this.initLoginForm();
       this.auth = getAuth(firebase.firebaseApp);
   }
   ngOnInit(){
+
+    this.addSongService.hideBottomIcon.next(false);
+    
   this.recaptchaVerifier = new RecaptchaVerifier('sign-in-button', {
     'size': 'normal',
     'callback': () => {
@@ -80,6 +84,9 @@ export class LoginComponent implements OnInit{
   }
   get controls(){
     return this.LoginForm.controls;
+  }
+  ngOnDestroy(): void {
+    this.addSongService.hideBottomIcon.next(true)
   }
 
 }
