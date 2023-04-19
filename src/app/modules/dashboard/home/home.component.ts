@@ -250,10 +250,16 @@ export class HomeComponent implements OnInit {
   OnSignUp() {                                // signUp is called 
     this.router.navigate([PATHS.AUTH.LOGIN])
   }
-  buySong(songId:any,amount:string){                      // route to the buy song page if you want to 
+  buySong(songId:any,amount:string){ 
+    if(localStorage.getItem(STORAGE_KEYS.UNIQUE_ID)){ 
+                                                          // route to the buy song page if you want to 
     this.transactionService.getSongData(songId,amount);  // purchase the song
     this.router.navigate([PATHS.PAYMENT.PAY_MONEY])
   }
+  else{
+    this.router.navigate([PATHS.AUTH.LOGIN])
+  }
+}
 
   playSong(url:any,songId:string,index:number,payment:string,playsong:any){
     if(payment==='No'){                     // song will be played if we click on playSong function

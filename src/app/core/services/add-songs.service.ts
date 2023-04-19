@@ -6,11 +6,13 @@ import { BehaviorSubject } from 'rxjs';
 import { MostPlayedSongsService } from './most-played-songs.service';
 import Swal from 'sweetalert2'
 
+
 @Injectable({providedIn:'root'})
 export class AddSongsService {
  private path= environment.url
  songImage$ = new BehaviorSubject<string>('');
  songName$ = new BehaviorSubject<string>('');
+
  audio = new Audio
 
  isPlayed$ = new BehaviorSubject<boolean>(false);

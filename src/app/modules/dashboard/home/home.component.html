@@ -27,7 +27,7 @@
     <tbody>
       <tr class="group-item"  *ngFor="let playsong of playSongs |search: searchTerm; index as i">
        
-        <th scope="row"  (click)="playSong(playsong?.mp3File,playsong?.id,i,playsong?.payment,playsong)">{{playsong?.artistName}}</th>
+        <th scope="row"   (click)="playSong(playsong?.mp3File,playsong?.id,i,playsong?.payment,playsong)">{{playsong?.artistName}}</th>
         <td (click)="playSong(playsong?.mp3File,playsong?.id,i,playsong?.payment,playsong)">{{playsong?.songName}}</td>
         <td (click)="playSong(playsong?.mp3File,playsong?.id,i,playsong?.payment,playsong)">{{playsong?.genre}}</td>
         <td (click)="playSong(playsong?.mp3File,playsong?.id,i,playsong?.payment,playsong)">{{playsong?.songType}}</td>

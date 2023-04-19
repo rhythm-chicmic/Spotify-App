@@ -74,10 +74,11 @@ export class MyLikedSongsComponent implements OnInit {
     if (this.IdList) {                                 // of all songs  
       for (const idlist of this.IdList) {
         for (const allsongs of this.allSongsList) {
-          if (idlist.songId === allsongs.id) {
+          if (idlist?.songId === allsongs?.id) {
 
             this.songsList.push(allsongs);
-
+          
+            
           }
         }
       }
@@ -92,6 +93,11 @@ export class MyLikedSongsComponent implements OnInit {
   }
   OnClickPlay() {                                // Play button is clicked which will play the active song     
     this.globalPlaySong = !this.globalPlaySong   // url present in 'audio.src' 
+    
+    
+    this.addSongService.audio.src = this.songsList[0]?.mp3File
+    this.addSongService?.songImage$?.next(this.songsList[0]?.imageUrl);
+    this.addSongService?.songName$?.next(this.songsList[0]?.songName);
     if (this.globalPlaySong) {
       this.addSongService.audio.play();
       this.addSongService.isPlayed$.next(true)

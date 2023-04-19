@@ -16,6 +16,7 @@ export class MusicBarComponent implements OnInit {
   repeatSong = true
   songName!: string
   songImage!: string
+  localSongsArray:any[]=[]
   demoImage = IMAGES.LIKED_SONGS_IMAGE
   constructor(private allSongsService: AddSongsService, private changeDetect: ChangeDetectorRef) {
     if (!localStorage.getItem(STORAGE_KEYS.TOKEN)) {
@@ -28,7 +29,8 @@ export class MusicBarComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+  
+    
     this.allSongsService?.isPlayed$?.subscribe((res) => {   // this isPlayed$ is an Observable which 
                                               // checks if the song is Playing or not then it set the local variable to
       this.globalPlaySong = res;              // True/False
@@ -83,4 +85,5 @@ export class MusicBarComponent implements OnInit {
     this.showing = !this.showing
 
   }
+
 }

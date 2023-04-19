@@ -48,6 +48,7 @@ export class AlbumSongsComponent implements OnInit {
       for (const allsongs of this.allSongsList) {
         if (idlist.id === allsongs.id) {
           this.songsList.push(allsongs);
+        
         }
       }
     }
@@ -62,6 +63,11 @@ export class AlbumSongsComponent implements OnInit {
   }
   OnClickPlay() {                               // Play music on clicking the play button and toggle play 
     this.globalPlaySong = !this.globalPlaySong  // and pause button
+ 
+     this.addSongService.audio.src = this.songsList[0]?.mp3File
+     this.addSongService?.songImage$?.next(this.songsList[0]?.imageUrl);
+     this.addSongService?.songName$?.next(this.songsList[0]?.songName);
+
     if (this.globalPlaySong) {                  // i.e recently played song will be played not any song 
       this.addSongService.audio.play();         // which is present
       this.addSongService.isPlayed$.next(true)

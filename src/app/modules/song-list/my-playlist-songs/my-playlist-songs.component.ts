@@ -109,6 +109,10 @@ export class MyPlaylistSongsComponent implements OnInit{
   }
   OnClickPlay(){                                    // Play button is clicked which will play the active song     
     this.globalPlaySong = !this.globalPlaySong      // url present in 'audio.src'
+     
+    this.addSongService.audio.src = this.songsList[0]?.mp3File
+    this.addSongService?.songImage$?.next(this.songsList[0]?.imageUrl);
+    this.addSongService?.songName$?.next(this.songsList[0]?.songName);
     if(this.globalPlaySong){
       this.addSongService.audio.play();
       this.addSongService.isPlayed$.next(true)
@@ -121,7 +125,7 @@ export class MyPlaylistSongsComponent implements OnInit{
   }
 
   PlaySong(url:string,index:number,songId:string,song:any){    // This will play the song on which
-                                                               // we click, which takes mp3 url and songID  
+                                                                 // we click, which takes mp3 url and songID  
     if(!this.addSongService.isPlayed$.getValue()){            // to store it in the global this.audio file
     this.songsList[index].isPlayed=true;                      // to play/pause song
       this.addSongService?.isPlayed$?.next(true);

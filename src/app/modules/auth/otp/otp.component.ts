@@ -50,6 +50,9 @@ if(otp.length===6){
   this.isDisable=false;
     this.otp = otp;
   }
+  else {
+    this.isDisable=true;
+  }
 }
 
   handleClick() {
