@@ -7,6 +7,7 @@ import { EventTrackService } from 'src/app/core/services/event-track.service';
 import { MostPlayedSongsService } from 'src/app/core/services/most-played-songs.service';
 import Swal from 'sweetalert2'
 import { PATHS } from 'src/app/common/constants';
+import { IMAGES } from 'src/app/common/constants';
 import { UserDetailsService } from 'src/app/core/services/user-details.service';
 @Component({
   selector: 'app-my-playlist-songs',
@@ -14,6 +15,7 @@ import { UserDetailsService } from 'src/app/core/services/user-details.service';
   styleUrls: ['./my-playlist-songs.component.scss']
 })
 export class MyPlaylistSongsComponent implements OnInit{
+  imageUrl=IMAGES.ALBUM_IMAGE
   isHovering=false
   globalPlaySong=false
   playlistPlayed=0
