@@ -193,7 +193,7 @@ export class HomeComponent implements OnInit {
             this.mySongList = Object.values(res);
             this.Toast.fire({
               icon: 'success',
-              title: 'Song Added to Liked Songs'
+              title: 'Song Added '
             })
 
           },()=>this.Toast.fire({
@@ -227,7 +227,7 @@ export class HomeComponent implements OnInit {
             this.mySongList = Object.values(res)
             this.Toast.fire({
               icon: 'success',
-              title: 'Song Added to Liked Songs'
+              title: 'Song Added '
             })
         
           },()=>this.Toast.fire({
