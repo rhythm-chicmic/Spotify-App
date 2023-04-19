@@ -11,15 +11,11 @@ import { UserDetailsService } from 'src/app/core/services/user-details.service';
 
 import Swal from "sweetalert2"
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-
-
-
 export class HomeComponent implements OnInit {
   // audio = new Audio
   searchTerm=''
@@ -119,9 +115,6 @@ export class HomeComponent implements OnInit {
       icon: 'info',
       title: 'Not Logged In'
     }))
-
-    
-
   }
 
   SelectedSongToSend(index: number, songId: any,paid:any) { // On Playing  Paid song
@@ -283,12 +276,8 @@ export class HomeComponent implements OnInit {
     this.allSongService?.audio.play();
     this.allSongService?.songImage$.next(playsong?.imageUrl);
     this.allSongService?.songName$.next(playsong?.songName)
-
-     
-  
     }
   }
-  
   else {
     this.Toast.fire({
       icon: 'error',
