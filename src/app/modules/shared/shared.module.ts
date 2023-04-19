@@ -14,6 +14,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { CookiesComponent } from './cookies/cookies.component'; 
 import { WordTruncatePipe } from 'src/app/common/pipes/word-truncate.pipe';
+import { AudoBarComponent } from './audo-bar/audo-bar.component';
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -21,7 +22,8 @@ import { WordTruncatePipe } from 'src/app/common/pipes/word-truncate.pipe';
     MusicBarComponent,
     PrivacyPolicyComponent,
     CookiesComponent,
-    WordTruncatePipe
+    WordTruncatePipe,
+    AudoBarComponent
 
   ],
   imports: [

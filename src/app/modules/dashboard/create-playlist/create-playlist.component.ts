@@ -63,7 +63,7 @@ Toast = Swal.mixin({
  
         this.Toast.fire({
           icon: 'success',
-          title: 'Song Added to Liked Songs'
+          title: 'PLaylist Created Successfully'
         }).then(()=>{
           this.eventService.postPlaylistTrack(this.createPlaylistForm.value.playlistId).subscribe()
         })

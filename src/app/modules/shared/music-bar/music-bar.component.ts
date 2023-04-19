@@ -20,7 +20,7 @@ export class MusicBarComponent implements OnInit {
   songImage!: string
   localSongsArray:any[]=[]
   demoImage = IMAGES.LIKED_SONGS_IMAGE
-  constructor(private allSongsService: AddSongsService, private changeDetect: ChangeDetectorRef) {
+  constructor(private allSongsService: AddSongsService) {
     if (!localStorage.getItem(STORAGE_KEYS.TOKEN)) {
       this.showing = false;
     }
@@ -35,6 +35,7 @@ export class MusicBarComponent implements OnInit {
 
    this.allSongsService?.hideBottomIcon?.subscribe((res)=>{
     this.hideAtRoutes=res;
+  
    }) 
 
 
@@ -42,7 +43,7 @@ export class MusicBarComponent implements OnInit {
     this.allSongsService?.isPlayed$?.subscribe((res) => {   // this isPlayed$ is an Observable which 
                                               // checks if the song is Playing or not then it set the local variable to
       this.globalPlaySong = res;              // True/False
-
+    
       if (res === true) {
         this.showing = true;
       }

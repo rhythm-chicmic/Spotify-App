@@ -14,17 +14,15 @@
     
       <p>{{songName |wordTruncate}}</p>
    
-
+  
   </div>
-
+  
   <div class="audio-btns">
     <div class="img-div">
       <img src="{{songImage || demoImage}}" style="object-fit: cover;" alt="demo image" width="70px" height="70px">
-    
-        
-       
-      
     </div>
+
+  
     <button class="loop-btn" (click)="onReplay()">
        
       <mat-icon *ngIf="repeatSong" matTooltip="Repeat Song">repeat</mat-icon>
@@ -46,10 +44,12 @@
       </button>
     </div>
   </div>
+ 
+    
 </div>
-
 
 <div #musicBar class="eject" *ngIf="!showing && hideAtRoutes" >
   <mat-icon matTooltip="Show Music Bar" class="label-file bouncing" 
     style="margin-top: 90px; font-size: 40px;width: 70px;height:40px" (click)="OnCancel()">eject</mat-icon>
 </div>
+
