@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { Firebase } from 'src/app/core/services/firebase.service';
 import Swal from "sweetalert2"
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
-
+import { COUNTRY_CODES } from 'src/app/common/constants';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit,OnDestroy{
           if(this.flag!==true){
             this.alert=true
           }
-          this.LoginForm.value.phoneNo='+91'+this.LoginForm?.value?.phoneNo
+          this.LoginForm.value.phoneNo=COUNTRY_CODES.INDIAN_CODE+this.LoginForm?.value?.phoneNo
    
       signInWithPhoneNumber(this.auth, this.LoginForm?.value?.phoneNo, this.recaptchaVerifier).then((result:any)=>{
       
