@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
+
 import { STORAGE_KEYS } from 'src/app/common/constants';
 import { AddSongsService } from 'src/app/core/services/add-songs.service';
 import { IMAGES } from 'src/app/common/constants';
@@ -42,7 +42,7 @@ export class MusicBarComponent implements OnInit {
     
     this.allSongsService?.isPlayed$?.subscribe((res) => {   // this isPlayed$ is an Observable which 
                                               // checks if the song is Playing or not then it set the local variable to
-      this.globalPlaySong = res;              // True/False
+      this.globalPlaySong = res;              // True / False
     
       if (res === true) {
         this.showing = true;
