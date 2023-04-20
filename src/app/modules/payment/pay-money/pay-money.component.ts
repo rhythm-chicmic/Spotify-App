@@ -65,7 +65,7 @@ export class PayMoneyComponent implements OnInit{
       this.transactionForm.value.last4Digit = this.transactionResult?.card?.last4
       this.transactionForm.value.cardId=this.transactionResult?.card?.id
       this.transactionForm.value.cardBrand=this.transactionResult?.card?.brand
-      this.transactionForm.value.songName=this.buySong.songName
+      this.transactionForm.value.songName=this.buySong?.songName
     
       this.transactionService?.postPurchasedSong(this.transactionForm?.value)?.subscribe()
     }

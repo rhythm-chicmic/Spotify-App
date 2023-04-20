@@ -21,11 +21,16 @@
 
       <input type="text" id="email" class="client-info" formControlName="phoneNo">
       <label for="email">Phone No.</label>
+      
+    <div style="display:flex;flex-direction: row; justify-content: center;">
       <mat-error id="error" *ngIf="controls['phoneNo']?.errors?.['required'] && controls['phoneNo'].touched">
-      Phone No. is required
-    </mat-error>
-      <mat-error id="error" *ngIf="controls['phoneNo']?.errors?.['pattern'] ">
-        * first digit must be either 6,7,8,9</mat-error>
+        *Phone No. is required
+      </mat-error>
+      <mat-error id="error" *ngIf="controls['phoneNo']?.errors?.['pattern'] && controls['phoneNo'].touched">
+      *first digit must be from 6,7,8,9 <span>&nbsp;</span>  
+      <br>
+       <span>&nbsp;</span> must contain 10 digits</mat-error>
+      </div>
       <div id="sign-in-button"></div>
       <label id="captcha" *ngIf="alert">Fill the Captcha</label>
 

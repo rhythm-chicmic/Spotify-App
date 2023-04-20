@@ -7,10 +7,10 @@ import {
   HttpResponse,
 
 } from '@angular/common/http';
-import { Observable, catchError, of, tap, throwError } from 'rxjs';
+import { Observable,  tap } from 'rxjs';
 import  Swal from 'sweetalert2'
 import { Router } from '@angular/router';
-import { PATHS } from 'src/app/common/constants';
+
 
 @Injectable({
   providedIn:'root'

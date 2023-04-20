@@ -10,9 +10,9 @@ export class AudoBarComponent implements OnInit{
   constructor(private allSongService:AddSongsService){}
 audio_src!:string
 ngOnInit(): void {
-    this.allSongService.isPlayed$.subscribe((res)=>{
+    this.allSongService.isPlayed$.subscribe(()=>{
     this.audio_src=this.allSongService.audio.src
-    console.log(this.audio_src)
+    // console.log(this.audio_src)
     })
 }
 }
